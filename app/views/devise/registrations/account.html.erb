@@ -1,0 +1,38 @@
+<div class="users_nav_container">
+  <div class="nav_row">
+    <nav>
+     <ul>
+      <li class="color_blue"> <%= link_to 'アカウント', users_account_path %></li>
+      <li> <%= link_to 'プロフィール', users_profile_path %></li>
+     </ul>
+    </nav>
+  </div>
+
+  <div class="users_frame">
+    <h2>アカウント</h2>
+    <div class="users_title_content">
+      <div class="users_title">
+        <label for="email">
+          メールアドレス
+        </label>
+      </div>
+      <div class="users_content">
+        <%= current_user.email %>
+      </div>
+    </div>
+    <div class="users_title_content">
+      <div class="users_title">
+        <label for="password">
+          パスワード
+        </label>
+      </div>
+      <div class="users_content">
+      *********
+      </div>
+    </div>
+
+    <div class="button edit_button">
+    <%= link_to '更新', edit_user_registration_path %>
+    </div>
+  </div>
+</div>

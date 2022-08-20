@@ -11,6 +11,44 @@
   </head>
 
   <body>
+      <header class="header">
+      <div class="header_title_input">
+        <a href="/">
+          <img src="/assets/logo.png" class="img_title">
+        </a>
+        <input type="text" placeholder="エリア">
+        <input type="text" placeholder="キーワード">
+      </div>
+      <% if user_signed_in? %>
+      <div class="header_name_menu">
+        <div class="user_name"><%= current_user.id %>さん</div>
+        <div class="circle"></div>
+      </div>
+      <ul class="header_nav_menu hide">
+        <li><%= link_to '設定', users_account_path %></li>
+        <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+      </ul>
+      <% else %>
+        <div class="before_log_in button ">
+          <%= link_to 'ログイン', new_user_session_path %>
+          <%= link_to '登録する', new_user_registration_path %>
+        </div>
+      <% end %>
+    </header>
+    <% if flash[:notice_error] %>
+      <p class="notice"><%= flash[:notice_error] %></p>
+    <% end %>
+    <div class="notification">
+      <div class="alert"><%= alert %></div>
+      <div class="notice"><%= notice %></div>
+    </div>
+
     <%= yield %>
+
+    <footer>
+      <p>© 2022 POTEPAN.INC.</p>
+    </footer>
+
   </body>
+
 </html>

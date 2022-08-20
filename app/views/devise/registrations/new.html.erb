@@ -1,0 +1,41 @@
+<div class="devise container">
+  <div class="devise_frame">
+    <h2>新しいアカウントを作成</h2>
+
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <div class="devise_error_message">
+        <%= render "devise/shared/error_messages", resource: resource %>
+      </div>
+
+      <div class="field must">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"メールアドレス" %>
+      </div>
+
+      <div class="field must">
+        <%= f.password_field :password, autocomplete: "new-password", placeholder:"パスワード" %>
+      </div>
+
+      <div class="field must">
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder:"パスワード確認" %>
+      </div>
+
+      <div class="actions signup button input_border">
+        <%= f.submit "新しいアカウントを作成" %>
+      </div>
+    <% end %>
+
+    <div class="color_blue">
+    <%= render "devise/shared/links" %>
+    </div>
+  </div>
+</div>
+
+<%
+=begin
+%>
+<% if @minimum_password_length %>
+<em>(<%= @minimum_password_length %> characters minimum)</em>
+<% end %> </br>
+<%
+=end
+%>

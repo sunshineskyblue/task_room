@@ -1,0 +1,98 @@
+.container {
+  width: 100%;
+  margin: 50px auto 0 auto;
+}
+
+.devise input {
+  font-size:15px;
+}
+
+.devise_error_message {
+  font-size:13px;
+  color:red;
+  margin-bottom:15px;
+}
+
+.devise_error_message h2 {
+  font-size:13px;
+}
+
+.devise_frame {
+  max-width: 600px;
+  text-align: center;
+  padding: 24px;
+  margin: 0px auto;
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: rgba(30, 38, 54, 0.15) 0px 3px 2px 0px;
+}
+
+.field_with_errors {
+  display:contents;
+}
+
+.field input {
+  border:solid 0.2px black;
+  border-radius: 3px;
+  margin:5px 0px 10px;
+  padding:9px 6px;
+  width:245px;
+}
+
+.devise_label {
+  font-size:13px;
+  margin-bottom: 3px;
+}
+
+.must::before {
+  content: "必須";
+  color: #fff;
+  background-color: #ff0000a8;
+  font-size: 12px;
+  border-radius: 5px;
+  padding: 4px;
+  margin: 0 5px;
+}
+
+.actions input {
+  margin:20px 20px 20px 30px;
+  padding:7px 6px;
+}
+
+.signup input {
+  margin: 20px 0px;
+  width:310px;
+}
+
+.login input {
+  margin: 20px 0px;
+  width:275px;
+}
+
+.update input {
+  margin: 20px 0px;
+  width:265px;
+}
+
+
+
+@media (min-width: 576px) {
+  .container {
+    max-width: 540px;
+  }
+}
+
+
+@media (min-width: 768px){
+  .container {
+    max-width: 720px;
+  }
+}
+
+
+@media (min-width: 992px) {
+  .container {
+    max-width: 960px;
+  }
+}
+
