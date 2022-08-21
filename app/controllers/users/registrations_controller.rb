@@ -30,7 +30,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
       flash[:notice] = "お客様情報を更新しました"
       redirect_to root_path
     else
-      if @user.name == "" || @user.introduction == "" 
+      @para = params["user"]
+      if @para.has_key?("name") || @para.has_key?("introduction")
         flash[:notice] = "プロフィール情報を更新できていません"
         render 'profile'
       else
