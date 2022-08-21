@@ -3,4 +3,12 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+  
+  attr_accessor :current_password
+  has_one_attached :image
+
+  validates :name, presence: { message: "タイトルが未入力です" }
+  validates :introduction, presence: { message: "自己紹介が未入力です" }
+  
+
 end

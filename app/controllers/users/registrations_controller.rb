@@ -4,9 +4,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
-  # def account
-  #   @user = User.find_by(id: params[:id])
-  # end
+  def profile
+    @user = User.find_by(params[:id])
+  end
+
 
   # GET /resource/sign_up
   # def new
@@ -23,16 +24,28 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # PUT /resource
-  # def update
-  #   super
-  # end
+  # # PUT /resource
+  def update
+    if @user.update(params.require(:user).permit(:name, :email, :introduction, :encrypted_password, :image))
+      flash[:notice] = "お客様情報を更新しました"
+      redirect_to root_path
+    else
+      if @user.name == "" || @user.introduction == "" 
+        flash[:notice] = "プロフィール情報を更新できていません"
+        render 'profile'
+      else
+        flash[:notice] = "アカウント情報を更新できていません"
+        render 'edit'
+      end
+    end
+  end
 
 
   # DELETE /resource
   # def destroy
   #   super
   # end
+
 
   # GET /resource/cancel
   # Forces the session data which is usually expired after sign
@@ -43,7 +56,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # protected
+  protected
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_up_params
@@ -64,4 +77,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+
+  def update_resource(resource, params)
+    resource.update_without_password(params)
+  end
+
 end

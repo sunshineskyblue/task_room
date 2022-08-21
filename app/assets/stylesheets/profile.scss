@@ -1,0 +1,43 @@
+
+#user_image {
+  border:0px;
+}
+
+.profile_frame {
+  text-align:center;
+}
+
+.users_content textarea {
+  height:250px;
+  width:250px;
+  font-family : inherit;
+}
+
+.users_content input {
+  width:250px;
+}
+
+.profile_button.actions.field.button input {
+  width:100px;
+}
+
+
+@media (min-width: 400px) {
+
+  .users_content input {
+    width:310px;
+  }
+
+  .users_content textarea {
+    height:190px;
+    width:320px;
+  
+  }
+
+}
+
+@media (min-width:800px ) {
+  .profile_frame {
+    text-align:left;
+  }
+}

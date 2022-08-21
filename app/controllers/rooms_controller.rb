@@ -1,4 +1,5 @@
 class RoomsController < ApplicationController
-  def index
-  end
+  # def index
+  #   @user = User.find_by(params[:id])
+  # end
 end

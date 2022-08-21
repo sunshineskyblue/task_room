@@ -63,3 +63,4 @@ gem 'net-imap'
 gem 'net-pop'
 
 
+gem 'pry-rails'

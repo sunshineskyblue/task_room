@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     # get "user/:id", :to => "users/registrations#detail"
     get "users/account", :to => "users/registrations#account"
     get "users/profile", :to => "users/registrations#profile"
-    get "users", :to => "users/registrations#edit"
+    get "users", :to => "users/registrations#account"
     get "signup", :to => "users/registrations#new"
     get "logout", :to => "users/sessions#destroy"
   end
