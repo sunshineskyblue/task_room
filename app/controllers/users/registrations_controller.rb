@@ -5,7 +5,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_account_update_params, only: [:update]
 
   def profile
-    @user = User.find_by(params[:id])
+    @user = User.find_by(id:current_user.id)
   end
 
 
@@ -27,15 +27,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # # PUT /resource
   def update
     if @user.update(params.require(:user).permit(:name, :email, :introduction, :encrypted_password, :image))
-      flash[:notice] = "お客様情報を更新しました"
+      flash[:notice] = "ユーザー情報を更新しました"
       redirect_to root_path
     else
       @para = params["user"]
       if @para.has_key?("name") || @para.has_key?("introduction")
-        flash[:notice] = "プロフィール情報を更新できていません"
+        flash[:notice] = "プロフィール情報を更新できていません。未入力の箇所があります"
         render 'profile'
       else
-        flash[:notice] = "アカウント情報を更新できていません"
+        flash[:notice] = "アカウント情報を更新できていません。未入力の箇所があります"
         render 'edit'
       end
     end

@@ -2,6 +2,8 @@
   display:flex;
   flex-wrap:wrap;
   width:100%;
+  min-height:calc(100vh - 100px);
+  position: relative;
 }
 
 .nav_row {
@@ -13,32 +15,40 @@
 
 .nav_row ul {
   display:flex;
-  margin-left:20px;
-  text-align:left;
-  padding-left:10px;
+  text-align:center;
+  margin-left:auto;
+  margin-right:auto;
+  width:300px;
+  font-size:13px;
+  justify-content:space-between;
 }
 
 .nav_row li {
   margin: 25px 10px;
+  padding-bottom:5px;
 }
 
 li.color_blue  {
-  border-bottom: solid 2px #4a90e2;
+  border-bottom: solid 3px #4a90e2;
 }
 
-
 .users_frame {
-  width: calc(100% - 100px);
-  margin: 50px auto;
+  margin: 20px auto;
+  width: calc(100% - 80px);
+  margin-bottom:50px;
   background-color: white;
   border-radius: 4px;
   box-shadow: rgba(30, 38, 54, 0.15) 0px 3px 2px 0px;
   padding:30px;
 }
 
+.users_frame h2 {
+  text-align:center;
+  margin-bottom:30px;
+}
+
 .users_title_content {
-  display: flex;
-  flex-direction: column;
+  position:relative;
   flex-wrap:wrap;
   border-bottom:solid 0.3px rgba(0, 0, 0, 0.205); 
   margin-bottom:20px;
@@ -48,10 +58,13 @@ li.color_blue  {
 .users_title {
   font-weight: bold;
   font-size: 13px;
+  margin-bottom:5px;
+  position:relative;
 }
 
 .users_content {
   padding:10px 0;
+  position:relative;
 }
 
 .edit_button a {
@@ -64,11 +77,28 @@ li.color_blue  {
 }
 
 
+@media (min-width: 400px) {
+
+  .nav_row ul {
+    text-align:left;
+    justify-content:left;
+    font-size:15px;
+    margin-left:20px;
+    padding-left:7px;
+    width:100%
+  }
+
+}
+
 @media (min-width:800px ) {
 
   .nav_row {
-    height:100vh;
     width:170px;
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    height:100%;
   }
 
   .nav_row ul {
@@ -77,21 +107,22 @@ li.color_blue  {
   }
 
   .nav_row li {
-    margin: 10px 10px;
+    margin: 10px 15px;
+    padding:0;
   }
 
   li.color_blue  {
-    border-right: solid 2px #4a90e2;
+    border-right: solid 3px #4a90e2;
     border-bottom: 0;
   }
 
   .users_frame {
-    width: calc(100% - 300px);
+    width: calc(100% - 250px);
+    margin-left: 180px;
   }
   
   .users_title_content {
     padding: 15px 0px;
-    flex-direction: row;
   }
   
   .users_title {
@@ -111,11 +142,5 @@ li.color_blue  {
   .edit_button {
     margin-top:40px;
   }
-  
-
-  
- 
-  
-
 
 }

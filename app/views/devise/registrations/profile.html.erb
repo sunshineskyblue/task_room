@@ -2,60 +2,54 @@
   <div class="nav_row">
     <nav>
      <ul>
+      <li> <%= link_to 'ルーム情報登録', new_room_path %></li>
       <li> <%= link_to 'アカウント', users_account_path %></li>
       <li class="color_blue"> <%= link_to 'プロフィール', users_profile_path %></li>
      </ul>
     </nav>
   </div>
 
-  <div class="users_frame profile_frame">
+  <div class="users_frame">
     <h2>プロフィール</h2>
-
 
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :patch }) do |f| %>
 
       <% if @user.image.attached? %>
-        <%= image_tag @user.image %>
+        <%= image_tag @user.image, class: 'image_edit' %>
       <% end %>
-
-      <div class="field">
-        <div class="users_title_content">
-          <div class="users_title  profile_title">
-            <%= f.label :アイコン画像 %>
+    
+      <div class="flex_box">
+        <div class="field users_title_content">
+          <div class="users_title">
+            <%= f.label :image, "アイコン画像" %>
           </div>
           <div class="users_content">
             <%= f.file_field :image, autofocus: true, autocomplete: "image" %>
           </div>
         </div>
-      </div>
 
-      <div class="field">
-        <div class="users_title_content">
-          <div class="users_title must profile_title">
-            <%= f.label :ユーザー名 %>
+        <div class="field users_title_content">
+          <div class="users_title must">
+            <%= f.label :name, "ユーザー名" %>
           </div>
           <div class="users_content">
             <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
           </div>
         </div>
-      </div>
 
-      <div class="field">
-        <div class="users_title_content">
+        <div class="field users_title_content">
           <div class="users_title must">
-            <%= f.label :自己紹介 %>
+            <%= f.label :introduction, "自己紹介" %>
           </div>
           <div class="users_content">
             <%= f.text_area :introduction, autofocus: true, autocomplete: "introduction" %>
           </div>
         </div>
-      </div>
 
-      <div class="actions field button profile_button">
-        <%= f.submit "更新" %>
+        <div class="actions field button">
+          <%= f.submit "更新" %>
+        </div>
       </div>
     <% end %>
-
   </div>
-  
 </div>

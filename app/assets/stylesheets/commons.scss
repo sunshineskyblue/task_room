@@ -25,7 +25,6 @@ input {
 
 h2 {
   font-size:16px;
-  font-weight:300;
   margin-bottom:18px;
 }
 
@@ -75,22 +74,23 @@ li {
   margin-right:15px;
 }
 
-.circle {
+.image_header {
   height:40px;
   width:40px;
-  background-color:olivedrab;
-  border-radius: 30px;
-  margin-right:30px;
+  margin-right:10px;
+  object-fit: cover;
+  border-radius: 50px;
 }
 
 .header_nav_menu {
   background-color:whitesmoke;
   list-style-type: none;
-  position:fixed;
-  right:3px;
+  position:absolute;
+  right:6px;
   top:55px;
   font-size:13px;
-  padding:20px 15px;
+  padding:15px 15px 7px;
+  z-index:99;
 }
 
 
@@ -99,7 +99,7 @@ li {
 }
 
 .header_nav_menu li {
-  padding-bottom:5px;
+  padding-bottom:9px;
 }
 
 .hide {
@@ -181,15 +181,13 @@ footer {
   background-color:rgb(22, 20, 20);
   color:white;
   font-size:12px;
-  text-align:center;
-  vertical-align: middle;
   height:70px;
   display:flex;
   align-items:center;
   justify-content:center;
-  position:absolute;
-  bottom:-100px;
   width:100%;
+  // bottom:0;
+  // position:absolute;
 }
 
 

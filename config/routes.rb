@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  root to: "rooms#index"
+  root to: "top#index"
   resources :rooms
+  resources :top
 
   
   devise_for :users, controllers: {registrations: 'users/registrations', sessions: 'users/sessions'}

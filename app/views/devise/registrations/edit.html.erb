@@ -38,24 +38,6 @@
 
     <div class="color_blue">
     <%= link_to "戻る", users_account_path %>
-    <div>
+    </div>
   </div>
 </div>
-
-
-<%
-=begin
-%>
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
-
-<% if @minimum_password_length %>
-<br />
-<em><%= @minimum_password_length %> characters minimum</em>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<span>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></span>
-<%
-=end
-%>

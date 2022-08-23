@@ -1,5 +1,33 @@
-<main>
-  <section class="FirstViewContent_image">
-  </section>
-</main>
+
+  <table class="table">
+    <thead>
+       <tr>
+        <th>ルーム画像</th>
+        <th>ルーム名</th>
+        <th>ルーム紹介</th>
+        <th>料金</th>
+        <th>作成日</th>
+        <th>ユーザーID</th>
+        <th>削除</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @rooms.each do |room| %>
+        <tr>
+          <td>
+            <% if room.room_image.attached? %>
+              <%= image_tag room.room_image, class: 'image_edit' %>
+            <% end %>
+          </td>
+          <td><%= room.room_name %></td>
+          <td><%= room.room_intro %></td>
+          <td><%= room.fee %>円</td>
+          <td><%= room.created_at.strftime("%Y年%m月%d日") %></td>
+          <td><%= room.user.name %></td>
+          <td><%= link_to "削除", room_path(room), method: :delete, data: { confirm: "本当に削除しますか？" } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
 

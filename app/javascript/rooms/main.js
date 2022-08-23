@@ -1,7 +1,7 @@
 
 document.addEventListener('turbolinks:load', function() { 
   const nav = document.querySelector('.header_nav_menu');
-  const circle = document.querySelector('.circle');
+  const circle = document.querySelector('.image_header');
 
   if (circle){
     circle.addEventListener('click', () => {

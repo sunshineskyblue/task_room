@@ -1,0 +1,56 @@
+
+input.rooms_input  {
+  display:block;
+  border:solid 0.2px black;
+  border-radius: 3px;
+  margin-left:auto;
+  margin-right:auto;
+  padding:9px 6px;
+  width: 80%;
+}
+
+.rooms_textarea.users_content textarea {
+  height:200px;
+  width:80%;
+  display:block;
+  margin-left:auto;
+  margin-right:auto;
+  font-family : inherit;
+  border:solid 0.2px black;
+  border-radius: 3px;
+}
+
+
+.rooms_label {
+  position:relative;
+  left:30px;
+}
+
+#room_room_image {
+  border:0px;
+}
+
+
+@media (min-width: 500px) {
+
+  .rooms_label {
+    left:50px;
+  }
+
+}
+
+@media (min-width: 700px) {
+
+  .rooms_label {
+    left:70px;
+  }
+
+}
+
+@media (min-width: 1000px) {
+
+  .rooms_label {
+    left:100px;
+  }
+
+}

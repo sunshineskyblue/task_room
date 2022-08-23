@@ -1,0 +1,71 @@
+<div class="users_nav_container">
+  <div class="nav_row">
+    <nav>
+     <ul>
+      <li class="color_blue"> <%= link_to 'ルーム情報登録', new_room_path %></li>
+      <li> <%= link_to 'アカウント', users_account_path %></li>
+      <li> <%= link_to 'プロフィール', users_profile_path %></li>
+     </ul>
+    </nav>
+  </div>
+
+  <div class="users_frame">
+    <h2>ルーム情報登録</h2>
+
+    <%= render "shared/error", obj: @room %> 
+    
+    <%= form_with model:@room do |f| %>
+      <div class="users_title_content">
+        <div class="users_title">
+          <%= f.label :room_name, "ルーム名", class:"must rooms_label" %>
+        </div>
+        <div class="users_content">
+          <%= f.text_field:room_name, class:"rooms_input" %>
+        </div>
+      </div>
+
+      <div class="users_title_content">
+        <div class="users_title">
+          <%= f.label :room_intro, "ルーム紹介", class:"must rooms_label" %>
+        </div>
+        <div class="users_content rooms_textarea">
+          <%= f.text_area :room_intro %>
+        </div>
+      </div>
+
+      <div class="users_title_content">
+        <div class="users_title">
+          <%= f.label :fee, "料金", class:"must rooms_label" %>
+        </div>
+        <div class="users_content">
+          <%= f.number_field :fee, class:"rooms_input" %>
+        </div>
+      </div>
+
+      <div class="users_title_content">
+        <div class="users_title">
+          <%= f.label :adress, "住所", class:"must rooms_label" %>
+        </div>
+        <div class="users_content">
+          <%= f.text_field :adress, class:"rooms_input" %>
+        </div>
+      </div>
+
+      <div class="field users_title_content">
+        <div class="users_title">
+          <%= f.label :room_image, "ルーム画像", class:"must rooms_label" %>
+        </div>
+        <div class="users_content">
+          <%= f.file_field :room_image, class:"rooms_input" %>
+        </div>
+      </div>
+
+      <%= f.hidden_field :user_id, value: current_user.id %>
+
+      <div class="actions field button">
+        <%= f.submit "更新", class:"rooms_input" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+

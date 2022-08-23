@@ -1,6 +1,7 @@
 .container {
   width: 100%;
   margin: 50px auto 0 auto;
+  min-height:100vh;
 }
 
 .devise input {
@@ -34,7 +35,7 @@
 .field input {
   border:solid 0.2px black;
   border-radius: 3px;
-  margin:5px 0px 10px;
+  margin:10px 0px 0px;
   padding:9px 6px;
   width:245px;
 }

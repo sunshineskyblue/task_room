@@ -1,23 +1,34 @@
+.flex_box {
+  display:flex;
+  align-items:center;
+  flex-direction:column;
+}
 
 #user_image {
   border:0px;
 }
 
-.profile_frame {
-  text-align:center;
+.image_edit {
+  width:60px;
+  height:60px;
+  display:block;
+  margin-right:auto;
+  margin-left:auto;
+  margin-bottom: 25px;
+  object-fit: cover;
+  border-radius: 50px;
 }
 
 .users_content textarea {
   height:250px;
   width:250px;
   font-family : inherit;
+  border:solid 0.2px black;
+  border-radius: 3px;
 }
 
-.users_content input {
-  width:250px;
-}
 
-.profile_button.actions.field.button input {
+.actions.field.button input {
   width:100px;
 }
 
@@ -31,13 +42,8 @@
   .users_content textarea {
     height:190px;
     width:320px;
-  
   }
 
 }
 
-@media (min-width:800px ) {
-  .profile_frame {
-    text-align:left;
-  }
-}
+
