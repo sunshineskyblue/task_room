@@ -32,6 +32,10 @@ li {
   list-style-type: none;
 }
 
+.label_none {
+  display:none;
+}
+
 .header{
   background-color:rgb(22, 20, 20);
   display: flex;
@@ -60,24 +64,34 @@ li {
    display:none;
 }
 
+input[type="submit"].submit_hidden {
+  display: none;
+}
+
+.form_flex {
+  display:flex;
+}
+
 .header_name_menu {
   display:flex;
   align-items:center;
-  justify-content: space-between;
+  justify-content: flex-start;
   width:160px;
-  margin-right:10px;
+  margin-right:20px;
 }
 
 .user_name {
   color:white;
+  text-align:right;
   font-size:13px;
   margin-right:15px;
+  min-width:100px;
+  max-width:130px;
 }
 
 .image_header {
   height:40px;
   width:40px;
-  margin-right:10px;
   object-fit: cover;
   border-radius: 50px;
 }
@@ -198,6 +212,11 @@ footer {
     height:28px;
     width:140px;
     margin-right:5px;
+    border:0px;
+  }
+
+  .header_title_input input:focus {
+    outline:none;
   }
 
 

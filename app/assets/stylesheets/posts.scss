@@ -1,0 +1,54 @@
+.table_rooms {
+  min-height:calc(100vh - 100px);
+  margin-top:30px;
+  margin-left:30px;
+
+}
+
+.table {
+  margin-top: 25px;
+  margin-bottom:40px;
+  font-size:13px;
+  border-spacing: 0;
+  border-top:solid 0.3px rgba(0, 0, 0, 0.275); 
+  text-align:center;
+  min-width:766px;
+  max-width: calc(100vh - 200px);
+}
+
+.table th {
+  border-bottom:solid 0.3px rgba(0, 0, 0, 0.275); 
+  background-color:white;
+  padding: 5px 13px;
+  min-width: 91px;
+}
+
+.table td {
+   border-bottom:solid 0.3px rgba(0, 0, 0, 0.275); 
+   background-color:white;
+   padding: 9px 13px;
+ }
+
+td.room_intro {
+  min-width: 140px;
+ }
+
+td.room_created_at {
+  min-width: 120px;
+ }
+
+ .image_room_posts {
+  width:140px;
+  height:95px;
+  display:block;
+  margin-right:auto;
+  margin-left:auto;
+  object-fit: cover;
+}
+
+.room_show a {
+  text-decoration: underline;
+  color: #007bff;
+  font-size:14px;
+  font-weight:bold;
+}

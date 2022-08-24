@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   root to: "top#index"
+  get 'rooms/posts' => 'rooms#posts'
+  get 'rooms/search' => 'rooms#search' 
   resources :rooms
   resources :top
 

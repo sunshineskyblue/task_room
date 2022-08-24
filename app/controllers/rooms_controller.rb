@@ -1,5 +1,16 @@
 class RoomsController < ApplicationController
+
   def index
+    @rooms = Room.where(user_id:current_user.id)
+  end
+
+  def search
+    @q = Room.ransack(search_params)
+    @rooms = @q.result(distinct: true).all.order(updated_at: 'ASC')
+    @rooms_count = @rooms.count
+  end
+
+  def posts
     @rooms = Room.where(user_id:current_user.id)
   end
   
@@ -23,8 +34,7 @@ class RoomsController < ApplicationController
   end
   
   def show
-    @user = User.find(params[:id])
-    @room = Room.find(params[:id])
+     @room = Room.find(params[:id])  
   end
   
   def edit
@@ -50,5 +60,11 @@ class RoomsController < ApplicationController
     redirect_to :rooms
   end
 
+
+  private
+
+  def search_params
+    params.require(:q).permit(:room_name_or_room_intro_cont,:adress_cont)
+  end
   
 end

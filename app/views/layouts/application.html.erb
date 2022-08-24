@@ -16,8 +16,13 @@
         <a href="/">
           <img src="/assets/logo.png" class="img_title">
         </a>
-        <input type="text" placeholder="エリア">
-        <input type="text" placeholder="キーワード">
+          <%= search_form_for @q, url:rooms_search_path, class:"form_flex" do |f| %>
+            <%= f.label :adress, class:"label_none" %>
+            <%= f.search_field :adress_cont, placeholder:"エリア" %>
+            <%= f.label :room_name, class:"label_none" %>
+            <%= f.search_field :room_name_or_room_intro_cont, placeholder:"キーワード" %>
+            <%= f.submit class:"submit_hidden" %>
+          <% end %>
       </div>
       <% if user_signed_in? %>
       <div class="header_name_menu">
@@ -29,8 +34,8 @@
           <% end %>
       </div>
       <ul class="header_nav_menu hide">
-        <li><%= link_to 'ルーム情報登録', new_room_path %></li>
-        <li><%= link_to '登録済ルーム一覧', rooms_path %></li>
+        <li><%= link_to 'ルーム登録', new_room_path %></li>
+        <li><%= link_to '登録済みルーム一覧', rooms_posts_path %></li>
         <li><%= link_to '設定', users_account_path %></li>
         <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
       </ul>

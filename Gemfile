@@ -64,3 +64,5 @@ gem 'net-pop'
 
 
 gem 'pry-rails'
+
+gem 'ransack'

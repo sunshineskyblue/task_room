@@ -1,0 +1,26 @@
+
+<div class="show_container">
+  <div class="container_pic_detail">
+    <div class="room_pic">
+      <% if @room.room_image.attached? %>
+        <%= image_tag @room.room_image, class: 'image_room_show' %>
+      <% end %>
+    </div>
+    <div class="room_detail">
+      <p><%= @room.room_name %></p>
+      <p><%= @room.room_intro %></p>
+      <p><%= @room.fee  %></p>
+    </div>
+  </div>
+  <div class="room_reserve">
+    <p><%= @room.room_name %></p>
+    <%= label.   %>
+    <%=   %>
+    <%=   %>
+    <%=   %>
+    <%=  %>
+    <%=  %>
+    <%=  %>
+  </div>
+</div>
+

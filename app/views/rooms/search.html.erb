@@ -1,0 +1,20 @@
+<div class="room_page"> 
+  <h2 class="serach_count">検索結果：<%= @rooms_count %>件</h2>
+
+  <div class="room_frame_outer">
+    <% @rooms.each do |room| %>
+        <div class="room_frame_inner">
+          <div class="room_image">
+            <% if room.room_image.attached? %>
+              <%= image_tag room.room_image, class: 'image_room' %>
+            <% end %>
+          </div>
+          <div class="room_profile">
+            <p><%= room.room_name %></p>
+            <p><%= room.adress %></p>
+            <p>￥<%= room.fee %></p>
+          </div>
+        </div>
+    <% end %>
+  </div>
+</div>

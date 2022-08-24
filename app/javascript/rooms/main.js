@@ -2,7 +2,14 @@
 document.addEventListener('turbolinks:load', function() { 
   const nav = document.querySelector('.header_nav_menu');
   const circle = document.querySelector('.image_header');
+  const searchs = document.querySelectorAll('.header input');
 
+  if (searchs) {
+    searchs.forEach(search => {
+      search.value = "";
+    });
+  }
+ 
   if (circle){
     circle.addEventListener('click', () => {
       console.log("clickに成功しました");
@@ -10,4 +17,5 @@ document.addEventListener('turbolinks:load', function() {
       nav.classList.toggle('show');
     });
   }
+
 });

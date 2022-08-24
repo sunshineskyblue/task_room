@@ -1,0 +1,91 @@
+h2.serach_count{
+  font-size:20px; 
+  margin-left:20px;
+}
+
+.room_page {
+  margin-top:30px;
+  margin-bottom:40px;
+  padding:20px;
+  min-height:calc(100vh - 230px);
+}
+
+.room_page p {
+  line-height:27px;
+  font-size:14px;
+}
+
+.room_page p:nth-child(1) {
+  font-weight: bold;
+  font-size:16px;
+  color: #909090;
+}
+
+.room_page p:nth-child(2) {
+
+  font-weight: bold;
+  font-size:13px;
+
+}
+
+.room_page p:nth-child(3) {
+   text-align: right;
+}
+
+
+
+.room_frame_outer {
+  display: flex;
+  flex-wrap:wrap;
+}
+
+
+ .image_room {
+  width:100%;
+  height:180px;
+  object-fit: cover;
+  padding-top:10px;
+  background-color: whitesmoke;
+}
+
+.room_profile {
+  padding-left:20px;
+  padding-right:20px;
+  padding-top:5px;
+  padding-bottom:15px;
+}
+
+.room_frame_inner {
+  margin-bottom:25px;
+  margin-left:10px;
+  margin-right:10px;
+  width: calc(100% - 1px);
+  border:solid 0.5px rgba(0, 0, 0, 0.200);
+}
+
+
+@media (min-width: 500px) {
+
+  .room_frame_inner {
+    width:calc(50% - 22px);
+  }
+
+}
+
+
+@media (min-width: 860px) {
+
+  .room_frame_inner {
+    width:calc(33% - 19px);
+  }
+
+}
+
+
+@media (min-width: 1200px) {
+
+  .room_frame_inner {
+    width: calc(25% - 21px);
+  }
+
+}

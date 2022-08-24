@@ -1,0 +1,20 @@
+
+.container_pic_detail {
+  width:calc(100% -30px);
+  height:calc(100vh - 120px);
+}
+
+.show_room {
+  width:calc(100% -30px);
+  height:calc(100vh - 120px);
+}
+
+
+.image_room_show {
+  width:100%;
+  height:160px;
+  display:block;
+  margin-right:auto;
+  margin-left:auto;
+  object-fit: cover;
+}

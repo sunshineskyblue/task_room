@@ -5,8 +5,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   
   attr_accessor :current_password
+
   has_one_attached :image
-  has_many :rooms
+
+  has_many :rooms, dependent: :destroy
 
   validates :name, presence: { message: "タイトルが未入力です" }, on: :update
   validates :introduction, presence: { message: "自己紹介が未入力です" }, on: :update

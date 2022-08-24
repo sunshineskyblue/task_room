@@ -8,14 +8,17 @@
       </div>
 
       <div class="field must">
+        <%= f.label :email, "メールアドレス", class:"label_none" %>
         <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"メールアドレス" %>
       </div>
 
       <div class="field must">
+        <%= f.label :password, "パスワード", class:"label_none" %>
         <%= f.password_field :password, autocomplete: "new-password", placeholder:"パスワード" %>
       </div>
 
       <div class="field must">
+        <%= f.label :password_confirmation, "確認用パスワード", class:"label_none" %>
         <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder:"パスワード確認" %>
       </div>
 

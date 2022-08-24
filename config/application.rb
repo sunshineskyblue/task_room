@@ -8,6 +8,10 @@ Bundler.require(*Rails.groups)
 
 module TaskRoom
   class Application < Rails::Application
+    
+    # time zone
+    config.time_zone = 'Tokyo'
+    
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
 

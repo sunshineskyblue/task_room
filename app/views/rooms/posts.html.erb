@@ -22,9 +22,9 @@
               <%= image_tag room.room_image, class: 'image_room_posts' %>
             <% end %>
           </td>
-            <td>
-              <%= link_to room.room_name, room_path(room) %>
-            </td>
+          <td class="room_show">
+            <%= link_to room.room_name, room_path(room) %>
+          </td>
           <td class="room_intro"><%= room.room_intro %></td>
           <td>￥<%= room.fee %></td>
           <td><%= room.adress %></td>
@@ -36,5 +36,3 @@
     </tbody>
   </table>
 </div>
-
-
