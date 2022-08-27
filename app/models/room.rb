@@ -6,6 +6,7 @@ class Room < ApplicationRecord
   validates :adress, presence: { message: "住所が未登録です" }
 
   belongs_to :user
+  has_many :reservations
   has_one_attached :room_image
   
 end

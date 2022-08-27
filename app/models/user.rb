@@ -7,11 +7,19 @@ class User < ApplicationRecord
   attr_accessor :current_password
 
   has_one_attached :image
-
   has_many :rooms, dependent: :destroy
 
-  validates :name, presence: { message: "タイトルが未入力です" }, on: :update
+  validates :name, presence: { message: "ユーザー名が未入力です" }, on: :update
   validates :introduction, presence: { message: "自己紹介が未入力です" }, on: :update
-  
+  validate :length_count, on: :update
 
+
+  private
+
+  def length_count
+    errors.add(:name, "20文字以内で入力してください") if name&.length > 20
+    errors.add(:name, "3文字以上で入力してください") if name&.length < 3
+  end
+
+  
 end

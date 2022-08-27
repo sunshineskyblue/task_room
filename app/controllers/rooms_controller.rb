@@ -23,11 +23,14 @@ class RoomsController < ApplicationController
 
     @user = User.find_by(params[:id])
     @room = Room.new(params.require(:room).permit(:room_name, :room_intro, :fee, :adress, :user_id, :room_image))
-    
+
+    binding.pry
     if @room.save
+    binding.pry
       flash[:notice] = "ルーム情報を追加しました"
       redirect_to root_path
     else
+    binding.pry
       flash[:error_notice] = "ルーム情報を追加できませんでした"
       render 'new'
     end

@@ -1,13 +1,13 @@
-h2.serach_count{
-  font-size:20px; 
-  margin-left:20px;
-}
-
-.room_page {
+.search_container {
   margin-top:30px;
   margin-bottom:40px;
   padding:20px;
   min-height:calc(100vh - 230px);
+}
+
+h2.serach_count{
+  font-size:20px; 
+  margin-left:20px;
 }
 
 .room_page p {

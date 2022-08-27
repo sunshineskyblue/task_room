@@ -5,9 +5,9 @@ body,div,p,ul,ol,li,dl,dt,dd,table,th,td,img,figure,h1,h2,h4,h5,h6,form,select,i
 
 body {
   font-family: verdana, arial, helvetica, sans-serif;
-  min-height:100vh;
+  min-height:calc(100vh - 100px);
   font-size:15px;
-  background-color:rgba(229, 244, 235, 0.178);
+  background-color:rgba(244, 248, 242, 0.178);
 }
 
 a {
@@ -21,6 +21,16 @@ a {
 
 input {
   padding:2px 5px;
+  font-size:14px;
+}
+
+textarea {
+  font-size:14px;
+}
+
+input[type="number"] {
+  text-align:right;
+  border-radius: 3px;
 }
 
 h2 {
@@ -75,18 +85,18 @@ input[type="submit"].submit_hidden {
 .header_name_menu {
   display:flex;
   align-items:center;
-  justify-content: flex-start;
-  width:160px;
+  justify-content: flex-end;
+  width:200px;
   margin-right:20px;
 }
 
 .user_name {
   color:white;
-  text-align:right;
+  text-align:left;
   font-size:13px;
   margin-right:15px;
-  min-width:100px;
-  max-width:130px;
+  // min-width:100px;
+  // max-width:130px;
 }
 
 .image_header {
@@ -129,13 +139,13 @@ input[type="submit"].submit_hidden {
   margin-right:15px;
 }
 
-.button a {
+.button a, a.button,  {
   background-color:#4a90e2;
   color:white;
   border-radius: 3px;
 }
 
-.button input {
+.button input, input.button {
   background-color:#4a90e2;
   color:white;
   border-radius: 3px;
@@ -187,7 +197,7 @@ section {
   background-image:image-url('img_cover_top.jpg');
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center;
+  background-position: bottom;
 }
 
 

@@ -6,21 +6,56 @@
         <%= image_tag @room.room_image, class: 'image_room_show' %>
       <% end %>
     </div>
-    <div class="room_detail">
-      <p><%= @room.room_name %></p>
+    <div class="detail_include_icon">
+      <% if @room.user.image.attached? %>
+        <%= image_tag @room.user.image, class: 'icon_show' %>
+      <% else %>
+        <%= image_tag "/assets/logo.png" , class: 'icon_show' %>
+      <% end %>
+      <div class="detail_exclude_icon">
+        <p><%= @room.room_name %></p>
+        <p><%= @room.adress %></p>
+      </div>
+    </div>
+    <div class="detail_room_intro">
       <p><%= @room.room_intro %></p>
-      <p><%= @room.fee  %></p>
     </div>
   </div>
   <div class="room_reserve">
-    <p><%= @room.room_name %></p>
-    <%= label.   %>
-    <%=   %>
-    <%=   %>
-    <%=   %>
-    <%=  %>
-    <%=  %>
-    <%=  %>
+    <div class="reserve_fit">
+    <p>¥<%= @room.fee %>/日</p>
+
+      <%= form_with url:"../reservations/new", method: :get do |f| %>
+        <%= f.label :day_start, "開始日" %>
+        <%= f.date_field :day_start, class:"input_for_reservation" %>
+
+        <%= f.label :day_end, "終了日" %>
+        <%= f.date_field :day_end, class:"input_for_reservation" %>
+
+        <%= f.label :number, "宿泊人数" %>
+        <div class="number_include">
+
+          <%= f.number_field :number, class:"input_for_number" %>
+            <span>
+              人
+            </span>
+        </div>
+
+        <%= f.hidden_field :room_id, value: @room.id %>
+        <%= f.hidden_field :payment, value: @room.fee %>
+      
+        <% if user_signed_in? %>
+          <% if current_user.name.blank? || current_user.introduction.blank? %>
+            <%= link_to 'プロフィール登録', users_profile_path, class:"button button_for_reservation" %>
+          <% else %>
+            <%= f.submit "予約する", class:"button button_for_reservation" %>
+          <% end  %>
+        <% else %>
+          <%= link_to 'ログイン', new_user_session_path, class:"button button_for_reservation" %>
+        <% end  %>
+
+      <% end  %>
+    </div>
   </div>
 </div>
 

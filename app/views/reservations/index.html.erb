@@ -1,0 +1,38 @@
+<div class="table_rooms"> 
+  <h2>予約済みルーム一覧</h2>
+
+  <table class="table">
+    <thead>
+        <tr>
+        <th>ルーム画像</th>
+        <th>ルーム名</th>
+        <th>ルーム紹介</th>
+        <th>合計料金</th>
+        <th>開始日</th>
+        <th>終了日</th>
+        <th>確定日時</th>
+        <th>削除</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @reservations.each do |reservation| %>
+        <tr>
+          <td>
+            <% if reservation.room.room_image.attached? %>
+              <%= image_tag reservation.room.room_image, class: 'image_room_posts' %>
+            <% end %>
+          </td>
+            <td class="room_show">
+              <%= link_to reservation.room.room_name, room_path(reservation.room_id) %>
+            </td>
+          <td class="room_intro"><div class="longtext"><%= reservation.room.room_intro %></div></td>
+          <td>￥<%= reservation.payment %></td>
+          <td><%= reservation.day_start %></td>
+          <td><%= reservation.day_end %></td>
+          <td  class="room_created_at"><%= reservation.updated_at.strftime("%Y年%m月%d日") %></td>
+          <td><%= link_to "削除", reservation_path(reservation), method: :delete, data: { confirm: "本当に削除しますか？" } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -30,12 +30,13 @@
           <% if current_user.image.attached? %>
            <%= image_tag current_user.image, class: 'image_header' %>
            <% else %>
-           <%= image_tag "/assets/logo.png" , class: 'image_header' %>
+           <%= image_tag "/assets/default_icon.jpg" , class: 'image_header' %>
           <% end %>
       </div>
       <ul class="header_nav_menu hide">
         <li><%= link_to 'ルーム登録', new_room_path %></li>
         <li><%= link_to '登録済みルーム一覧', rooms_posts_path %></li>
+        <li><%= link_to '予約済みルーム一覧', reservations_path %></li>
         <li><%= link_to '設定', users_account_path %></li>
         <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
       </ul>

@@ -32,10 +32,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
     else
       @para = params["user"]
       if @para.has_key?("name") || @para.has_key?("introduction")
-        flash[:notice] = "プロフィール情報を更新できていません。未入力の箇所があります"
+        flash[:notice] = "プロフィール情報を更新できていません"
         render 'profile'
       else
-        flash[:notice] = "アカウント情報を更新できていません。未入力の箇所があります"
+        flash[:notice] = "アカウント情報を更新できていません"
         render 'edit'
       end
     end

@@ -1,20 +1,222 @@
+.show_container {
+  min-height:100vh;
+  max-width:500px;
+  width:calc(100% - 35px);
+  display:flex;
+  flex-direction:column;
+  margin-bottom:20px;
+  margin-top:10px;
+  margin-left:auto;
+  margin-right:auto;
+  padding:8px;
+  padding-top:15px;
+  background-color: white;
+}
 
 .container_pic_detail {
-  width:calc(100% -30px);
-  height:calc(100vh - 120px);
+  padding:0px 5px 5px 5px;
+  margin-bottom:30px;
 }
 
-.show_room {
-  width:calc(100% -30px);
-  height:calc(100vh - 120px);
+// 写真div
+.room_pic {
+  padding-bottom:15px;
 }
 
-
+// 写真自体
 .image_room_show {
   width:100%;
-  height:160px;
+  height:207px;
   display:block;
   margin-right:auto;
   margin-left:auto;
   object-fit: cover;
+  border:solid 0.5px rgba(0, 0, 0, 0.150);
+}
+
+// アイコン含む
+.detail_include_icon {
+  display:flex;
+  border-bottom:solid 0.5px rgba(0, 0, 0, 0.300);
+  padding-bottom:17px;
+}
+
+// アイコン除く
+.detail_exclude_icon {
+  padding-left:20px;
+  padding-right:20px;
+}
+
+.detail_exclude_icon p:nth-child(1) {
+  font-size:14px;
+  font-weight:bold;
+  padding-top:10px;
+  padding-bottom:15px;
+}
+
+.detail_exclude_icon p:nth-child(2) {
+  font-size:12px;
+  color:rgba(0, 0, 0, 0.700)
+}
+
+// 部屋紹介
+.detail_room_intro{
+  border-bottom:solid 0.5px rgba(0, 0, 0, 0.200);
+  padding:25px;
+  padding-bottom:18px;
+}
+
+.detail_room_intro p {
+  font-weight: lighter;
+  font-size:13px;
+  line-height:23px;
+}
+
+.icon_show {
+  width:35px;
+  height:35px;
+  display:block;
+  object-fit: cover;
+  border-radius: 50px;
+  padding:10px;
+}
+
+.room_reserve {
+  color: rgba(0, 0, 0, 0.646);
+  height:fit-content;
+}
+
+.reserve_fit {
+  padding:35px;
+  border:solid 0.5px rgba(0, 0, 0, 0.200);
+}
+
+.room_reserve p:nth-child(1) {
+  padding-bottom:20px;
+  font-size:19px;
+}
+
+.input_for_reservation {
+  margin-bottom:15px;
+  color: rgba(0, 0, 0, 0.646);
+  border:solid 0.5px rgba(0, 0, 0, 0.200);
+  height:30px;
+  display:block;
+  width:96%;
+  margin:0;
+  margin-bottom:18px;
+}
+
+.number_include {
+  display:flex;
+  justify-content:right;
+  width:95%;
+}
+
+input.input_for_number {
+  width:70px;
+  margin:0;
+  margin-right:5px;
+  font-size:17px;
+  color: rgba(0, 0, 0, 0.646);
+  border:solid 0.5px rgba(0, 0, 0, 0.300);
+}
+
+.number_include span {
+  padding-top:10px;
+}
+
+.button_for_reservation {
+  padding:7px;
+  display:block;
+  width:96%;
+  margin-top:20px;
+  text-align:center;
+}
+
+
+@media (min-width: 430px) {
+
+  .image_room_show {
+    height:240px;
+  }
+
+  .show_container {
+    width:calc(100% - 60px);
+  }
+
+
+}
+
+@media (min-width: 500px) {
+
+  .image_room_show {
+    height:290px;
+  }
+
+}
+
+
+@media (min-width: 770px) {
+
+  .show_container {
+    flex-direction:row;
+    padding:30px 0px;
+    margin:0;
+    max-width:850px;
+    justify-content: center;
+    margin-left:auto;
+    margin-right:auto;
+  }
+
+  .container_pic_detail {
+    padding-right:30px;
+    width:55%;
+  }
+  
+  .image_room_show {
+    height:320px;
+  }
+
+  .room_reserve {
+    border:solid 0.5px rgba(0, 0, 0, 0.300);
+    width:330px;
+  }
+
+  .reserve_fit {
+    border:none;
+    padding:25px;
+  }
+
+  .reserve_fit label {
+    font-size: 13px;
+  }
+
+  .input_for_reservation {
+    margin-bottom:15px;
+    height:30px;
+    width:94%;
+    margin:0;
+    margin-bottom:18px;
+  }
+
+  input.input_for_number {
+    width:70px;
+    margin-right:8px;
+  }
+
+  .icon_show {
+    width:50px;
+    height:50px;
+  }
+
+}
+
+@media (min-width: 1000px) {
+
+  .container_pic_detail {
+    padding-right:60px;
+  }
+
+
 }

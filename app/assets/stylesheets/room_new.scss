@@ -1,3 +1,39 @@
+.nav_row_flex {
+  width:100%;
+  height:70px;
+  background-color:white;
+  box-shadow: rgba(161, 165, 173, 0.829) 0px 2px 1px 0px;
+}
+
+.nav_row_flex ul {
+  display:flex;
+  text-align:center;
+  margin-left:auto;
+  margin-right:auto;
+  width:300px;
+  font-size:13px;
+  justify-content:space-between;
+}
+
+.nav_row_flex li {
+  margin: 25px 10px;
+  padding-bottom:5px;
+}
+
+.room_frame_container {
+  width: 100%;
+}
+
+.room_frame_new {
+  margin: 20px auto;
+  width: calc(100% - 90px);
+  margin-bottom:50px;
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: rgba(30, 38, 54, 0.15) 0px 3px 2px 0px;
+  padding:30px;
+}
+
 
 input.rooms_input  {
   display:block;
@@ -31,7 +67,25 @@ input.rooms_input  {
 }
 
 
+@media (min-width: 400px) {
+
+  .nav_row_flex ul {
+    text-align:left;
+    justify-content:left;
+    font-size:15px;
+    margin-left:20px;
+    padding-left:7px;
+    width:100%
+  }
+
+}
+
+
 @media (min-width: 500px) {
+
+  .room_frame_new {
+    width: calc(100% - 120px);
+  }
 
   .rooms_label {
     left:50px;
@@ -41,8 +95,50 @@ input.rooms_input  {
 
 @media (min-width: 700px) {
 
+
+  .room_frame_new {
+    width: calc(100% - 170px);
+  }
+
+
   .rooms_label {
     left:70px;
+  }
+
+}
+
+@media (min-width: 800px) {
+
+  .room_frame_container {
+    width: calc(100% - 180px);
+    margin-left:175px;
+  }
+
+  .nav_row_flex {
+    width:170px;
+    min-height:calc(100vh - 100px);
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    height:100%;
+  }
+
+  .nav_row_flex ul {
+    flex-direction: column;
+    margin:50px 0;
+  }
+
+  .nav_row_flex li {
+    margin: 10px 15px;
+    padding:0;
+  }
+
+  .room_frame_new {
+    width: calc(100% - 100px);
+    max-width:750px;
+    margin-left: auto;
+    margin-left: auto;
   }
 
 }
@@ -54,3 +150,5 @@ input.rooms_input  {
   }
 
 }
+
+

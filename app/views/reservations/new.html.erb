@@ -1,0 +1,28 @@
+<div class="devise container">
+  <div class="devise_frame">
+  
+    <%= form_with model:@reservation do |f| %>
+
+      <%= f.label :day_start, "開始日" %>
+      <%= f.date_field :day_start, value:params[:day_start] %>
+
+      <%= f.label :day_end, "終了日" %>
+      <%= f.date_field :day_end, value:params[:day_end] %>
+
+      <div>
+        使用日数：<span> <%= @term %> </span>日
+      </div>
+
+      <%= f.label :number, "人数" %>
+      <%= f.text_field :number, value:params[:number] %>
+
+      <%= f.label :payment, "合計金額" %>
+      <%= f.text_field :payment, value:@total %>
+     
+      <%= f.hidden_field :room_id, value:params[:room_id] %>
+
+      <%= f.submit "確定する" %>
+
+    <% end %>
+  </div>
+</div>
