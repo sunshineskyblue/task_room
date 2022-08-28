@@ -1,28 +1,48 @@
-<div class="devise container">
-  <div class="devise_frame">
+<div class="confirm_container">
+  <h2 class="border_set">予約内容確認</h2>
+  <p class="size_set">¥<%= params[:payment] %>/日</p>
+  <%= form_with model:@reservation do |f| %>
+    <div class="devise_error_message">
+      <%= render "shared/error", resource: @reservation %>
+    </div>
+
+    <%= f.label :day_start, "開始日" %>
+    <div class="confirm_form_unit">
+      <%= f.date_field :day_start, value:params[:day_start], class:"event_off_for_confirm" %>
+    </div>
+
+
+    <%= f.label :day_end, "終了日" %>
+    <div class="confirm_form_unit">
+      <%= f.date_field :day_end, value:params[:day_end], class:"event_off_for_confirm" %>
+    </div>
+
+    <div class="size_set border_set">
+      使用日数：<%= @term %>日
+    </div>
+
+    <div class="size_set border_set">
+      人数：<%= @number %>人
+    </div>
+
+    <%= f.label :payment, "合計金額（円）" %>
+    <div class="confirm_form_unit">
+      <%= f.text_field :payment, value:@total, class:"event_off_for_confirm" %>
+    </div>
+
+    <%= f.hidden_field :room_id, value:params[:room_id] %>
+    <%= f.hidden_field :number, value:params[:number] %>
+
+
+    <p class="border_set confirm_before">上記内容でよろしければ「予約を確定」を押してください</p>
+
+    <div class="confirm_form_unit">
+      <%= f.submit "予定を確定", class:"button_for_confirm" %>
+    </div>
   
-    <%= form_with model:@reservation do |f| %>
+  <% end %>
 
-      <%= f.label :day_start, "開始日" %>
-      <%= f.date_field :day_start, value:params[:day_start] %>
-
-      <%= f.label :day_end, "終了日" %>
-      <%= f.date_field :day_end, value:params[:day_end] %>
-
-      <div>
-        使用日数：<span> <%= @term %> </span>日
-      </div>
-
-      <%= f.label :number, "人数" %>
-      <%= f.text_field :number, value:params[:number] %>
-
-      <%= f.label :payment, "合計金額" %>
-      <%= f.text_field :payment, value:@total %>
-     
-      <%= f.hidden_field :room_id, value:params[:room_id] %>
-
-      <%= f.submit "確定する" %>
-
-    <% end %>
+  <div class="color_blue">
+    <%= link_to "ルーム詳細に戻る",  room_path(params[:room_id]), class:"back_to_room"  %>
   </div>
 </div>

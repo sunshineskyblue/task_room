@@ -26,7 +26,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # # PUT /resource
   def update
-    if @user.update(params.require(:user).permit(:name, :email, :introduction, :encrypted_password, :image))
+    if @user.update(user_params)
       flash[:notice] = "ユーザー情報を更新しました"
       redirect_to root_path
     else
@@ -81,6 +81,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def update_resource(resource, params)
     resource.update_without_password(params)
+  end
+
+  private
+
+  def user_params
+    params.require(:user).permit(:name, :email, :introduction, :encrypted_password, :image)
   end
 
 end

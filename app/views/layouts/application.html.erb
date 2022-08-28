@@ -18,9 +18,9 @@
         </a>
           <%= search_form_for @q, url:rooms_search_path, class:"form_flex" do |f| %>
             <%= f.label :adress, class:"label_none" %>
-            <%= f.search_field :adress_cont, placeholder:"エリア" %>
+            <%= f.search_field :adress_cont, placeholder:"エリア", class:"area" %>
             <%= f.label :room_name, class:"label_none" %>
-            <%= f.search_field :room_name_or_room_intro_cont, placeholder:"キーワード" %>
+            <%= f.search_field :room_name_or_room_intro_cont, placeholder:"キーワード", class:"keyword" %>
             <%= f.submit class:"submit_hidden" %>
           <% end %>
       </div>

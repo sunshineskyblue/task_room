@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root to: "top#index"
   get 'rooms/posts' => 'rooms#posts'
   get 'rooms/search' => 'rooms#search' 
+  get 'rooms/area_search' => 'rooms#area_search' 
   resources :rooms
   resources :reservations
   resources :top

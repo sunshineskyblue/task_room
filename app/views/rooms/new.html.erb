@@ -13,7 +13,7 @@
     <div class="room_frame_new">
       <h2>ルーム情報登録</h2>
 
-      <%= render "shared/error", obj: @room %> 
+      <%= render "shared/error", resource: @room %> 
       
       <%= form_with model:@room do |f| %>
         <div class="users_title_content">
@@ -38,8 +38,9 @@
           <div class="users_title">
             <%= f.label :fee, "料金", class:"must rooms_label" %>
           </div>
-          <div class="users_content">
-            <%= f.number_field :fee, class:"rooms_input" %>
+          <div class="users_content set_fee_container">
+            <%= f.number_field :fee, class:"set_fee" %>
+            <span class="en_add">円</span>
           </div>
         </div>
 

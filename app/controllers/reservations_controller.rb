@@ -1,5 +1,9 @@
 class ReservationsController < ApplicationController
 
+  def index
+    @reservations = Reservation.where(user_id:current_user.id).order(day_start: "ASC")
+  end
+
   def new
     @reservation = Reservation.new
 
@@ -22,38 +26,40 @@ class ReservationsController < ApplicationController
           @term = (@dayEnd - @dayStart).to_i 
           @total = (params[:payment]).to_i * (params[:number]).to_i * (@dayEnd - @dayStart).to_i
         else
-          flash[:notice] = "日付設定を見直してください"
+          flash[:notice] = "日付を見直してください"
           redirect_to room_path(params[:room_id]) 
         end
       else
-        flash[:notice] = "日付設定を見直してください"
+        flash[:notice] = "日付を見直してください"
         redirect_to room_path(params[:room_id]) 
       end
     end
 
   end
 
-
   def create
-
     @reservation = Reservation.new(room_params)
     @reservation.user_id = current_user.id 
 
-    # binding.pry
     if @reservation.save
-    # binding.pry
       flash[:notice] = "予約を完了しました"
-      redirect_to root_path
+      redirect_to reservation_path(@reservation.id)
     else
-    # binding.pry
       flash[:error_notice] = "予約ができませんでした"
       render 'new'
     end
   end
 
+  def show
+    @reservation = Reservation.find(params[:id])
+  end
 
-  def index
-    @reservations = Reservation.where(user_id:current_user.id)
+
+  def destroy
+    @reservation = Reservation.find(params[:id])
+    @reservation.destroy
+    flash[:notice] = "ルーム情報を削除しました"
+    redirect_to reservation_path
   end
 
   private

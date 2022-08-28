@@ -34,7 +34,6 @@
   padding:30px;
 }
 
-
 input.rooms_input  {
   display:block;
   border:solid 0.2px black;
@@ -43,6 +42,25 @@ input.rooms_input  {
   margin-right:auto;
   padding:9px 6px;
   width: 80%;
+}
+
+input.set_fee  {
+   width:100px;
+   font-size:16px;
+   border:solid 0.2px black;
+   border-radius: 3px;
+   padding:9px 6px;
+}
+
+.set_fee_container {
+  display:flex;
+  justify-content:right;
+  margin-right:26px;
+}
+
+.en_add {
+  padding-left:5px;
+  padding-top:14px;
 }
 
 .rooms_textarea.users_content textarea {
@@ -103,6 +121,10 @@ input.rooms_input  {
 
   .rooms_label {
     left:70px;
+  }
+
+  .set_fee_container {
+    margin-right:65px;
   }
 
 }

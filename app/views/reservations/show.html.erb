@@ -1,0 +1,27 @@
+<div class="show_reservation_container">
+ <div class="color_white">
+  <table class="table_reserved">
+    <tr>
+      <th>予約済みルーム</th>
+      <td><%= @reservation.room.room_name %></td>
+    </tr>
+    <tr>
+      <th>開始日</th>
+      <td>
+        <span><%= @reservation.day_start.strftime("%Y年%m月%d日") %></span>
+      </td>
+    </tr>
+    <tr>
+      <th>終了日</th>
+      <td>
+        <span><%= @reservation.day_end.strftime("%Y年%m月%d日") %></span>
+    </tr>
+      </td>
+      
+    <tr>
+      <th>お支払い金額</th>
+      <td><%= @reservation.payment.to_s(:delimited) %>円</td>
+    </tr>
+  </table>
+  </div>
+</div>

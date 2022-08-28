@@ -1,0 +1,74 @@
+.confirm_container {
+  min-width:250px;
+  width:calc(100% - 100px);
+  max-width:350px;
+  margin-right:auto;
+  margin-left:auto;
+  margin-top:40px;
+  font-size:12px;
+  min-height:calc(100vh - 140px);
+}
+
+.confirm_container h2 {
+  font-weight:normal;
+  font-size:19px;
+}
+
+.event_off_for_confirm {
+  pointer-events:none;
+}
+
+.size_set {
+  font-size:14px;
+}
+
+.border_set {
+  border-bottom:solid 0.2px rgba(0, 0, 0, 0.463);
+  margin-bottom:13px;
+}
+
+.number_unit_flex {
+  display:flex;
+}
+
+.confirm_form_unit input {
+  border:solid 0.2px rgba(0, 0, 0, 0.200);
+  border-radius: 3px;
+  background:rgba(0, 0, 0, 0.100);
+  margin:3px 0px 9px;
+  padding:9px 6px;
+  display:block;
+  width:100%;
+  font-size:15px;
+  margin-bottom:15px;
+}
+
+
+.number_unit_flex input.number_for_confirm {
+  border:0;
+  padding:0;
+  margin:0;
+  padding-top:1px;
+  width:11px;
+}
+
+
+.confirm_before {
+  font-size:11px;
+  line-height:30px;
+}
+
+.button_for_confirm {
+  color:white;
+}
+
+.confirm_form_unit input.button_for_confirm {
+  background-color:#4a90e2;
+}
+
+.back_to_room  {
+  display:flex;
+  justify-content:center;
+  font-size:15px;
+}
+

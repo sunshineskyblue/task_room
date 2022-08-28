@@ -26,10 +26,10 @@
               <%= link_to reservation.room.room_name, room_path(reservation.room_id) %>
             </td>
           <td class="room_intro"><div class="longtext"><%= reservation.room.room_intro %></div></td>
-          <td>￥<%= reservation.payment %></td>
-          <td><%= reservation.day_start %></td>
-          <td><%= reservation.day_end %></td>
-          <td  class="room_created_at"><%= reservation.updated_at.strftime("%Y年%m月%d日") %></td>
+          <td>￥<%= reservation.payment.to_s(:delimited) %></td>
+          <td class="room_created_at"><%= reservation.day_start.strftime("%Y年%m月%d日") %>~</td>
+          <td class="room_created_at"><%= reservation.day_end.strftime("%Y年%m月%d日") %></td>
+          <td class="room_created_at"><%= reservation.updated_at.strftime("%Y年%m月%d日") %></td>
           <td><%= link_to "削除", reservation_path(reservation), method: :delete, data: { confirm: "本当に削除しますか？" } %></td>
         </tr>
       <% end %>

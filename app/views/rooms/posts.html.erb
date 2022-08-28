@@ -26,7 +26,7 @@
             <%= link_to room.room_name, room_path(room) %>
           </td>
           <td class="room_intro"><div class="longtext"><%= room.room_intro %></div></td>
-          <td>￥<%= room.fee %></td>
+          <td>￥<%= room.fee.to_s(:delimited) %></td>
           <td><%= room.adress %></td>
           <td class="room_created_at"><%= room.created_at.strftime("%Y年%m月%d日") %></td>
           <td><%= room.user.name %></td>

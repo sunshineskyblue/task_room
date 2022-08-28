@@ -4,12 +4,6 @@ class RoomsController < ApplicationController
     @rooms = Room.where(user_id:current_user.id)
   end
 
-  def search
-    @q = Room.ransack(search_params)
-    @rooms = @q.result(distinct: true).all.order(updated_at: 'ASC')
-    @rooms_count = @rooms.count
-  end
-
   def posts
     @rooms = Room.where(user_id:current_user.id)
   end
@@ -24,13 +18,10 @@ class RoomsController < ApplicationController
     @user = User.find_by(params[:id])
     @room = Room.new(params.require(:room).permit(:room_name, :room_intro, :fee, :adress, :user_id, :room_image))
 
-    binding.pry
     if @room.save
-    binding.pry
       flash[:notice] = "ルーム情報を追加しました"
       redirect_to root_path
     else
-    binding.pry
       flash[:error_notice] = "ルーム情報を追加できませんでした"
       render 'new'
     end
@@ -64,10 +55,40 @@ class RoomsController < ApplicationController
   end
 
 
+  def search
+    
+    @q = Room.ransack({combinator: 'and', groupings: search_params })
+    @rooms = @q.result(distinct: true).all.order(updated_at: 'ASC')
+
+    @rooms_count = @rooms.count
+
+  end
+
+
+  def area_search
+    
+    @q = Room.ransack({combinator: 'or', groupings: search_params })
+    @rooms = @q.result(distinct: true).all.order(updated_at: 'ASC')
+
+    @rooms_count = @rooms.count
+
+  end
+
+
   private
 
   def search_params
+
     params.require(:q).permit(:room_name_or_room_intro_cont,:adress_cont)
+
+    keywords = params[:q][:room_name_or_room_intro_cont].split(/[\p{blank}\s]+/)
+    grouping_hash_keywords = keywords.reduce({}){|hash, word| hash.merge(word => {room_name_or_room_intro_cont: word})}
+
+    adresses = params[:q][:adress_cont].split(/[\p{blank}\s]+/)
+    grouping_hash_adress = adresses.reduce({}){|hash, word| hash.merge(word => {adress_cont: word})}
+
+    grouping_hash = grouping_hash_keywords.merge(grouping_hash_adress)
+
   end
   
 end

@@ -1,4 +1,44 @@
 <main>
   <section class="FirstViewContent_image">
+    <div class="search_form">
+      <div class="search_form_content">
+        <p>Potepan Shareでこの景色、この時間を</p>
+        <%= search_form_for @q, url:rooms_search_path do |f| %>
+        <%= f.label :adress, "エリア", class:"search_form_label"%>
+        <%= f.search_field :adress_cont, placeholder:"東京" %>
+        <%= f.submit "探す", class:"button search_form_submit" %>
+        <% end %>
+      </div>
+    </div>
+  </section>
+  <section class="bottomViewSection">
+    <div class="bottomViewTitleContainer">
+      <p class="bottomViewTitle">おすすめのエリア</p>
+      <div class="bottomViewContainer">
+        <%= link_to controller: "rooms", action: "area_search", q: {adress_cont:'富山 福井 石川 新潟', room_name_or_room_intro_cont: "" } do %>
+          <div class="bottomViewContentFirst">
+            <p>北陸</p>
+          </div>
+        <% end %>
+
+        <%= link_to controller: "rooms", action: "area_search", q: { adress_cont: '福岡 大分 宮崎 鹿児島 熊本 佐賀 長崎', room_name_or_room_intro_cont: "" } do %>
+          <div class="bottomViewContentSecond">
+            <p>九州</p>
+          </div>
+        <% end %>
+        
+        <%= link_to controller: "rooms", action: "area_search", q: { adress_cont: '岐阜', room_name_or_room_intro_cont: "" } do %>
+          <div class="bottomViewContentThird">
+            <p>飛騨高山</p>
+          </div>
+        <% end %>
+
+        <%= link_to controller: "rooms", action: "area_search", q: { adress_cont: '和歌山 奈良 三重', room_name_or_room_intro_cont: "" } do %>
+          <div class="bottomViewContentForth">
+            <p>紀伊</p>
+          </div>
+        <% end %>
+      </div>
+    </div>
   </section>
 </main>

@@ -5,12 +5,12 @@
 }
 
 .table {
+  text-align:center;
   margin-top: 25px;
   margin-bottom:40px;
   font-size:13px;
   border-spacing: 0;
   border-top:solid 0.3px rgba(0, 0, 0, 0.275); 
-  text-align:center;
   min-width:766px;
   max-width: calc(100vh - 200px);
 }
@@ -33,7 +33,6 @@
   max-height: 75px;
   overflow: hidden;
   width:170px;
-  text-align: left;
  }
 
 td.room_intro {
@@ -59,3 +58,4 @@ td.room_created_at {
   font-size:14px;
   font-weight:bold;
 }
+
