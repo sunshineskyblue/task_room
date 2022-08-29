@@ -5,8 +5,8 @@ class CreateReservations < ActiveRecord::Migration[6.1]
       t.date :day_end, null:false
       t.integer :number, null:false
       t.integer :payment, null:false
-      t.integer :user_id
-      t.integer :room_id
+      t.integer :user_id, null:false
+      t.integer :room_id, null:false
 
       t.timestamps
     end

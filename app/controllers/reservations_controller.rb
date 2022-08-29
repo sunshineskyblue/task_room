@@ -40,7 +40,6 @@ class ReservationsController < ApplicationController
   def create
     @reservation = Reservation.new(room_params)
     @reservation.user_id = current_user.id 
-
     if @reservation.save
       flash[:notice] = "予約を完了しました"
       redirect_to reservation_path(@reservation.id)
@@ -59,7 +58,7 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.find(params[:id])
     @reservation.destroy
     flash[:notice] = "ルーム情報を削除しました"
-    redirect_to reservation_path
+    redirect_to reservations_path
   end
 
   private

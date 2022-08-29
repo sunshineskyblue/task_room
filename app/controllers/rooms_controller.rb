@@ -27,14 +27,17 @@ class RoomsController < ApplicationController
     end
   end
   
+
   def show
      @room = Room.find(params[:id])  
   end
   
+
   def edit
     @room = Room.find(params[:id])
   end
   
+
   def update
     @room = Room.find(params[:id])
 
@@ -81,13 +84,13 @@ class RoomsController < ApplicationController
 
     params.require(:q).permit(:room_name_or_room_intro_cont,:adress_cont)
 
-    keywords = params[:q][:room_name_or_room_intro_cont].split(/[\p{blank}\s]+/)
-    grouping_hash_keywords = keywords.reduce({}){|hash, word| hash.merge(word => {room_name_or_room_intro_cont: word})}
+    keywords = params[:q][:room_name_or_room_intro_cont]&.split(/[\p{blank}\s]+/)
+    grouping_hash_keywords = keywords&.reduce({}){|hash, word| hash.merge(word => {room_name_or_room_intro_cont: word})}
 
-    adresses = params[:q][:adress_cont].split(/[\p{blank}\s]+/)
-    grouping_hash_adress = adresses.reduce({}){|hash, word| hash.merge(word => {adress_cont: word})}
+    adresses = params[:q][:adress_cont]&.split(/[\p{blank}\s]+/)
+    grouping_hash_adress = adresses&.reduce({}){|hash, word| hash.merge(word => {adress_cont: word})}
 
-    grouping_hash = grouping_hash_keywords.merge(grouping_hash_adress)
+    grouping_hash = grouping_hash_keywords&.merge(grouping_hash_adress)
 
   end
   

@@ -15,6 +15,10 @@ a {
   color:black;
 }
 
+a:hover {
+  text-decoration: underline;
+}
+
 .input_border input {
   border:0;
 }
@@ -113,7 +117,7 @@ input[type="submit"].submit_hidden {
 }
 
 .header_nav_menu {
-  background-color:whitesmoke;
+  background-color:rgba(0, 0, 0, 0.762);
   list-style-type: none;
   position:absolute;
   right:6px;
@@ -125,7 +129,7 @@ input[type="submit"].submit_hidden {
 
 
 .header_nav_menu a {
-  color:black;
+  color:white;
 }
 
 .header_nav_menu li {
@@ -158,7 +162,7 @@ input[type="submit"].submit_hidden {
   border: solid 0.2px #4a90e2;
 }
 
-.color_blue a {
+.color_blue a, a.color_blue {
   color:#4a90e2;
 }
 
@@ -208,12 +212,30 @@ footer {
 
 @media (min-width: 700px) {
 
+  // div
+  .icon_area {
+    height:28px;
+    width:130px;
+    border:0px;
+    margin-right:20px;
+    position:relative;
+  }
+
+  .icon_keyword {
+    height:28px;
+    width:160px;
+    border:0px;
+    position:relative;
+  }
+
+  // input
   input.area {
     display: block;
     height:28px;
     width:140px;
-    margin-right:8px;
     border:0px;
+    padding-left:22px;
+    color:rgba(0, 0, 0, 0.75);
   }
 
   input.keyword {
@@ -221,7 +243,37 @@ footer {
     height:28px;
     width:170px;
     border:0px;
+    padding-left:22px;
+    color:rgba(0, 0, 0, 0.75);
   }
+
+  // 疑似要素
+  .icon_area::before {
+    content:"";
+    background:url('icon_map_black.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom;
+    position:absolute;
+    width:19px;
+    height:19px;
+    top:4px;
+  }
+
+  .icon_keyword::before {
+    content:"";
+    background:url('icon_search_black.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom;
+    position:absolute;
+    width:20px;
+    height:20px;
+    top:4px;
+  }
+
+
+  // input選択フォーカスなし
 
   .header_title_input input:focus {
     outline:none;

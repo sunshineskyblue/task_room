@@ -7,6 +7,8 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet">
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
@@ -17,11 +19,15 @@
           <img src="/assets/logo.png" class="img_title">
         </a>
           <%= search_form_for @q, url:rooms_search_path, class:"form_flex" do |f| %>
-            <%= f.label :adress, class:"label_none" %>
-            <%= f.search_field :adress_cont, placeholder:"エリア", class:"area" %>
-            <%= f.label :room_name, class:"label_none" %>
-            <%= f.search_field :room_name_or_room_intro_cont, placeholder:"キーワード", class:"keyword" %>
-            <%= f.submit class:"submit_hidden" %>
+            <div class="icon_area">
+              <%= f.label :adress, class:"label_none" %>
+              <%= f.search_field :adress_cont, placeholder:"エリア", class:"area" %>
+              </div>
+            <div class="icon_keyword">
+              <%= f.label :room_name, class:"label_none" %>
+              <%= f.search_field :room_name_or_room_intro_cont, placeholder:"キーワード", class:"keyword" %>
+              <%= f.submit class:"submit_hidden" %>
+            </div>
           <% end %>
       </div>
       <% if user_signed_in? %>

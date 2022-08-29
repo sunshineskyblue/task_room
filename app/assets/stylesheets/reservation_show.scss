@@ -6,23 +6,28 @@
   text-align:center;
   margin-left:auto;
   margin-right:auto;
+  margin-top:50px;
+  margin-bottom:60px;
   font-size:15px;
   border-spacing: 0;
   border:solid 2px rgba(0, 0, 0, 0.697); 
-  height:200px;
-  background-color:rgba(241, 234, 220, 0.376);
+  background-color:rgb(255, 255, 255);
 }
 
 .table_reserved th {
   border-bottom:solid 1px rgba(0, 0, 0, 0.500); 
   border-right:solid 1px rgba(0, 0, 0, 0.500); 
   padding-right:30px;
-  width: 150px;
+  padding-left:15px;
+  width: 200px;
+  text-align:right;
 }
 
 .table_reserved td {
    border-bottom:solid 1px rgba(0, 0, 0, 0.500); 
-   height: 50px;
+   height: fit-content;
+   padding-top:5px;
+   padding-bottom:5px;
    min-width:250px;
  }
 
@@ -30,9 +35,14 @@
  .color_white {
   background-color: white;
   width:100%;
-  height:350px;
+  height:360px;
   margin-top:40px;
   display:flex;
+  justify-content: center;
   align-items:center;
+  flex-direction:column;
+ }
 
+ .back_to_home {
+  font-size:18px;
  }

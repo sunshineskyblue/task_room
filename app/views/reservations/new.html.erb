@@ -27,7 +27,7 @@
 
     <%= f.label :payment, "合計金額（円）" %>
     <div class="confirm_form_unit">
-      <%= f.text_field :payment, value:@total, class:"event_off_for_confirm" %>
+      <%= f.text_field :payment, value:@total.to_s(:delimited), class:"event_off_for_confirm" %>
     </div>
 
     <%= f.hidden_field :room_id, value:params[:room_id] %>
@@ -43,6 +43,10 @@
   <% end %>
 
   <div class="color_blue">
-    <%= link_to "ルーム詳細に戻る",  room_path(params[:room_id]), class:"back_to_room"  %>
+    <% if params[:room_id] %>
+      <%= link_to "ルーム詳細に戻る",  room_path(params[:room_id]), class:"back_to_room"  %>
+    <% else %>
+      <%= link_to "ホームに戻る",  root_path, class:"back_to_room"  %>
+    <% end %>
   </div>
 </div>

@@ -6,6 +6,7 @@
         <%= search_form_for @q, url:rooms_search_path do |f| %>
         <%= f.label :adress, "エリア", class:"search_form_label"%>
         <%= f.search_field :adress_cont, placeholder:"東京" %>
+        <%= f.hidden_field :room_name_or_room_intro_cont, value: "" %>
         <%= f.submit "探す", class:"button search_form_submit" %>
         <% end %>
       </div>

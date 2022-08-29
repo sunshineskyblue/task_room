@@ -2,7 +2,7 @@
  <div class="color_white">
   <table class="table_reserved">
     <tr>
-      <th>予約済みルーム</th>
+      <th>予約したルーム（部屋名）</th>
       <td><%= @reservation.room.room_name %></td>
     </tr>
     <tr>
@@ -23,5 +23,7 @@
       <td><%= @reservation.payment.to_s(:delimited) %>円</td>
     </tr>
   </table>
+
+  <%= link_to "ホームに戻る >>", root_path, class:"color_blue back_to_home" %>
   </div>
 </div>
