@@ -14,7 +14,6 @@ class RoomsController < ApplicationController
   end
   
   def create
-
     @user = User.find_by(params[:id])
     @room = Room.new(params.require(:room).permit(:room_name, :room_intro, :fee, :adress, :user_id, :room_image))
 
@@ -27,16 +26,13 @@ class RoomsController < ApplicationController
     end
   end
   
-
   def show
      @room = Room.find(params[:id])  
   end
   
-
   def edit
     @room = Room.find(params[:id])
   end
-  
 
   def update
     @room = Room.find(params[:id])
@@ -59,29 +55,23 @@ class RoomsController < ApplicationController
 
 
   def search
-    
     @q = Room.ransack({combinator: 'and', groupings: search_params })
     @rooms = @q.result(distinct: true).all.order(updated_at: 'ASC')
-
     @rooms_count = @rooms.count
-
   end
 
 
   def area_search
-    
     @q = Room.ransack({combinator: 'or', groupings: search_params })
     @rooms = @q.result(distinct: true).all.order(updated_at: 'ASC')
-
     @rooms_count = @rooms.count
-
   end
 
+  
 
   private
 
   def search_params
-
     params.require(:q).permit(:room_name_or_room_intro_cont,:adress_cont)
 
     keywords = params[:q][:room_name_or_room_intro_cont]&.split(/[\p{blank}\s]+/)
@@ -89,9 +79,7 @@ class RoomsController < ApplicationController
 
     adresses = params[:q][:adress_cont]&.split(/[\p{blank}\s]+/)
     grouping_hash_adress = adresses&.reduce({}){|hash, word| hash.merge(word => {adress_cont: word})}
-
     grouping_hash = grouping_hash_keywords&.merge(grouping_hash_adress)
-
   end
   
 end

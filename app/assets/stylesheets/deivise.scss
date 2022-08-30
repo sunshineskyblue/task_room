@@ -28,6 +28,10 @@
   box-shadow: rgba(30, 38, 54, 0.15) 0px 3px 2px 0px;
 }
 
+.title_for_new_account {
+  margin-bottom:20px;
+}
+
 .field_with_errors {
   display:contents;
 }
@@ -37,7 +41,7 @@
   border-radius: 3px;
   margin:3px 0px 9px;
   padding:9px 6px;
-  width:245px;
+  width:270px;
 }
 
 .devise_label {
@@ -62,12 +66,12 @@
 
 .signup input {
   margin: 20px 0px;
-  width:310px;
+  width:330px;
 }
 
 .login input {
   margin: 20px 0px;
-  width:275px;
+  width:310px;
 }
 
 .update input {

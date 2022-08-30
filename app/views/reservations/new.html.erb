@@ -1,20 +1,21 @@
 <div class="confirm_container">
+
   <h2 class="border_set">予約内容確認</h2>
-  <p class="size_set">¥<%= params[:payment] %>/日</p>
+  <p class="size_set">¥<%= @payment.to_i.to_s(:delimited) %>/日</p>
+
   <%= form_with model:@reservation do |f| %>
     <div class="devise_error_message">
       <%= render "shared/error", resource: @reservation %>
     </div>
 
-    <%= f.label :day_start, "開始日" %>
+    <%= f.label :day_start, "チェックイン" %>
     <div class="confirm_form_unit">
-      <%= f.date_field :day_start, value:params[:day_start], class:"event_off_for_confirm" %>
+      <%= f.date_field :day_start, value:@dayStart, class:"event_off_for_confirm" %>
     </div>
 
-
-    <%= f.label :day_end, "終了日" %>
+    <%= f.label :day_end, "チェックアウト" %>
     <div class="confirm_form_unit">
-      <%= f.date_field :day_end, value:params[:day_end], class:"event_off_for_confirm" %>
+      <%= f.date_field :day_end, value:@dayEnd, class:"event_off_for_confirm" %>
     </div>
 
     <div class="size_set border_set">
@@ -27,26 +28,30 @@
 
     <%= f.label :payment, "合計金額（円）" %>
     <div class="confirm_form_unit">
-      <%= f.text_field :payment, value:@total.to_s(:delimited), class:"event_off_for_confirm" %>
+      <input value= "<%= @total ? @total.to_s(:delimited) : "" %> " , class= "event_off_for_confirm" >
     </div>
 
-    <%= f.hidden_field :room_id, value:params[:room_id] %>
-    <%= f.hidden_field :number, value:params[:number] %>
+    <%= f.hidden_field :room_id, value:@room_id %>
+    <%= f.hidden_field :number, value:@number %>
+    <%= f.hidden_field :payment, value: @total ? @total : "", class:"event_off_for_confirm" %>
 
-
-    <p class="border_set confirm_before">上記内容でよろしければ「予約を確定」を押してください</p>
-
+    <p class="border_set confirm_before">上記内容でよろしければ「予約を確定する」を押してください</p>
     <div class="confirm_form_unit">
-      <%= f.submit "予定を確定", class:"button_for_confirm" %>
+      <%= f.submit "予約を確定する", class:"button_for_confirm" %>
     </div>
-  
   <% end %>
 
   <div class="color_blue">
-    <% if params[:room_id] %>
-      <%= link_to "ルーム詳細に戻る",  room_path(params[:room_id]), class:"back_to_room"  %>
+    <% if @room_id %>
+      <%= link_to "ルーム詳細に戻る", room_path(@room_id,
+        day_start: @dayStart, 
+        day_end: @dayEnd, 
+        number: @number
+        ), class:"back_to_room"
+      %>
     <% else %>
       <%= link_to "ホームに戻る",  root_path, class:"back_to_room"  %>
     <% end %>
   </div>
+
 </div>

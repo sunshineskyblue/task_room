@@ -33,11 +33,13 @@
       <% if user_signed_in? %>
       <div class="header_name_menu">
         <div class="user_name"><%= current_user.name %></div>
-          <% if current_user.image.attached? %>
-           <%= image_tag current_user.image, class: 'image_header' %>
-           <% else %>
-           <%= image_tag "/assets/default_icon.jpg" , class: 'image_header' %>
-          <% end %>
+          <div class="icon"> 
+            <% if current_user.image.attached? %>
+            <%= image_tag current_user.image, class: 'image_header' %>
+            <% else %>
+            <%= image_tag "/assets/default_icon.jpg" , class: 'image_header' %>
+            <% end %>
+          </div>
       </div>
       <ul class="header_nav_menu hide">
         <li><%= link_to 'ルーム登録', new_room_path %></li>

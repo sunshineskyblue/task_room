@@ -12,8 +12,8 @@
           </div>
           <div class="room_profile">
             <p><%= room.room_name %></p>
-            <p class=""><%= room.adress %></p>
-            <p class="">￥<%= room.fee %></p>
+            <p><%= room.adress %></p>
+            <p>￥<%= room.fee.to_s(:delimited) %>/日</p>
           </div>
         <% end %>
       </div>

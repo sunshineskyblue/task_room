@@ -27,15 +27,15 @@
 
       <%= form_with url:"../reservations/new", method: :get do |f| %>
         <%= f.label :day_start, "開始日" %>
-        <%= f.date_field :day_start, class:"input_for_reservation" %>
+        <%= f.date_field :day_start, class:"input_for_reservation", value: params[:day_start] || ""  %>
 
         <%= f.label :day_end, "終了日" %>
-        <%= f.date_field :day_end, class:"input_for_reservation" %>
+        <%= f.date_field :day_end, class:"input_for_reservation", value: params[:day_end] || ""  %>
 
         <%= f.label :number, "宿泊人数" %>
         <div class="number_include">
 
-          <%= f.number_field :number, class:"input_for_number" %>
+          <%= f.number_field :number, class:"input_for_number", value: params[:number] || ""  %>
             <span>
               人
             </span>
@@ -51,7 +51,7 @@
             <%= f.submit "予約する", class:"button button_for_reservation" %>
           <% end  %>
         <% else %>
-          <%= link_to 'ログイン', new_user_session_path, class:"button button_for_reservation" %>
+          <%= f.submit 'ログイン', class:"button button_for_reservation" %>
         <% end  %>
 
       <% end  %>

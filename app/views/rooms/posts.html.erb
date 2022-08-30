@@ -23,7 +23,9 @@
             <% end %>
           </td>
           <td class="room_show">
-            <%= link_to room.room_name, room_path(room) %>
+            <div class="longtext">
+              <%= link_to room.room_name, room_path(room) %>
+            </div>
           </td>
           <td class="room_intro"><div class="longtext"><%= room.room_intro %></div></td>
           <td>￥<%= room.fee.to_s(:delimited) %></td>

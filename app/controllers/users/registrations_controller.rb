@@ -8,7 +8,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @user = User.find_by(id:current_user.id)
   end
 
-
   # GET /resource/sign_up
   # def new
   #   super
@@ -41,12 +40,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
   end
 
-
   # DELETE /resource
   # def destroy
   #   super
   # end
-
 
   # GET /resource/cancel
   # Forces the session data which is usually expired after sign
@@ -71,7 +68,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # The path used after sign up.
   def after_sign_up_path_for(resource)
-    rooms_path
+    users_profile_path
   end
 
   # The path used after sign up for inactive accounts.
@@ -79,9 +76,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super(resource)
   # end
 
+
+  # devise パスワードなしで更新可
   def update_resource(resource, params)
     resource.update_without_password(params)
   end
+
 
   private
 

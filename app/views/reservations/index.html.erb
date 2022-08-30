@@ -23,7 +23,9 @@
             <% end %>
           </td>
             <td class="room_show">
-              <%= link_to reservation.room.room_name, room_path(reservation.room_id) %>
+              <div class="longtext">
+                <%= link_to reservation.room.room_name, room_path(reservation.room_id) %>
+              </div>
             </td>
           <td class="room_intro"><div class="longtext"><%= reservation.room.room_intro %></div></td>
           <td>￥<%= reservation.payment.to_s(:delimited) %></td>
