@@ -19,6 +19,15 @@ h2.serach_count{
   flex-wrap:wrap;
 }
 
+.room_frame_inner {
+  margin-bottom:25px;
+  margin-left:10px;
+  margin-right:10px;
+  width: calc(100% - 1px);
+  border:solid 0.5px rgba(0, 0, 0, 0.200);
+  background-color: white;
+}
+
 .room_profile {
   padding-left:20px;
   padding-right:20px;
@@ -28,24 +37,30 @@ h2.serach_count{
 }
 
 .room_profile p {
-  line-height:27px;
   font-size:14px;
+}
+
+.profile_room_name {
+  height:38px;
 }
 
 .room_profile p:nth-child(1) {
   font-weight: bold;
   font-size:15px;
   color: #909090;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .room_profile p:nth-child(2) {
-
   font-weight: bold;
   font-size:13px;
 
 }
 
 .room_profile p:nth-child(3) {
+   padding-top:9px;
    text-align: right;
 }
 
@@ -54,15 +69,6 @@ h2.serach_count{
   height:180px;
   object-fit: cover;
   padding-top:10px;
-}
-
-.room_frame_inner {
-  margin-bottom:25px;
-  margin-left:10px;
-  margin-right:10px;
-  width: calc(100% - 1px);
-  border:solid 0.5px rgba(0, 0, 0, 0.200);
-  background-color: white;
 }
 
 
