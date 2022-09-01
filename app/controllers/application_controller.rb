@@ -3,11 +3,6 @@ class ApplicationController < ActionController::Base
   before_action :store_current_location, unless: :devise_controller?
   before_action :set_search
 
-  # before_action :set_session
-
-  # def set_session
-  #   session.delete(:form_data) 
-  # end
 
   def set_search
     @q = Room.ransack(params[:q]) 

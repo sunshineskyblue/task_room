@@ -11,7 +11,6 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {registrations: 'users/registrations', sessions: 'users/sessions'}
 
   devise_scope :user do
-    # get "user/:id", :to => "users/registrations#detail"
     get "users/account", :to => "users/registrations#account"
     get "users/profile", :to => "users/registrations#profile"
     get "users", :to => "users/registrations#account"

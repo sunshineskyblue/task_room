@@ -50,9 +50,9 @@ class ReservationsController < ApplicationController
         @total = (params[:payment]).to_i * (params[:number]).to_i * (@dayEnd - @dayStart).to_i
         
         session[:form_data] = {}
-        session[:form_data]["day_start"] = params[:day_start]
-        session[:form_data]["day_end"] = params[:day_end]
-        session[:form_data]["number"] = params[:number]
+        session[:form_data]["day_start"] = @dayStart
+        session[:form_data]["day_end"] = @dayEnd 
+        session[:form_data]["number"] = @number
         session[:form_data]["payment"] = params[:payment]
         session[:form_data]["room_id"] = params[:room_id]
         session[:form_data]["term"] = @term
@@ -66,12 +66,6 @@ class ReservationsController < ApplicationController
 
     else
       @reservation = Reservation.new
-
-      # "params[:room_id].blank" の条件分岐によって、sessionを削除せずとも、
-      #  paramsが代入されていない時のみにsession情報を反映させ、
-      #  言い換えると、paramsが代入されている時は、paramsを優先させることができる。
-      # sessionを残すことで、ブラウザのバックとフォワードに対応することができた
-      # session自体は、現状createアクション時に削除する実装としているが、弊害はとりわけ見当たらない
 
       if params[:room_id].blank?   
         if session[:form_data].present?

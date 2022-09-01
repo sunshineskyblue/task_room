@@ -27,6 +27,7 @@ class RoomsController < ApplicationController
   end
   
   def show
+    # binding.pry
      @room = Room.find(params[:id])  
   end
   
