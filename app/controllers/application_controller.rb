@@ -3,7 +3,6 @@ class ApplicationController < ActionController::Base
   before_action :store_current_location, unless: :devise_controller?
   before_action :set_search
 
-
   def set_search
     @q = Room.ransack(params[:q]) 
     @rooms = @q.result(distinct: true)

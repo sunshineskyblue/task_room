@@ -46,7 +46,7 @@
       
         <% if user_signed_in? %>
           <% if current_user.name.blank? || current_user.introduction.blank? %>
-            <%= link_to 'プロフィール登録', users_profile_path, class:"button button_for_reservation" %>
+            <%= f.submit 'プロフィール登録', class:"button button_for_reservation" %>
           <% else %>
             <%= f.submit "予約する", class:"button button_for_reservation" %>
           <% end  %>

@@ -9,9 +9,9 @@ class User < ApplicationRecord
   has_one_attached :image
   has_many :rooms, dependent: :destroy
 
-  validates :name, presence: { message: "ユーザー名が未入力です" }, on: :update
-  validates :introduction, presence: { message: "自己紹介が未入力です" }, on: :update
-  validate :length_count, on: :update
+  # validates :name, presence: { message: "ユーザー名が未入力です" }, on: :update
+  # validates :introduction, presence: { message: "自己紹介が未入力です" }, on: :update
+  # validate :length_count, on: :update
 
 
   def update_without_current_password(params, *options)

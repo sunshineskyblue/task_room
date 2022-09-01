@@ -27,7 +27,6 @@ class RoomsController < ApplicationController
   end
   
   def show
-    # binding.pry
      @room = Room.find(params[:id])  
   end
   
@@ -59,6 +58,10 @@ class RoomsController < ApplicationController
     @q = Room.ransack({combinator: 'and', groupings: search_params })
     @rooms = @q.result(distinct: true).all.order(updated_at: 'ASC')
     @rooms_count = @rooms.count
+
+    if session[:form_data].present?
+      session.delete("form_data")
+    end
   end
 
 
