@@ -15,7 +15,7 @@ class RoomsController < ApplicationController
   
   def create
     @user = User.find_by(params[:id])
-    @room = Room.new(params.require(:room).permit(:room_name, :room_intro, :fee, :adress, :user_id, :room_image))
+    @room = Room.new(strong_params_for_room)
 
     if @room.save
       flash[:notice] = "ルーム情報を追加しました"
@@ -36,8 +36,7 @@ class RoomsController < ApplicationController
 
   def update
     @room = Room.find(params[:id])
-
-    if @room.update(params.require(:room).permit(:room_name, :room_intro, :fee, :adress, :user_id, :room_image))
+    if @room.update(strong_params_for_room)
        flash[:notice] = "ルーム情報を更新しました"
        redirect_to :rooms
     else
@@ -55,13 +54,12 @@ class RoomsController < ApplicationController
 
 
   def search
-    @q = Room.ransack({combinator: 'and', groupings: search_params })
-    @rooms = @q.result(distinct: true).all.order(updated_at: 'ASC')
-    @rooms_count = @rooms.count
-
     if session[:form_data].present?
       session.delete("form_data")
     end
+    @q = Room.ransack({combinator: 'and', groupings: search_params })
+    @rooms = @q.result(distinct: true).all.order(updated_at: 'ASC')
+    @rooms_count = @rooms.count
   end
 
 
@@ -75,6 +73,7 @@ class RoomsController < ApplicationController
 
   private
 
+  
   def search_params
     params.require(:q).permit(:room_name_or_room_intro_cont,:adress_cont)
 
@@ -83,7 +82,14 @@ class RoomsController < ApplicationController
 
     adresses = params[:q][:adress_cont]&.split(/[\p{blank}\s]+/)
     grouping_hash_adress = adresses&.reduce({}){|hash, word| hash.merge(word => {adress_cont: word})}
+
     grouping_hash = grouping_hash_keywords&.merge(grouping_hash_adress)
   end
+
+
+  def strong_params_for_room
+    params.require(:room).permit(:room_name, :room_intro, :fee, :adress, :user_id, :room_image)
+  end
+
   
 end

@@ -9,6 +9,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @user = User.find_by(id:current_user.id)
   end
 
+  def account
+    if session[:form_data].present?
+      session.delete("form_data")
+    end
+  end
+
 
   # # PUT /resource
   def update
@@ -18,7 +24,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @para = params["user"]
 
     if @para.has_key?("name") || @para.has_key?("introduction")
-      if resource.update_without_current_password(account_update_params)
+      if resource.update_without_current_password(account_update_params)  #user_modelにメソッド
         yield resource if block_given?
         if is_flashing_format?
           flash_key = update_needs_confirmation?(resource, prev_unconfirmed_email) ?
@@ -112,7 +118,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
-
 
   private
 
