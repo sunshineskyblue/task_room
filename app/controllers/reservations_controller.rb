@@ -1,7 +1,7 @@
 class ReservationsController < ApplicationController
 
   def index
-    @reservations = Reservation.where(user_id:current_user.id).order(day_start: "ASC")
+    @reservations = Reservation.includes(:room).where(user_id:current_user.id).order(day_start: "ASC")
   end
 
   def create
@@ -23,14 +23,16 @@ class ReservationsController < ApplicationController
   end
 
   def destroy
-    @reservation = Reservation.find(params[:id])
-    @reservation.destroy
-    flash[:notice] = "ルーム情報を削除しました"
+    reservation = Reservation.find(params[:id])
+    reservation.destroy
+    flash[:notice] = "予約情報を削除しました"
     redirect_to reservations_path
   end
 
   
   def new
+    @reservation = Reservation.new(pre_room_params)
+
     if user_signed_in?   #ログインしている場合
       if current_user.name.blank? || current_user.introduction.blank?  #プロフィールなしの場合
         if (params[:room_id].blank?) && (session[:form_data].present?)  # プロフィールなしユーザーがログイン後、reservation_newへのリダイレクトをさらにroom_showへのリダイレクトにつなぐ。
@@ -41,74 +43,55 @@ class ReservationsController < ApplicationController
           ) 
         else   #ログイン状態のプロフィール未登録ユーザーをprofile_new画面につなぐ
           form_params_recieve
-
-          if @dayStart.blank? || @dayEnd.blank? || @number.blank?
-            flash[:notice] = "未入力の箇所があります"
-            redirect_to room_path(@room_id) and return
-          else
-            if @number <= 0
-              flash[:notice] = "人数の入力値に誤りがあります"
-              redirect_to room_path(params[:room_id]) and return
+          if @reservation.invalid?
+            flash[:reservation] = @reservation.errors.full_messages
+            redirect_to room_path(@room_id,
+            :day_start => @dayStart, 
+            :day_end => @dayEnd, 
+            :number => @number
+            ) and return
             end
-          end
-          
-          if (@dayStart.after? Date.today) && (@dayEnd.after? @dayStart)
-            params_checked_after_variables
-            session_start
-            redirect_to users_profile_path    
-          else
-            flash[:notice] = "日付を見直してください"
-            redirect_to room_path(params[:room_id]) and return
-          end
-        end    
+          params_checked_after_variables
+          session_start
+          redirect_to users_profile_path  
+        end  
 
       else   #ログイン状態のプロフィール登録済みユーザーを確定画面につなぐ
-        @reservation = Reservation.new
         if (params[:room_id].blank?) && (session[:form_data].present?) # ブラウザバック、フォワードに対応。ブラウザで進むをした時のみsessionを活かし、フォームから入った場合は、paramsで更新。
           session_to_params
         else    # 通常にてフォームから入った時に対応
           form_params_recieve
+          if @reservation.invalid?
+          flash[:reservation] = @reservation.errors.full_messages
 
-          if @dayStart.blank? || @dayEnd.blank? || @number.blank?
-            flash[:notice] = "未入力の箇所があります"
-            redirect_to room_path(@room_id) and return
-          else
-            if @number <= 0
-              flash[:notice] = "人数の入力値に誤りがあります"
-              redirect_to room_path(params[:room_id]) and return
-            end
+          # @room = Room.find(params[:room_id])  
+          # render template:"rooms/show", id:@room and return
+          
+          redirect_to room_path(@room_id,
+          :day_start => @dayStart, 
+          :day_end => @dayEnd, 
+          :number => @number
+          ) and return
+
           end
-
-          if (@dayStart.after? Date.today) && (@dayEnd.after? @dayStart)
-            params_checked_after_variables
-          else
-            flash[:notice] = "日付を見直してください"
-            redirect_to room_path(@room_id) and return
-          end   
-        end        
+          params_checked_after_variables
+        end   
+             
       end      
 
     else  #未ログイン状態のユーザーをログイン画面につなぐ
       form_params_recieve
-
-      if @dayStart.blank? || @dayEnd.blank? || @number.blank?
-        flash[:notice] = "未入力の箇所があります"
-        redirect_to room_path(@room_id) and return
-      else
-        if @number <= 0
-          flash[:notice] = "人数の入力値に誤りがあります"
-          redirect_to room_path(params[:room_id]) and return
+      if @reservation.invalid?
+        flash[:reservation] = @reservation.errors.full_messages
+        redirect_to room_path(@room_id,
+        :day_start => @dayStart, 
+        :day_end => @dayEnd, 
+        :number => @number
+        ) and return
         end
-      end
-
-      if (@dayStart.after? Date.today) && (@dayEnd.after? @dayStart)
-        params_checked_after_variables
-        session_start
-        redirect_to new_user_session_path    
-      else
-        flash[:notice] = "日付を見直してください"
-        redirect_to room_path(params[:room_id]) and return
-      end
+      params_checked_after_variables
+      session_start
+      redirect_to new_user_session_path    
     end  
 
   end  
@@ -131,9 +114,11 @@ class ReservationsController < ApplicationController
 
 
   def  params_checked_after_variables
+    if @dayStart && @dayEnd
     @term = (@dayEnd - @dayStart).to_i 
-    @total = (params[:payment]).to_i * (params[:number]).to_i * (@dayEnd - @dayStart).to_i
+    @total = (params[:payment]).to_i * (params[:number]).to_i * (@dayEnd - @dayStart).to_i 
     return @term, @total
+    end
   end
   
 
@@ -162,12 +147,11 @@ class ReservationsController < ApplicationController
   def room_params
     params.require(:reservation).permit(:day_start, :day_end, :number, :payment, :user_id, :room_id)
   end
+
+  def pre_room_params
+    params.permit(:day_start, :day_end, :number, :payment, :user_id, :room_id)
+  end
   
 
 end
-
-
-
-
-
 

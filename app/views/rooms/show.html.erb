@@ -24,6 +24,13 @@
   <div class="room_reserve">
     <div class="reserve_fit">
     <p>¥<%= @room.fee %>/日</p>
+    <div class="reservation_error_message">
+    <% flash["reservation"]&.each do |message| %>
+      <ul>
+        <li> <%= message %></li>
+      </ul>
+    <% end %>
+    </div>
 
       <%= form_with url:"../reservations/new", method: :get do |f| %>
         <%= f.label :day_start, "チェックイン" %>
