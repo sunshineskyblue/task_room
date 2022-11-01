@@ -4,9 +4,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
-
   def profile
-    @user = User.find_by(id:current_user.id)
+    @user = User.find_by(id: current_user.id)
   end
 
   def account
@@ -14,7 +13,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
       session.delete("form_data")
     end
   end
-
 
   # # PUT /resource
   def update
@@ -24,7 +22,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @para = params["user"]
 
     if @para.has_key?("name") || @para.has_key?("introduction")
-      if resource.update_without_current_password(account_update_params)  #user_modelにメソッド
+      if resource.update_without_current_password(account_update_params)  #model > user にメソッド追加
         yield resource if block_given?
         if is_flashing_format?
           flash_key = update_needs_confirmation?(resource, prev_unconfirmed_email) ?
@@ -35,12 +33,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
         respond_with resource, :location => after_update_path_for(resource)
       else
         clean_up_passwords resource
-        # respond_with resource
+        # respond_with resource => renderにて代替
           flash[:notice] = "プロフィール情報を更新できていません"
           render 'profile'
       end
     else
-      if update_resource(resource, account_update_params)
+      if update_resource(resource, account_update_params)  #パスワード要
         yield resource if block_given?
         if is_flashing_format?
           flash_key = update_needs_confirmation?(resource, prev_unconfirmed_email) ?
@@ -57,7 +55,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
       end
     end
   end
-
 
   # GET /resource/sign_up
   # def new

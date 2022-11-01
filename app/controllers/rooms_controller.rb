@@ -1,10 +1,5 @@
 class RoomsController < ApplicationController
-
   def index
-    @rooms = Room.where(user_id:current_user.id)
-  end
-
-  def posts
     @rooms = Room.where(user_id:current_user.id)
   end
   
@@ -15,7 +10,7 @@ class RoomsController < ApplicationController
   
   def create
     @user = User.find_by(params[:id])
-    @room = Room.new(strong_params_for_room)
+    @room = Room.new(strong_params_room)
 
     if @room.save
       flash[:notice] = "ルーム情報を追加しました"
@@ -36,7 +31,7 @@ class RoomsController < ApplicationController
 
   def update
     @room = Room.find(params[:id])
-    if @room.update(strong_params_for_room)
+    if @room.update(strong_params_room)
        flash[:notice] = "ルーム情報を更新しました"
        redirect_to :rooms
     else
@@ -52,16 +47,19 @@ class RoomsController < ApplicationController
     redirect_to :rooms
   end
 
+  def posts
+    @rooms = Room.where(user_id:current_user.id)
+  end
 
   def search
     if session[:form_data].present?
       session.delete("form_data")
     end
+    
     @q = Room.ransack({combinator: 'and', groupings: search_params })
     @rooms = @q.result(distinct: true).all.order(updated_at: 'ASC')
     @rooms_count = @rooms.count
   end
-
 
   def area_search
     @q = Room.ransack({combinator: 'or', groupings: search_params })
@@ -69,11 +67,8 @@ class RoomsController < ApplicationController
     @rooms_count = @rooms.count
   end
 
-  
-
   private
 
-  
   def search_params
     params.require(:q).permit(:room_name_or_room_intro_cont,:adress_cont)
 
@@ -86,10 +81,7 @@ class RoomsController < ApplicationController
     grouping_hash = grouping_hash_keywords&.merge(grouping_hash_adress)
   end
 
-
-  def strong_params_for_room
+  def strong_params_room
     params.require(:room).permit(:room_name, :room_intro, :fee, :adress, :user_id, :room_image)
   end
-
-  
 end

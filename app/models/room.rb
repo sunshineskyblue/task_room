@@ -1,5 +1,4 @@
 class Room < ApplicationRecord
-  
   validates :room_name, presence: { message: "ルーム名が未入力です" }
   validates :room_intro, presence: { message: "ルーム紹介が未入力です" }
   validates :fee, presence: { message: "料金が未登録です" }
@@ -8,11 +7,8 @@ class Room < ApplicationRecord
 
   belongs_to :user
   has_many :reservations, dependent: :destroy
-
   has_one_attached :room_image
   validates :room_image,  presence: { message: "画像が未登録です" }
-
-  
 
   private
 

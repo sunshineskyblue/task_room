@@ -8,7 +8,6 @@ class ApplicationController < ActionController::Base
     @rooms = @q.result(distinct: true)
   end
 
-
   # サインイン後に遷移するpathを設定
   def after_sign_in_path_for(resource)
     if session[:form_data].present?
@@ -18,12 +17,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
-
   # ログアウト後に遷移するpathを設定
   def after_sign_out_path_for(resource)
     new_user_session_path 
   end
-
 
   # 入力フォームからアカウント名情報をDBに保存するために追加
   protected
@@ -33,13 +30,10 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:account_update, keys: [:introduction])
     devise_parameter_sanitizer.permit(:account_update, keys: [:image])
   end
-
-
+  
   private
 
   def store_current_location
     store_location_for(:user, request.url)
   end
-
-
 end
