@@ -1,6 +1,6 @@
+<% content_for(:title, "「#{@search_area}」の検索結果") %>
 <div class="search_container"> 
-  <h2 class="serach_count">検索結果：<%= @rooms_count %>件</h2>
-
+  <h2 class="serach_count">検索結果：<%= @rooms.size %>件</h2>
   <div class="room_frame_outer">
     <% @rooms.each do |room| %>
       <div class="room_frame_inner">

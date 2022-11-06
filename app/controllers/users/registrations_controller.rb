@@ -5,13 +5,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_account_update_params, only: [:update]
 
   def profile
-    @user = User.find_by(id: current_user.id)
+    @user = User.find(current_user.id)
   end
 
   def account
-    if session[:form_data].present?
-      session.delete("form_data")
-    end
   end
 
   # # PUT /resource
@@ -19,37 +16,41 @@ class Users::RegistrationsController < Devise::RegistrationsController
     self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
     prev_unconfirmed_email = resource.unconfirmed_email if resource.respond_to?(:unconfirmed_email)
 
-    @para = params["user"]
-
-    if @para.has_key?("name") || @para.has_key?("introduction")
-      if resource.update_without_current_password(account_update_params)  #model > user にメソッド追加
+    if user_params.key?("name") && user_params.key?("introduction")
+      # パスワード不要
+      if resource.update_without_current_password(account_update_params) # user_model にメソッド追加
         yield resource if block_given?
         if is_flashing_format?
-          flash_key = update_needs_confirmation?(resource, prev_unconfirmed_email) ?
-            :update_needs_confirmation : :updated
+          flash_key = if update_needs_confirmation?(resource, prev_unconfirmed_email)
+                        :update_needs_confirmation
+                      else
+                        :updated
+                      end
           set_flash_message :notice, flash_key
         end
         sign_in resource_name, resource, :bypass => true
         respond_with resource, :location => after_update_path_for(resource)
       else
         clean_up_passwords resource
-        # respond_with resource => renderにて代替
-          flash[:notice] = "プロフィール情報を更新できていません"
-          render 'profile'
+        flash[:notice] = "プロフィール情報を更新できていません"
+        render 'profile'
       end
     else
-      if update_resource(resource, account_update_params)  #パスワード要
+      # パスワード必須
+      if update_resource(resource, account_update_params)
         yield resource if block_given?
         if is_flashing_format?
-          flash_key = update_needs_confirmation?(resource, prev_unconfirmed_email) ?
-            :update_needs_confirmation : :updated
+          flash_key = if update_needs_confirmation?(resource, prev_unconfirmed_email)
+                        :update_needs_confirmation
+                      else
+                        :updated
+                      end
           set_flash_message :notice, flash_key
         end
         sign_in resource_name, resource, :bypass => true
         respond_with resource, :location => after_update_path_for(resource)
       else
         clean_up_passwords resource
-        # respond_with resource
         flash[:notice] = "アカウント情報を更新できていません"
         render 'edit'
       end
@@ -102,13 +103,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
     users_profile_path
   end
 
-   # The path used after update 
+  # The path used after update
   def after_update_path_for(resource)
     if session[:form_data].present?
       new_reservation_path
-   else
+    else
       users_profile_path
-   end
+    end
   end
 
   # The path used after sign up for inactive accounts.
@@ -121,5 +122,4 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def user_params
     params.require(:user).permit(:name, :email, :introduction, :encrypted_password, :image)
   end
-
 end

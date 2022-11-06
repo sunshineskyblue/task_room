@@ -1,57 +1,49 @@
+<% content_for(:title, "予約内容確認") %>
 <div class="confirm_container">
-
   <h2 class="border_set">予約内容確認</h2>
-  <p class="size_set">¥<%= @payment.to_i.to_s(:delimited) %>/日</p>
+  <p class="size_set">¥<%= @reservation.payment.to_i.to_s(:delimited) %>/日</p>
 
   <%= form_with model:@reservation do |f| %>
     <div class="devise_error_message">
       <%= render "shared/error", resource: @reservation %>
     </div>
-
-    <%= f.label :day_start, "チェックイン" %>
+    <%= f.label :checkin, "チェックイン" %>
     <div class="confirm_form_unit">
-      <%= f.date_field :day_start, value:@dayStart, class:"event_off_for_confirm" %>
+      <%= f.date_field :checkin, value: @reservation.checkin, class:"event_off_for_confirm" %>
     </div>
-
-    <%= f.label :day_end, "チェックアウト" %>
+    <%= f.label :checkout, "チェックアウト" %>
     <div class="confirm_form_unit">
-      <%= f.date_field :day_end, value:@dayEnd, class:"event_off_for_confirm" %>
+      <%= f.date_field :checkout, value: @reservation.checkout, class:"event_off_for_confirm" %>
     </div>
-
     <div class="size_set border_set">
-      使用日数：<%= @term %>日
+      使用日数：<%= @stay_length %>日
     </div>
-
     <div class="size_set border_set">
-      人数：<%= @number %>人
+      人数：<%= @reservation.number %>人
     </div>
-
     <%= f.label :payment, "合計金額（円）" %>
     <div class="confirm_form_unit">
-      <input value= "<%= @total ? @total.to_s(:delimited) : "" %> " , class= "event_off_for_confirm" >
+      <input value= "<%= @total_payment ? @total_payment.to_s(:delimited) : "" %> " , class= "event_off_for_confirm" >
     </div>
-
-    <%= f.hidden_field :room_id, value:@room_id %>
-    <%= f.hidden_field :number, value:@number %>
-    <%= f.hidden_field :payment, value: @total ? @total : "", class:"event_off_for_confirm" %>
-
+    <%= f.hidden_field :room_id, value: @reservation.room_id %>
+    <%= f.hidden_field :number, value: @reservation.number %>
+    <%= f.hidden_field :payment, value: @total_payment ? @total_payment : "", class:"event_off_for_confirm" %>
     <p class="border_set confirm_before">上記内容でよろしければ「予約を確定する」を押してください</p>
     <div class="confirm_form_unit">
-      <%= f.submit "予約を確定する", class:"button_for_confirm" %>
+      <%= f.submit "予約を確定する", name: nil, class:"button_for_confirm" %>
     </div>
   <% end %>
 
   <div class="color_blue">
-    <% if @room_id %>
-      <%= link_to "ルーム詳細に戻る", room_path(@room_id,
-        day_start: @dayStart, 
-        day_end: @dayEnd, 
-        number: @number
+    <% if @reservation.room_id %>
+      <%= link_to "ルーム詳細に戻る", room_path(@reservation.room_id,
+        checkin: @reservation.checkin, 
+        checkout: @reservation.checkout, 
+        number: @reservation.number
         ), class:"back_to_room"
       %>
     <% else %>
       <%= link_to "ホームに戻る",  root_path, class:"back_to_room"  %>
     <% end %>
   </div>
-
 </div>

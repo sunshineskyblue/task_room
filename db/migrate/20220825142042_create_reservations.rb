@@ -1,8 +1,8 @@
 class CreateReservations < ActiveRecord::Migration[6.1]
   def change
     create_table :reservations do |t|
-      t.date :day_start, null:false
-      t.date :day_end, null:false
+      t.date :checkin, null:false
+      t.date :checkout, null:false
       t.integer :number, null:false
       t.integer :payment, null:false
       t.integer :user_id, null:false

@@ -1,6 +1,6 @@
+<% content_for(:title, "予約済みルーム一覧") %>
 <div class="table_rooms"> 
   <h2>予約済みルーム一覧</h2>
-
   <table class="table">
     <thead>
         <tr>
@@ -29,8 +29,8 @@
             </td>
           <td class="room_intro"><div class="longtext"><%= reservation.room.room_intro %></div></td>
           <td>￥<%= reservation.payment.to_s(:delimited) %></td>
-          <td class="room_created_at"><%= reservation.day_start.strftime("%Y年%m月%d日") %>~</td>
-          <td class="room_created_at"><%= reservation.day_end.strftime("%Y年%m月%d日") %></td>
+          <td class="room_created_at"><%= reservation.checkin.strftime("%Y年%m月%d日") %>~</td>
+          <td class="room_created_at"><%= reservation.checkout.strftime("%Y年%m月%d日") %></td>
           <td class="room_created_at"><%= reservation.updated_at.strftime("%Y年%m月%d日") %></td>
           <td><%= link_to "削除", reservation_path(reservation), method: :delete, data: { confirm: "本当に削除しますか？" } %></td>
         </tr>

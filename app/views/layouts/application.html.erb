@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>TaskRoom</title>
+    <title><%= full_title(yield(:title)) %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
     rel="stylesheet">
@@ -13,48 +12,7 @@
   </head>
 
   <body>
-      <header class="header">
-      <div class="header_title_input">
-        <a href="/">
-          <img src="/assets/logo.png" class="img_title">
-        </a>
-          <%= search_form_for @q, url:rooms_search_path, class:"form_flex" do |f| %>
-            <div class="icon_area">
-              <%= f.label :adress, class:"label_none" %>
-              <%= f.search_field :adress_cont, placeholder:"エリア", class:"area" %>
-              </div>
-            <div class="icon_keyword">
-              <%= f.label :room_name, class:"label_none" %>
-              <%= f.search_field :room_name_or_room_intro_cont, placeholder:"キーワード", class:"keyword" %>
-              <%= f.submit class:"submit_hidden" %>
-            </div>
-          <% end %>
-      </div>
-      <% if user_signed_in? %>
-      <div class="header_name_menu">
-        <div class="user_name"><%= current_user.name %></div>
-          <div class="icon"> 
-            <% if current_user.image.attached? %>
-            <%= image_tag current_user.image, class: 'image_header' %>
-            <% else %>
-            <%= image_tag "/assets/default_icon.jpg" , class: 'image_header' %>
-            <% end %>
-          </div>
-      </div>
-      <ul class="header_nav_menu hide">
-        <li><%= link_to 'ルーム登録', new_room_path %></li>
-        <li><%= link_to '登録済みルーム一覧', rooms_posts_path %></li>
-        <li><%= link_to '予約済みルーム一覧', reservations_path %></li>
-        <li><%= link_to '設定', users_account_path %></li>
-        <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
-      </ul>
-      <% else %>
-        <div class="before_log_in button ">
-          <%= link_to 'ログイン', new_user_session_path %>
-          <%= link_to '登録する', new_user_registration_path %>
-        </div>
-      <% end %>
-    </header>
+    <%= render "shared/header" %>
     <% if flash[:notice_error] %>
       <p class="notice"><%= flash[:notice_error] %></p>
     <% end %>
@@ -62,15 +20,9 @@
       <div class="alert"><%= alert %></div>
       <div class="notice"><%= notice %></div>
     </div>
-
     <%= yield %>
-  
     <footer>
-    <p>© 2022 POTEPAN.INC.</p>
+    <p>© 2022 TAIYOPORTOFOLIO.INC.</p>
     </footer>
-
   </body>
-
-
-
 </html>

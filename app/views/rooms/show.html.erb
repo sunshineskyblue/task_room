@@ -1,3 +1,4 @@
+<% content_for(:title, @room.room_name) %>
 <div class="show_container">
   <div class="container_pic_detail">
     <div class="room_pic">
@@ -22,37 +23,34 @@
   </div>
   <div class="room_reserve">
     <div class="reserve_fit">
-      <p>¥<%= @room.fee %>/日</p>
-      <div class="reservation_error_message">
-        <% flash["reservation"]&.each do |message| %>
-          <ul>
-            <li> <%= message %></li>
-          </ul>
-        <% end %>
-      </div>
+    <p>¥<%= @room.fee %>/日</p>
+    <div class="reservation_error_message">
+    <% flash["reservation"]&.each do |message| %>
+      <ul>
+        <li><%= h(message).gsub(/\newline/, "<br>").html_safe %></li>
+      </ul>
+    <% end %>
+    </div>
       <%= form_with url:"../reservations/new", method: :get do |f| %>
-        <%= f.label :day_start, "チェックイン" %>
-        <%= f.date_field :day_start, class:"input_for_reservation", value: params[:day_start] || "" %>
-        <%= f.label :day_end, "チェックアウト" %>
-        <%= f.date_field :day_end, class:"input_for_reservation", value: params[:day_end] || "" %>
+        <%= f.label :checkin, "チェックイン" %>
+        <%= f.date_field :checkin, class:"input_for_reservation", value: params[:checkin] || "" %>
+        <%= f.label :checkout, "チェックアウト" %>
+        <%= f.date_field :checkout, class:"input_for_reservation", value: params[:day_end] || "" %>
         <%= f.label :number, "宿泊人数" %>
-
         <div class="number_include">
           <%= f.number_field :number, class:"input_for_number", value: params[:number] || "" %>
           <span>人</span>
         </div>
-
         <%= f.hidden_field :room_id, value: @room.id %>
         <%= f.hidden_field :payment, value: @room.fee %>
-
         <% if user_signed_in? %>
           <% if current_user.name.blank? || current_user.introduction.blank? %>
-            <%= f.submit 'プロフィール登録', class:"button button_for_reservation" %>
+            <%= f.submit 'プロフィール登録', name: nil, class:"button button_for_reservation" %>
           <% else %>
-            <%= f.submit "予約する", class:"button button_for_reservation" %>
+            <%= f.submit "予約する", name: nil, class:"button button_for_reservation" %>
           <% end  %>
         <% else %>
-          <%= f.submit 'ログイン', class:"button button_for_reservation" %>
+          <%= f.submit 'ログイン', name: nil, class:"button button_for_reservation" %>
         <% end  %>
       <% end  %>
     </div>

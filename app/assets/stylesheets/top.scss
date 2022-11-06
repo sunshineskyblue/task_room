@@ -28,18 +28,22 @@ section {
 }
 
 .search_form_content {
-  height:fit-content;
-  font-size:21px;
+  height: fit-content;
+  font-size: 21px;
   color:rgba(18, 24, 17, 0.815);
-  width:calc(100% - 25px);
-  margin-right:auto;
-  margin-left:auto;
-  margin-top:15px;
-  margin-bottom:25px;
+  width: calc(100% - 25px);
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 15px;
+  margin-bottom: 25px;
 }
 
 .search_form_content p {
-  margin-bottom:10px;
+  margin-bottom: 10px;
+}
+
+.search_form_content span {
+  color: rgb(17, 197, 17);
 }
 
 .search_form_label {
@@ -221,20 +225,16 @@ section {
   .bottomViewContentForth {
      margin-left:0px;
   }
-
 }
 
 @media (min-width: 800px) {
-
   .bottomViewTitleContainer {
     width:680px;
   }
-
 }
 
 
 @media (min-width: 980px) {
-
   .bottomViewTitleContainer {
     width:950px;
     padding-bottom:40px;
@@ -243,6 +243,4 @@ section {
   .bottomViewTitle {
     font-size:20px;
   }
-
-
 }

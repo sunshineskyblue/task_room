@@ -1,25 +1,30 @@
 
 document.addEventListener('turbolinks:load', function() { 
   const nav = document.querySelector('.header_nav_menu');
-  const searchs = document.querySelectorAll('.header input');
+  const headerForm = document.querySelector('.header form');
+  const headerInputs = document.querySelectorAll('.header input');
+  const area_input = document.querySelector('.header .area');
+  const keyword_input = document.querySelector('.header .keyword');
 
-  if (searchs) {
-    searchs.forEach(search => {
-      search.value = "";
-    });
-  }
+  headerForm.addEventListener('submit', e => {
+    if (area_input.value == "" && keyword_input.value == "" ) {
+      e.preventDefault();
+    }
+  });
 
-  if(nav) {
-    document.addEventListener('click', e => {
-      if (e.target.closest('.icon') && nav.classList.contains('hide')) {
-        //アイコンをクリックし、メニューを表示
-        nav.classList.add('show');
-        nav.classList.remove('hide');
-      } else if (!e.target.closest('.header_nav_menu') && nav.classList.contains('show')){
-        //メニュー以外をクリックし、メニューを非表示
-        nav.classList.add('hide');
-        nav.classList.remove('show');
-      } 
-    }); 
-  }
+  headerInputs.forEach(input => {
+    input.value = "";
+  });
+
+  document.addEventListener('click', e => {
+    if (e.target.closest('.icon') && nav.classList.contains('hide')) {
+      //アイコンをクリックし、メニューを表示
+      nav.classList.add('show');
+      nav.classList.remove('hide');
+    } else if (!e.target.closest('.header_nav_menu') && nav.classList.contains('show')){
+      //メニュー以外をクリックし、メニューを非表示
+      nav.classList.add('hide');
+      nav.classList.remove('show');
+    } 
+  }); 
 });

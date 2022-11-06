@@ -1,0 +1,40 @@
+<header class="header">
+  <div class="header_frame">
+    <a href="/"><li class="header_title">Life <span>in</span> Pocket</li></a>
+      <%= search_form_for @q, url: rooms_search_path, class: "form_flex" do |f| %>
+        <div class="icon_area">
+          <%= f.label :adress_cont, class:"label_none" %>
+          <%= f.search_field :adress_cont, placeholder: "エリア", class: "area" %>
+          </div>
+        <div class="icon_keyword">
+          <%= f.label :room_name_or_room_intro_cont, class: "label_none" %>
+          <%= f.search_field :room_name_or_room_intro_cont, placeholder: "キーワード", class: "keyword" %>
+          <%= f.submit class: "submit_hidden" %>
+        </div>
+      <% end %>
+  </div>
+  <% if user_signed_in? %>
+    <div class="header_name_menu">
+      <div class="user_name"><%= current_user.name %></div>
+        <div class="icon"> 
+          <% if current_user.image.attached? %>
+          <%= image_tag current_user.image, class: 'image_header' %>
+          <% else %>
+          <%= image_tag "/assets/default_icon.jpg" , class: 'image_header' %>
+          <% end %>
+        </div>
+    </div>
+    <ul class="header_nav_menu hide">
+      <li><%= link_to 'ルーム情報登録', new_room_path %></li>
+      <li><%= link_to '登録済みルーム一覧', rooms_path %></li>
+      <li><%= link_to '予約済みルーム一覧', reservations_path %></li>
+      <li><%= link_to '設定', users_account_path %></li>
+      <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+    </ul>
+  <% else %>
+    <div class="before_log_in button ">
+      <%= link_to 'ログイン', new_user_session_path %>
+      <%= link_to '登録する', new_user_registration_path %>
+    </div>
+  <% end %>
+</header>

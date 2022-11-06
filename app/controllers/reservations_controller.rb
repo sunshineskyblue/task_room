@@ -1,12 +1,14 @@
 class ReservationsController < ApplicationController
   def index
-    @reservations = Reservation.includes(:room).where(user_id:current_user.id).order(day_start: "ASC")
+    @reservations = Reservation.includes(:room)
+      .where(user_id: current_user.id)
+      .order(checkin: "ASC")
   end
 
   def create
     @reservation = Reservation.new(reservation_params)
     @reservation.user_id = current_user.id
-    
+
     if @reservation.save
       flash[:notice] = "予約を完了しました"
       session.delete("form_data")
@@ -29,111 +31,79 @@ class ReservationsController < ApplicationController
   end
 
   def new
+    # ログイン or プロフィール登録完了後のリダイレクト時
+    # params[:room_id]の確認できれば、params優先。（ブラウザバック後、フォームより値更新時）
+    if params[:room_id].blank? && session[:form_data].present?
+      # ログイン後、プロフィール未登録の場合は、紹介画面に再度リダイレクト
+      if current_user.name.blank? || current_user.introduction.blank?
+        redirect_to room_path(session[:form_data]["room_id"],
+          checkin: session[:form_data]["checkin"],
+          checkout: session[:form_data]["checkout"],
+          number: session[:form_data]["number"])
+        # sessionを削除しないと無限ループ
+        session.delete("form_data") && return
+      end
+      # validateをしない
+      @reservation = Reservation.new(session[:form_data])
+      set_stay_length
+      set_total_payment && return
+    end
+
     @reservation = Reservation.new(reservation_params_from_room)
 
-    if user_signed_in?   #ログイン中の場合
-      if current_user.name.blank? || current_user.introduction.blank?  #プロフィールが未登録の場合
-        # ログイン後、new_reservationへのリダイレクトをさらにroom_path へのリダイレクトにつなぐ
-        if (params[:room_id].blank?) && (session[:form_data].present?)  
-          redirect_to room_path(session[:form_data]["room_id"],
-          day_start: session[:form_data]["day_start"], 
-          day_end: session[:form_data]["day_end"], 
-          number: session[:form_data]["number"]
-          ) 
-        else   #ログイン状態のプロフィール未登録ユーザーをprofile_new画面につなぐ
-          form_params_recieve
-          if @reservation.invalid?
-            flash[:reservation] = @reservation.errors.full_messages
-            redirect_to room_path(@room_id,
-            :day_start => @dayStart, 
-            :day_end => @dayEnd, 
-            :number => @number
-            ) and return
-            end
-          params_checked_after_variables
-          session_start
-          redirect_to users_profile_path  
-        end  
-      else   #ログイン状態のプロフィール登録済みユーザーを確定画面につなぐ
-        # ブラウザバック、フォワードに対応。ブラウザで進むをした時のみsessionを活かし、フォームから入った場合は、paramsで更新。
-        if (params[:room_id].blank?) && (session[:form_data].present?) 
-          session_to_params
-        else  # 通常通りにフォームから入った場合
-          form_params_recieve
-          if @reservation.invalid?
-          flash[:reservation] = @reservation.errors.full_messages
-          redirect_to room_path(@room_id,  # render template:"rooms/show", id:@room and return => renderの場合、エラーが表示されたままとなる
-            :day_start => @dayStart, 
-            :day_end => @dayEnd, 
-            :number => @number
-          ) and return
-          end
-          params_checked_after_variables
-        end
-      end      
-    else  #未ログインの場合
-      form_params_recieve
-      if @reservation.invalid?
-        flash[:reservation] = @reservation.errors.full_messages
-        redirect_to room_path(@room_id,
-        :day_start => @dayStart, 
-        :day_end => @dayEnd, 
-        :number => @number
-        ) and return
-        end
-      params_checked_after_variables
+    # validationチェック
+    if @reservation.invalid?
+      flash[:reservation] = @reservation.errors.full_messages
+      redirect_to(room_path(@reservation.room_id,
+        :checkin => @reservation.checkin,
+        :checkout => @reservation.checkout,
+        :number => @reservation.number)) && return
+    end
+
+    # 未ログインの場合  => ログイン画面につなぐ
+    if !user_signed_in?
+      set_stay_length
+      set_total_payment
       session_start
-      redirect_to new_user_session_path    
-    end  
-  end  
+      redirect_to(new_user_session_path) && return
+    end
+
+    # プロフィール未登録 => 登録画面につなぐ
+    if current_user.name.blank? || current_user.introduction.blank?
+      set_stay_length
+      set_total_payment
+      session_start
+      redirect_to(users_profile_path) && return
+    end
+    set_stay_length
+    set_total_payment
+  end
 
   private
 
-  def session_to_params
-    @term = session[:form_data]["term"] 
-    @total = session[:form_data]["total"] 
-    @dayStart = session[:form_data]["day_start"]
-    @dayEnd = session[:form_data]["day_end"]
-    @number = session[:form_data]["number"]
-    @payment = session[:form_data]["payment"] 
-    @room_id = session[:form_data]["room_id"]
-    return @dayStart, @dayEnd, @number, @room_id, @payment, @term, @total
-  end
-
-  def  params_checked_after_variables
-    if @dayStart && @dayEnd
-    @term = (@dayEnd - @dayStart).to_i 
-    @total = (params[:payment]).to_i * (params[:number]).to_i * (@dayEnd - @dayStart).to_i 
-    return @term, @total
-    end
-  end
-  
-  def  form_params_recieve
-    @dayStart = params[:day_start].to_date 
-    @dayEnd = params[:day_end].to_date 
-    @number = params[:number].to_i 
-    @room_id = params[:room_id]
-    @payment = params[:payment]
-    return @dayStart, @dayEnd, @number, @room_id, @payment
-  end
-    
-  def session_start
-    session[:form_data] = {}
-    session[:form_data]["day_start"] = @dayStart
-    session[:form_data]["day_end"] = @dayEnd 
-    session[:form_data]["number"] = @number
-    session[:form_data]["payment"] = @payment
-    session[:form_data]["room_id"] = @room_id
-    session[:form_data]["term"] = @term
-    session[:form_data]["total"] = @total
-  end
-
   def reservation_params
-    params.require(:reservation).permit(:day_start, :day_end, :number, :payment, :user_id, :room_id)
+    params.require(:reservation).permit(:checkin, :checkout, :number, :payment, :user_id, :room_id)
   end
 
   def reservation_params_from_room
-    params.permit(:day_start, :day_end, :number, :payment, :user_id, :room_id)
+    params.permit(:checkin, :checkout, :number, :payment, :user_id, :room_id)
+  end
+
+  def set_stay_length
+    @stay_length = (@reservation.checkout - @reservation.checkin).to_i
+  end
+
+  def set_total_payment
+    @total_payment = @reservation.payment * @reservation.
+      number * (@reservation.checkout - @reservation.checkin).to_i
+  end
+
+  def session_start
+    session[:form_data] = {}
+    session[:form_data]["checkin"] = @reservation.checkin
+    session[:form_data]["checkout"] = @reservation.checkout
+    session[:form_data]["number"] = @reservation.number
+    session[:form_data]["payment"] = @reservation.payment
+    session[:form_data]["room_id"] = @reservation.room_id
   end
 end
-

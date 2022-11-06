@@ -23,7 +23,7 @@
       </div>
 
       <div class="actions signup button input_border">
-        <%= f.submit "新しいアカウントを作成" %>
+        <%= f.submit "新しいアカウントを作成", name: nil %>
       </div>
     <% end %>
 
@@ -32,13 +32,3 @@
     </div>
   </div>
 </div>
-
-<%
-=begin
-%>
-<% if @minimum_password_length %>
-<em>(<%= @minimum_password_length %> characters minimum)</em>
-<% end %> </br>
-<%
-=end
-%>

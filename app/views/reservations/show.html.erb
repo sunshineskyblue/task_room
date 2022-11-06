@@ -1,29 +1,24 @@
+<% content_for(:title, "予約完了") %>
 <div class="show_reservation_container">
  <div class="color_white">
   <table class="table_reserved">
     <tr>
-      <th>予約したルーム（部屋名）</th>
+      <th>予約したルーム（施設名）</th>
       <td><%= @reservation.room.room_name %></td>
     </tr>
     <tr>
       <th>チェックイン</th>
-      <td>
-        <span><%= @reservation.day_start.strftime("%Y年%m月%d日") %></span>
-      </td>
+      <td><span><%= @reservation.checkin.strftime("%Y年%m月%d日") %></span></td>
     </tr>
     <tr>
       <th>チェックアウト</th>
-      <td>
-        <span><%= @reservation.day_end.strftime("%Y年%m月%d日") %></span>
+      <td><span><%= @reservation.checkout.strftime("%Y年%m月%d日") %></span></td>
     </tr>
-      </td>
-      
     <tr>
       <th>お支払い金額</th>
       <td><%= @reservation.payment.to_s(:delimited) %>円</td>
     </tr>
   </table>
-
   <%= link_to "ホームに戻る >>", root_path, class:"color_blue back_to_home" %>
   </div>
 </div>

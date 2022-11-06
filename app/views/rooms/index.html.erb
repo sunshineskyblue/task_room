@@ -1,9 +1,9 @@
+<% content_for(:title, "登録済みルーム一覧") %>
 <div class="table_rooms"> 
   <h2>登録済みルーム一覧</h2>
-
   <table class="table">
     <thead>
-        <tr>
+      <tr>
         <th>ルーム画像</th>
         <th>ルーム名</th>
         <th>ルーム紹介</th>
@@ -22,15 +22,15 @@
               <%= image_tag room.room_image, class: 'image_room_posts' %>
             <% end %>
           </td>
-            <td>
-              <div class="longtext">
-                <%= link_to room.room_name, room_path(room) %>
-              </div>
-            </td>
+          <td class="room_show">
+            <div class="longtext">
+              <%= link_to room.room_name, room_path(room) %>
+            </div>
+          </td>
           <td class="room_intro"><div class="longtext"><%= room.room_intro %></div></td>
-          <td>￥<%= room.fee %></td>
+          <td>￥<%= room.fee.to_s(:delimited) %></td>
           <td><%= room.adress %></td>
-          <td  class="room_created_at"><%= room.created_at.strftime("%Y年%m月%d日") %></td>
+          <td class="room_created_at"><%= room.created_at.strftime("%Y年%m月%d日") %></td>
           <td><%= room.user.name %></td>
           <td><%= link_to "削除", room_path(room), method: :delete, data: { confirm: "本当に削除しますか？" } %></td>
         </tr>
@@ -38,5 +38,3 @@
     </tbody>
   </table>
 </div>
-
-
