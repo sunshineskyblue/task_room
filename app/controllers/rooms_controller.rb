@@ -13,6 +13,7 @@ class RoomsController < ApplicationController
     @room = Room.new(room_params)
 
     if @room.save
+      @room.create_price!
       flash[:notice] = "ルーム情報を追加しました"
       redirect_to room_path(@room.id)
     else
