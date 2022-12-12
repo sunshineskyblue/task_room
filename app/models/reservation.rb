@@ -1,18 +1,18 @@
 class Reservation < ApplicationRecord
   belongs_to :room
   belongs_to :guest, class_name: 'User'
-  belongs_to :host, class_name: 'User'
+  belongs_to :host,  class_name: 'User'
   has_many   :notifications, dependent: :destroy
 
-  validates :room_id, presence: true, on: :create
+  validates :room_id,  presence: true, on: :create
   validates :guest_id, presence: true, on: :create
-  validates :host_id, presence: true, on: :create
-  validates :checkin, presence: { message: "が未入力です" }, on: :create
+  validates :host_id,  presence: true, on: :create
+  validates :checkin,  presence: { message: "が未入力です" }, on: :create
   validates :checkout, presence: { message: "が未入力です" }, on: :create
-  validates :number, presence: { message: "が未入力です" },
-                     numericality: { greater_than: 0, message: "は１名以上で入力してください" },
-                     on: :create
-  validates :cancel, inclusion: { in: [true, false] }, on: :update
+  validates :number,   presence: { message: "が未入力です" },
+                       numericality: { greater_than: 0, message: "は１名以上で入力してください" },
+                       on: :create
+  validates :cancel,         inclusion: { in: [true, false] }, on: :update
   validates :cancel_request, inclusion: { in: [true, false] }, on: :update
 
   validate :disallow_checkout_before_or_equal_checkin,
