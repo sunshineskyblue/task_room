@@ -13,7 +13,10 @@ class RoomsController < ApplicationController
     @room = Room.new(room_params)
 
     if @room.save
-      @room.create_price!
+      price = Price.new(room_id: @room.id, value: @room.fee)
+      price.switch_price_range
+      price.save!
+
       flash[:notice] = "ルーム情報を追加しました"
       redirect_to room_path(@room.id)
     else
