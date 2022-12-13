@@ -1,7 +1,6 @@
 class Room < ApplicationRecord
   belongs_to       :user
   has_many         :reservations, dependent: :destroy
-  has_many         :rates,        dependent: :destroy
   has_one          :price,        dependent: :destroy
   has_one_attached :room_image
 
