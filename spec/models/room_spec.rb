@@ -1,72 +1,51 @@
 require 'rails_helper'
 
 RSpec.describe Room, type: :model do
-  let!(:room) { create(:room) }
-
-  describe '#create_price!' do
-    it 'Priceインスタンスが登録されること' do
-      expect(room.create_price!).to be_instance_of(Price)
+  describe '#calculate_deviation' do
+    let(:room) { create(:room) }
+    let!(:price) { build(:price, value: 1000, range: 1, room: room) }
+    let!(:rate) do
+      create_list(:rate,
+        2,
+        room: room,
+        cleanliness: 4.5,
+        information: 4.5,
+        location: 4.5,
+        communication: 4.5,
+        recommendation: 4.5,
+        price: 4.5,
+        score: 4.5,
+        price_category: 1)
     end
 
-    it 'Roomのfeeカラム値がPriceのvalueカラム値と同一となること' do
-      price = room.create_price!
-      expect(room.fee).to eq price.value
+    let!(:rate_5) do
+      create_list(:rate,
+        2,
+        cleanliness: 5,
+        information: 5,
+        location: 5,
+        communication: 5,
+        recommendation: 5,
+        price: 5,
+        score: 5,
+        price_category: 1)
     end
 
-    context 'feeカラムの値が5000円未満の場合' do
-      it 'rangeカラムが1で登録されること' do
-        room.fee = 4999
-        price = room.create_price!
-        expect(price.range).to eq 1
-      end
+    let!(:rate_4) do
+      create_list(:rate,
+        2,
+        cleanliness: 4,
+        information: 4,
+        location: 4,
+        communication: 4,
+        recommendation: 4,
+        price: 4,
+        score: 4,
+        price_category: 1)
     end
 
-    context 'feeカラムの値が1万円未満の場合' do
-      it 'rangeカラムが2で登録されること' do
-        room.fee = 9999
-        price = room.create_price!
-        expect(price.range).to eq 2
-      end
-    end
-
-    context 'feeカラムの値が2万円未満の場合' do
-      it 'rangeカラムが3で登録されること' do
-        room.fee = 19999
-        price = room.create_price!
-        expect(price.range).to eq 3
-      end
-    end
-
-    context 'feeカラムの値が4万円未満の場合' do
-      it 'rangeカラムが4で登録されること' do
-        room.fee = 39999
-        price = room.create_price!
-        expect(price.range).to eq 4
-      end
-    end
-
-    context 'feeカラムの値が6万円未満の場合' do
-      it 'rangeカラムが5で登録されること' do
-        room.fee = 59999
-        price = room.create_price!
-        expect(price.range).to eq 5
-      end
-    end
-
-    context 'feeカラムの値が10万円未満の場合' do
-      it 'rangeカラムが6で登録されること' do
-        room.fee = 99999
-        price = room.create_price!
-        expect(price.range).to eq 6
-      end
-    end
-
-    context 'feeカラムの値が10万円以上の場合' do
-      it 'rangeカラムが7で登録されること' do
-        room.fee = 100000
-        price = room.create_price!
-        expect(price.range).to eq 7
-      end
+    it '偏差値が返されること' do
+      expect(room.calculate_deviation).to eq 50
     end
   end
 end
