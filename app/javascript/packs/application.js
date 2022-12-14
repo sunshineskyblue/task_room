@@ -10,6 +10,7 @@ import "channels"
 import 'bootstrap'
 import '../stylesheets/application'
 import '../customs/main'
+import '../customs/rate'
 
 Rails.start()
 Turbolinks.start()

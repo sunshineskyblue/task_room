@@ -1,0 +1,22 @@
+.rate input {
+  display: none;
+}
+
+.stars {
+  display: flex; /* 要素をフレックスボックスにする */
+  flex-direction: row-reverse; /* 星を逆順に並べる */
+  justify-content: flex-end; /* 逆順なので、左寄せにする */
+}
+
+.stars label {
+  color: #d2d2d2;
+  font-size: 30px;
+  padding: 0 5px;
+  cursor: pointer;
+}
+
+.stars label:hover,
+.stars label:hover ~ label,
+.stars input[type="radio"]:checked ~ label {
+  color: #f8c601;
+}
