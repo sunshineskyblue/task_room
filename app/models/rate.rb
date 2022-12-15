@@ -1,5 +1,5 @@
 class Rate < ApplicationRecord
-  NUM_OF_EVALUATION_CRITERIA = 6
+  NUM_OF_RATE_POINTS = 6
 
   belongs_to :room
   belongs_to :user
@@ -41,7 +41,7 @@ class Rate < ApplicationRecord
         location.to_f +
         price.to_f +
         recommendation.to_f
-      ) / NUM_OF_EVALUATION_CRITERIA).
+      ) / NUM_OF_RATE_POINTS).
       round(2)
   end
 
@@ -50,9 +50,9 @@ class Rate < ApplicationRecord
   def disallow_second_award_within_year
     one_year_ago = Date.today - 1.year
     number = Rate.
-      where(award: true).
       where(user_id: user.id).
-      where('created_at > ?', one_year_ago)
+      where('created_at > ?', one_year_ago).
+      where(award: true)
 
     if number.size >= 1
       return true
