@@ -15,24 +15,7 @@
   <div class="error-message-field">
     <%= render "shared/error", resource: @reservation %>
   </div>
-  <div class="reservation-table-wrapper">
-    <dl class="reservation-table">
-      <dt>宿泊先</dt>
-      <dd><%= @reservation.room.name %></dd>
-      <dt>住所</dt>
-      <dd><%= @reservation.room.adress %></dd>
-      <dt>チェックイン</dt>
-      <dd><%= @reservation.checkin.strftime("%Y年%m月%d日 (#{t("date.abbr_day_names")[@reservation.checkin.wday]})") %></dd>
-      <dt>チェックアウト</dt>
-      <dd><%= @reservation.checkout.strftime("%Y年%m月%d日 (#{t("date.abbr_day_names")[@reservation.checkout.wday]})") %></dd>
-      <dt>確定日時</dt>
-      <dd><%= @reservation.updated_at.strftime("%Y年%m月%d日 (#{t("date.abbr_day_names")[@reservation.checkout.wday]}) %H時%M分") %></dd>
-      <% unless @reservation.canceled? %>
-        <dt>利益</dt>
-        <dd>¥<%= @reservation.payment.to_s(:delimited) %></dd>
-      <% end %>
-    </dl>
-  </div>
+  <%= render "shared/reservation_content", reservation: @reservation %>
   <h1>予約者情報</h1>
   <div class="user-box-container">
     <div class="user-box">

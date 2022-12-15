@@ -1,0 +1,23 @@
+<div class="reservation-table-wrapper">
+  <dl class="reservation-table">
+    <dt>宿泊先</dt>
+    <dd><%= reservation.room.name %></dd>
+    <dt>住所</dt>
+    <dd><%= reservation.room.adress %></dd>
+    <dt>チェックイン</dt>
+    <dd><%= reservation.checkin.strftime("%Y年%m月%d日 (#{t("date.abbr_day_names")[reservation.checkin.wday]})") %></dd>
+    <dt>チェックアウト</dt>
+    <dd><%= reservation.checkout.strftime("%Y年%m月%d日 (#{t("date.abbr_day_names")[reservation.checkout.wday]})") %></dd>
+    <dt>確定日時</dt>
+    <dd><%= reservation.updated_at.strftime("%Y年%m月%d日 (#{t("date.abbr_day_names")[reservation.checkout.wday]}) %H時%M分") %></dd>
+    <% unless reservation.canceled? %>
+      <% if reservation.has_user_as_guest?(user_id: current_user.id) %>
+        <dt>お支払金額</dt>
+        <dd>¥<%= reservation.payment.to_s(:delimited) %></dd>
+      <% else %>
+        <dt>利益</dt>
+        <dd>¥<%= reservation.payment.to_s(:delimited) %></dd>
+      <% end %>
+    <% end %>
+  </dl>
+</div>
