@@ -4,18 +4,32 @@ class Rate < ApplicationRecord
   belongs_to :room
   belongs_to :user
 
-  validates :cleanliness,    presence: { message: "が未入力です" },
-                             numericality: { in: 1..5 }, on: :create
-  validates :information,    presence: { message: "が未入力です" },
-                             numericality: { in: 1..5 }, on: :create
-  validates :communication,  presence: { message: "が未入力です" },
-                             numericality: { in: 1..5 }, on: :create
-  validates :location,       presence: { message: "が未入力です" },
-                             numericality: { in: 1..5 }, on: :create
-  validates :price,          presence: { message: "が未入力です" },
-                             numericality: { in: 1..5 }, on: :create
-  validates :recommendation, presence: { message: "が未入力です" },
-                             numericality: { in: 1..5 }, on: :create
+  validates :cleanliness, numericality: {
+    in: 1..5,
+    message: ": 1から5までの間で入力してください",
+  }, on: :create
+  validates :information, numericality: {
+    in: 1..5,
+    message: ": 1から5までの間で入力してください",
+  }, on: :create
+  validates :communication, numericality: {
+    in: 1..5,
+    message: ": 1から5までの間で入力してください",
+  }, on: :create
+  validates :location, numericality: {
+    in: 1..5,
+    message: ": 1から5までの間で入力してください",
+  }, on: :create
+  validates :price, numericality: {
+    in: 1..5,
+    message: ": 1から5までの間で入力してください",
+  }, on: :create
+  validates :recommendation, numericality: {
+    in: 1..5,
+    message: ": 1から5までの間で入力してください",
+  }, on: :create
+
+  validates :award, inclusion: { in: [true, false] }, on: :create
 
   validate :disallow_second_award_within_year
 
