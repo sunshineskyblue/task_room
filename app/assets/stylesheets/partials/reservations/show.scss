@@ -26,6 +26,68 @@
   border-bottom: solid 1px rgba(0, 0, 0, 0.275);
 }
 
+.rate-field-container {
+  margin-right: auto;
+  margin-left: auto;
+  align-items: center;
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 50px;
+  border: solid 0.5px black;
+}
+
+.rate-field-container > p:nth-child(1) {
+  margin-bottom: 20px;
+  font-size: 16px;
+  text-decoration: underline;
+}
+
+.rate-field-container .must {
+  font-size: 13px;
+}
+
+.rate-field {
+  margin-right: auto;
+  margin-left: auto;
+  width: 80%;
+}
+
+.award {
+  margin-top: 30px;
+}
+
+.explain {
+  color: rgb(124, 120, 120);
+  font-size: 12px;
+}
+
+.award .fa-gem {
+  font-size: 30px;
+  padding-left: 10px;
+  margin-top: 20px;
+}
+
+.gray-diamond {
+  color: #e5dbdb;
+}
+
+.blue-diamond {
+  color: rgba(34, 197, 234, 0.856);
+}
+
+.rate-submit {
+  font-size: 16px;
+  border-radius: 3px;
+  margin: 0px auto 10px;
+  padding: 12px 6px;
+  background-color: #ef4080;
+  color: white;
+  border: 0;
+  width: 100%;
+  margin-top: 40px;
+}
+
 .guest-container .user-box-container {
   width: 100%;
   display: flex;
