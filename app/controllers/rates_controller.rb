@@ -20,6 +20,7 @@ class RatesController < ApplicationController
     params.require(:rate).permit(
       :room_id,
       :user_id,
+      :reservation_id,
       :price_category,
       :cleanliness,
       :information,
