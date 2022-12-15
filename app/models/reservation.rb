@@ -57,6 +57,10 @@ class Reservation < ApplicationRecord
     Date.today <= checkout unless canceled?
   end
 
+  def within_two_weeks_after_checkout?
+    Date.today > checkout && Date.today <= checkout + 14 unless canceled?
+  end
+
   def has_user_as_host?(user_id:)
     host_id == user_id
   end
