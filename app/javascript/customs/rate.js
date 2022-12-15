@@ -17,6 +17,9 @@ document.addEventListener('turbolinks:load', function() {
   const Stars6 = document.querySelectorAll('.recommendation-stars input');
   const recommendation = document.getElementById('recommendation-value');
 
+  const diamond = document.querySelector('.award .fa-gem');
+  const award = document.getElementById('award-value');
+
   Stars1.forEach(function(star) {
     star.addEventListener('click', () => {
       cleanliness.value = star.value;
@@ -52,5 +55,19 @@ document.addEventListener('turbolinks:load', function() {
       recommendation.value = star.value;
     })
   });
+
+  diamond.addEventListener('click', () => {
+    diamond.classList.toggle('blue-diamond');
+    diamond.classList.toggle('gray-diamond');
+
+    if ( award.value == 0 ) {
+      award.value = 1;
+      return;
+    }
+    if ( award.value == 1 ) {
+      award.value = 0;
+      return;
+    }
+  })
 
 });
