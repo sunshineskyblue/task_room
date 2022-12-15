@@ -1,0 +1,14 @@
+<% if reservation.canceled? %>
+  <p class="note-cancel-done">
+    この予約はキャンセルされました。</br>
+    キャンセルポリシーに従い自動的に返金処理がされます。
+  </p>
+<% elsif reservation.cancel_requested? %>
+  <p class="note-cancel-done">
+    ホストからキャンセルリクエストがありました。</br>
+    キャンセルポリシーに従って返金がされます。</br>
+    </br>
+    キャンセルポリシーをご確認頂きましたら、</br>
+    「この予約をキャンセルする」をクリックしてください</br>
+  </p>
+<% end %>
