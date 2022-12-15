@@ -45,6 +45,17 @@ class Rate < ApplicationRecord
       round(2)
   end
 
+  def done?
+    done = Rate.where(reservation_id: reservation_id).
+      where(user_id: user_id)
+
+    if done.present?
+      return true
+    end
+
+    false
+  end
+
   private
 
   def disallow_second_award_within_year
