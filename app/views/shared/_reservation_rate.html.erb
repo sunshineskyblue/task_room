@@ -3,10 +3,10 @@
     <span class="must">（必須）</span>
   </p>
   <%= form_with model: rate, url: rates_path, method: 'post' do |f| %>
-    <div class="error-message-field">
-      <%= render "shared/flash_error" %>
-    </div>
     <div class="rate-field">
+      <div class="error-message-field">
+        <%= render "shared/flash_error" %>
+      </div>
       <%= render "shared/rate" %>
       <div class="award">
         <p>ベスト評価を与える</p>
