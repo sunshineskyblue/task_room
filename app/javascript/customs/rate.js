@@ -12,7 +12,7 @@ document.addEventListener('turbolinks:load', function() {
   const location = document.getElementById('location-value');
 
   const Stars5 = document.querySelectorAll('.price-stars input');
-  const price = document.getElementById('-value');
+  const price = document.getElementById('price-value');
 
   const Stars6 = document.querySelectorAll('.recommendation-stars input');
   const recommendation = document.getElementById('recommendation-value');
@@ -20,7 +20,6 @@ document.addEventListener('turbolinks:load', function() {
   Stars1.forEach(function(star) {
     star.addEventListener('click', () => {
       cleanliness.value = star.value;
-      console.log(cleanliness.value)
     })
   });
 
