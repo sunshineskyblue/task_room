@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(version: 2022_12_12_070442) do
   create_table "rates", force: :cascade do |t|
     t.integer "room_id", null: false
     t.integer "user_id", null: false
+    t.integer "reservation_id", null: false
     t.integer "price_category", null: false
     t.integer "cleanliness", null: false
     t.integer "information", null: false
@@ -73,12 +74,12 @@ ActiveRecord::Schema.define(version: 2022_12_12_070442) do
     t.integer "price", null: false
     t.integer "recommendation", null: false
     t.float "score", null: false
-    t.boolean "award", null: false
+    t.boolean "award", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["price_category"], name: "index_rates_on_price_category"
     t.index ["room_id"], name: "index_rates_on_room_id"
-    t.index ["user_id"], name: "index_rates_on_user_id"
+    t.index ["user_id", "reservation_id"], name: "index_rates_on_user_id_and_reservation_id"
   end
 
   create_table "reservations", force: :cascade do |t|
