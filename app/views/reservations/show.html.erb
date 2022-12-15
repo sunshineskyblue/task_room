@@ -1,7 +1,6 @@
 <% content_for(:title, "予約内容") %>
 <div class="guest-container">
-  <%= render "shared/reservation_host_message", reservation: @reservation %>
-  <%= render "shared/reservation_rate", rate: @rate, reservation: @reservation %>
+  <%= render "shared/reservation_host_message", reservation: @reservation, rate: @rate %>
   <h1>予約内容</h1>
   <div class="error-message-field">
     <%= render "shared/error", resource: @reservation %>

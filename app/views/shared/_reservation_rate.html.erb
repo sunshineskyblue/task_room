@@ -1,30 +1,42 @@
-<div class="rate-field-container">
-  <p>評価をお願いします
-    <span class="must">（必須）</span>
-  </p>
-  <%= form_with model: rate, url: rates_path, method: 'post' do |f| %>
-    <div class="rate-field">
-      <div class="error-message-field">
-        <%= render "shared/flash_error" %>
-      </div>
-      <%= render "shared/rate" %>
-      <div class="award">
-        <p>ベスト評価を与える</p>
-        <p class="explain">１年に１回のみ送ることができる、星６の感動を伝える特別な評価となります</p>
-        <i class="fa-solid fa-gem gray-diamond"></i>
-      </div>
-      <%= f.submit "送信", name: nil, class: "rate-submit" %>
+<% if rate.done? %>
+  <div class="message-rate-finished">
+    <div>
+      <i class="fa-solid fa-check"></i>
+      <p>評価は完了しております</p>
     </div>
-    <%= f.hidden_field :room_id, value: reservation.room.id %>
-    <%= f.hidden_field :room_id, value: reservation.room.id %>
-    <%= f.hidden_field :reservation_id, value: reservation.id %>
-    <%= f.hidden_field :price_category, value: reservation.room.price.range %>
-    <%= f.hidden_field :cleanliness, id: "cleanliness-value" %>
-    <%= f.hidden_field :information, id: "information-value" %>
-    <%= f.hidden_field :communication, id: "communication-value" %>
-    <%= f.hidden_field :location, id: "location-value" %>
-    <%= f.hidden_field :price, id: "price-value" %>
-    <%= f.hidden_field :recommendation, id: "recommendation-value" %>
-    <%= f.hidden_field :award, value: 0, id: "award-value" %>
-  <% end %>
-</div>
+    <p>この度は評価へのご協力ありがとうございます</p>
+  </div>
+<% elsif reservation.within_two_weeks_after_checkout? %>
+  <div class="rate-field-container">
+    <p>評価をお願いします
+      <span class="must">（必須）</span>
+    </p>
+    <%= form_with model: rate, url: rates_path, method: 'post' do |f| %>
+      <div class="rate-field">
+        <div class="error-message-field">
+          <%= render "shared/flash_error" %>
+        </div>
+          <%= render "shared/rate_star" %>
+        <div class="award">
+          <p>ベスト評価を与える</p>
+          <p class="explain">１年に１回のみ送ることができる、星６の感動を伝える特別な評価となります</p>
+          <i class="fa-solid fa-gem gray-diamond"></i>
+        </div>
+        <%= f.submit "送信", name: nil, class: "rate-submit" %>
+      </div>
+      <%= f.hidden_field :room_id, value: reservation.room.id %>
+      <%= f.hidden_field :room_id, value: reservation.room.id %>
+      <%= f.hidden_field :reservation_id, value: reservation.id %>
+      <%= f.hidden_field :price_category, value: reservation.room.price.range %>
+      <%= f.hidden_field :cleanliness, id: "cleanliness-value" %>
+      <%= f.hidden_field :information, id: "information-value" %>
+      <%= f.hidden_field :communication, id: "communication-value" %>
+      <%= f.hidden_field :location, id: "location-value" %>
+      <%= f.hidden_field :price, id: "price-value" %>
+      <%= f.hidden_field :recommendation, id: "recommendation-value" %>
+      <%= f.hidden_field :award, value: 0, id: "award-value" %>
+    <% end %>
+  </div>
+<% else %>
+  <p>評価期間は終了しております</p>
+<% end %>

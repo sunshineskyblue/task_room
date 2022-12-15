@@ -11,4 +11,6 @@
     キャンセルポリシーをご確認頂きましたら、</br>
     「この予約をキャンセルする」をクリックしてください</br>
   </p>
+<% else %>
+  <%= render "shared/reservation_rate", rate: rate, reservation: reservation %>
 <% end %>
