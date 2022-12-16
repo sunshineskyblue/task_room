@@ -3,7 +3,7 @@ class CreateRates < ActiveRecord::Migration[6.1]
     create_table :rates do |t|
       t.references :room,           null: false
       t.references :user,           null: false
-      t.references :reservation_id, null: false
+      t.references :reservation,    null: false
       t.integer    :price_category, null: false
       t.integer    :cleanliness,    null: false
       t.integer    :information,    null: false
