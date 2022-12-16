@@ -1,10 +1,10 @@
-<% if rate.done? %>
-  <div class="message-rate-finished">
-    <div>
+<% if rate.double_rate? %>
+  <div class="rate-completion-container">
+    <div class="message-rate-finished">
       <i class="fa-solid fa-check"></i>
       <p>評価は完了しております</p>
     </div>
-    <p>この度は評価へのご協力ありがとうございます</p>
+    <p>ご協力ありがとうございました</p>
   </div>
 <% elsif reservation.within_two_weeks_after_checkout? %>
   <div class="rate-field-container">

@@ -45,11 +45,11 @@ class Rate < ApplicationRecord
       round(2)
   end
 
-  def done?
-    done = Rate.where(reservation_id: reservation_id).
-      where(user_id: user_id)
+  def double_rate?
+    first_rate = Rate.where(user_id: user_id).
+      where(reservation_id: reservation_id)
 
-    if done.present?
+    if first_rate.present?
       return true
     end
 
