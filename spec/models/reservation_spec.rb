@@ -48,7 +48,7 @@ RSpec.describe Reservation, type: :model do
       let(:three_days) { today + 3 }
       let(:four_days) { today + 4 }
 
-      context "予約にキャンセルが入っていない場合" do
+      context "キャンセルは無く、進行中である場合" do
         let!(:has_reserved) do
           create(:reservation,
           room: room,
@@ -76,7 +76,7 @@ RSpec.describe Reservation, type: :model do
         end
       end
 
-      context "予約が既にキャンセルされている場合" do
+      context "キャンセルされている場合" do
         let!(:canceled) do
           create(:reservation,
           checkin: two_days,
@@ -139,7 +139,7 @@ RSpec.describe Reservation, type: :model do
         expect(reservation.cancel?).to eq true
       end
 
-      it 'キャンセルされていなければ、falseが返ること' do
+      it 'キャンセルは無く進行中である場合、falseが返ること' do
         reservation.cancel = false
         expect(reservation.cancel?).to eq false
       end
@@ -153,7 +153,7 @@ RSpec.describe Reservation, type: :model do
         is_expected.to eq false
       end
 
-      context 'キャンセルリクエストがされている場合' do
+      context 'キャンセルリクエストが入っている場合' do
         before do
           reservation.cancel_request = true
         end
@@ -191,12 +191,12 @@ RSpec.describe Reservation, type: :model do
           reservation.checkout = today
         end
 
-        it '予約が既にキャンセルがされている場合、nilが返ること' do
+        it '予約がキャンセルされている場合、nilが返ること' do
           reservation.cancel = true
           is_expected.to eq nil                  # unlessはnilを返す
         end
 
-        it '予約にキャンセルが入っていない場合、falseが返ること' do
+        it 'キャンセルは無く進行中の場合、falseが返ること' do
           reservation.cancel = false
           is_expected.to eq false
         end
@@ -257,8 +257,8 @@ RSpec.describe Reservation, type: :model do
           action: 'reserve')
         end
 
-        it '関連先のNotificationモデルの内、actionキーワードの値と一致し、
-        かつchecked属性がfalseであるインスタンスが存在しない場合、falseが返ること' do
+        it '関連先のNotificationにおいて、actionカラムの値がオプションの値と一致し、
+        かつchecked属性がfalseであるレコードが存在しない場合、falseが返ること' do
           expect(reservation_for_host_room.
             has_notifications_unchecked_by_host?(user_id: host.id, reserve: 'reserve')).to eq false
         end
@@ -337,8 +337,8 @@ RSpec.describe Reservation, type: :model do
         end
       end
 
-      context '予約にキャンセルが入っていない場合' do
-        it 'ゲストIDが渡された場合においても、falseが返ること' do
+      context '予約にキャンセルは無く進行中である場合' do
+        it 'ゲストIDが渡された場合も、falseが返ること' do
           expect(reservation_for_host_room.cancel_completed?(user_id: guest.id)).to eq false
         end
 
@@ -350,7 +350,7 @@ RSpec.describe Reservation, type: :model do
             action: 'reserve')
           end
 
-          it '関連先のNotificationモデルのchecked属性にfalseがない場合においても、falseが返ること' do
+          it '関連先であるNotificationのcheckedカラムにfalseがない場合も、falseが返ること' do
             expect(reservation_for_host_room.cancel_completed?(user_id: host.id)).to eq false
           end
         end
