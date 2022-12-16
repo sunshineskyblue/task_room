@@ -187,7 +187,7 @@ RSpec.describe Reservation, type: :model do
 
         it '予約がキャンセルされている場合、nilが返ること' do
           reservation.cancel = true
-          is_expected.to eq nil                  # unlessはnilを返す
+          is_expected.to eq nil # unlessはnilを返す
         end
 
         it 'キャンセルは無く進行中の場合、falseが返ること' do
@@ -203,7 +203,6 @@ RSpec.describe Reservation, type: :model do
         end
 
         describe '#within_two_weeks_after_checkout?' do
-
           # 例) 1日(チェックアウト)の場合、2日 ~ 15日  =>  true
 
           it '本日がチェックアウトから14日以内の場合、trueが返されること' do
@@ -438,6 +437,22 @@ RSpec.describe Reservation, type: :model do
     it 'host_idがforeign_keyとして登録されること' do
       notification = reservation_for_host_room.create_reservation_notification
       expect(notification.host_id).to eq host.id
+    end
+  end
+
+  describe 'has_rate?' do
+    let!(:rate) { create(:rate, reservation: reservation_with_rate) }
+    let!(:reservation_not_with_rate) { create(:reservation) }
+    let(:reservation_with_rate) { create(:reservation) }
+
+    let!(:reservation_not_with_rate) { create(:reservation) }
+
+    it '関連付けされたRateインスタンスが存在する場合は、trueが返ること' do
+      expect(reservation_with_rate.has_rate?).to eq true
+    end
+
+    it '関連付けされたRateインスタンスが存在しない場合は、falseが返ること' do
+      expect(reservation_not_with_rate.has_rate?).to eq false
     end
   end
 end
