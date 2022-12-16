@@ -177,13 +177,7 @@ RSpec.describe Reservation, type: :model do
         build(:reservation,
         room: room,
         guest: guest,
-        host: host,
-        checkin: yesterday - 1)
-      end
-
-      it 'チェックアウト日が過ぎている場合、trueが返されること' do
-        reservation.checkout = yesterday
-        is_expected.to eq true
+        host: host)
       end
 
       context 'チェックアウト日が本日以降の場合' do
@@ -199,6 +193,28 @@ RSpec.describe Reservation, type: :model do
         it 'キャンセルは無く進行中の場合、falseが返ること' do
           reservation.cancel = false
           is_expected.to eq false
+        end
+      end
+
+      context 'チェックアウト日が過ぎている場合' do
+        it 'trueが返されること' do
+          reservation.checkout = yesterday
+          is_expected.to eq true
+        end
+
+        describe '#within_two_weeks_after_checkout?' do
+
+          # 例) 1日(チェックアウト)の場合、2日 ~ 15日  =>  true
+
+          it '本日がチェックアウトから14日以内の場合、trueが返されること' do
+            reservation.checkout = today - 14.day
+            expect(reservation.within_two_weeks_after_checkout?).to eq true
+          end
+
+          it '本日がチェックアウトから15日以降の場合、falseが返されること' do
+            reservation.checkout = today - 15.day
+            expect(reservation.within_two_weeks_after_checkout?).to eq false
+          end
         end
       end
     end
