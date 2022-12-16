@@ -9,8 +9,8 @@ FactoryBot.define do
     price_category { 1 }
     award { false }
 
-    association :room
-    association :user
     association :reservation
+    user { reservation.guest }
+    room { reservation.room }
   end
 end
