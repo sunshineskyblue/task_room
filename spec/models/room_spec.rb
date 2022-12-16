@@ -2,8 +2,15 @@ require 'rails_helper'
 
 RSpec.describe Room, type: :model do
   describe '#calculate_deviation' do
-    let(:room) { create(:room) }
-    let!(:price) { build(:price, value: 1000, range: 1, room: room) }
+    let(:price) { build(:price, value: 1000) }
+
+    before do
+      price.switch_price_range
+    end
+
+    let(:room) { create(:room, price: price) }
+    let(:price_range) { price.range }
+
     let!(:rate) do
       create_list(:rate,
         2,
@@ -15,7 +22,7 @@ RSpec.describe Room, type: :model do
         recommendation: 4.5,
         price: 4.5,
         score: 4.5,
-        price_category: 1)
+        price_category: price_range)
     end
 
     let!(:rate_5) do
@@ -28,7 +35,7 @@ RSpec.describe Room, type: :model do
         recommendation: 5,
         price: 5,
         score: 5,
-        price_category: 1)
+        price_category: price_range)
     end
 
     let!(:rate_4) do
@@ -41,7 +48,7 @@ RSpec.describe Room, type: :model do
         recommendation: 4,
         price: 4,
         score: 4,
-        price_category: 1)
+        price_category: price_range)
     end
 
     it '偏差値が返されること' do
