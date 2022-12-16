@@ -6,6 +6,7 @@ FactoryBot.define do
     communication { 5 }
     recommendation { 5 }
     price { 5 }
+    score { 5 }
     price_category { 1 }
     award { false }
 
