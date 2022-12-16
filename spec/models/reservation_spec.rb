@@ -170,8 +170,8 @@ RSpec.describe Reservation, type: :model do
       end
     end
 
-    describe '#ongoing?' do
-      subject { reservation.ongoing? }
+    describe '#finished?' do
+      subject { reservation.finished? }
 
       let(:reservation) do
         build(:reservation,
@@ -181,9 +181,9 @@ RSpec.describe Reservation, type: :model do
         checkin: yesterday - 1)
       end
 
-      it 'チェックアウト日が過ぎている場合、falseが返されること' do
+      it 'チェックアウト日が過ぎている場合、trueが返されること' do
         reservation.checkout = yesterday
-        is_expected.to eq false
+        is_expected.to eq true
       end
 
       context 'チェックアウト日が本日以降の場合' do
@@ -193,12 +193,12 @@ RSpec.describe Reservation, type: :model do
 
         it '予約が既にキャンセルがされている場合、nilが返ること' do
           reservation.cancel = true
-          is_expected.to eq nil   # unlessはnilを返す
+          is_expected.to eq nil                  # unlessはnilを返す
         end
 
-        it '予約にキャンセルが入っていない場合、trueが返ること' do
+        it '予約にキャンセルが入っていない場合、falseが返ること' do
           reservation.cancel = false
-          is_expected.to eq true
+          is_expected.to eq false
         end
       end
     end

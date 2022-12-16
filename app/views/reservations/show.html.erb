@@ -24,7 +24,7 @@
     </div>
   </div>
   <div class="guest-cancel-container">
-    <% if @reservation.ongoing? %>
+    <% if !@reservation.finished? %>
       <p>予約内容は修正はできません。この予約をキャンセルしてから再度お申込みください</p>
       <%= link_to "この予約をキャンセルする", reservation_path(@reservation.id), method: 'patch', data: {confirm: "必ずキャンセルポリシーをご確認後、キャンセルをしてください"}, class:"reservation-cancel-button" %>
       <%= link_to "一覧に戻る >>", reservations_path, class:"link-to-reservations" %>

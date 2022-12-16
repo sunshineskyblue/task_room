@@ -54,8 +54,8 @@ class Reservation < ApplicationRecord
     cancel_request unless canceled?
   end
 
-  def ongoing?
-    Date.today <= checkout unless canceled?
+  def finished?
+    Date.today > checkout unless canceled?
   end
 
   def within_two_weeks_after_checkout?

@@ -37,7 +37,7 @@
       <%= f.hidden_field :award, value: 0, id: "award-value" %>
     <% end %>
   </div>
-<% elsif !reservation.ongoing? %>
+<% elsif reservation.finished? %>
   <div class="rate-completion-container">
     <p>評価期間は終了しております</p>
   </div>
