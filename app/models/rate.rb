@@ -46,8 +46,7 @@ class Rate < ApplicationRecord
   end
 
   def double_rate?
-    first_rate = Rate.where(user_id: user_id).
-      where(reservation_id: reservation_id)
+    first_rate = Rate.where(reservation_id: reservation_id)
 
     if first_rate.present?
       return true
