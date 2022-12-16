@@ -2,15 +2,13 @@ require 'rails_helper'
 
 RSpec.describe Room, type: :model do
   describe '#calculate_deviation' do
-    let(:price) { build(:price, value: 1000) }
-
     before do
       price.switch_price_range
     end
 
+    let(:price) { build(:price, value: 1000) }
     let(:room) { create(:room, price: price) }
     let(:price_range) { price.range }
-
     let!(:rate) do
       create_list(:rate,
         2,
@@ -24,7 +22,6 @@ RSpec.describe Room, type: :model do
         score: 4.5,
         price_category: price_range)
     end
-
     let!(:rate_5) do
       create_list(:rate,
         2,
@@ -37,7 +34,6 @@ RSpec.describe Room, type: :model do
         score: 5,
         price_category: price_range)
     end
-
     let!(:rate_4) do
       create_list(:rate,
         2,
