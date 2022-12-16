@@ -445,8 +445,6 @@ RSpec.describe Reservation, type: :model do
     let!(:reservation_not_with_rate) { create(:reservation) }
     let(:reservation_with_rate) { create(:reservation) }
 
-    let!(:reservation_not_with_rate) { create(:reservation) }
-
     it '関連付けされたRateインスタンスが存在する場合は、trueが返ること' do
       expect(reservation_with_rate.has_rate?).to eq true
     end
