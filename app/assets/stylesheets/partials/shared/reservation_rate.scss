@@ -1,3 +1,21 @@
+// 完了画面
+.rate-completion-container {
+  margin-right: auto;
+  margin-left: auto;
+  align-items: center;
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 50px;
+  border-radius: 5px;
+  background-color: #fff6cf;
+}
+
+.message-rate-finished {
+  display: flex;
+}
+
+// 評価フォーム
 .rate-field-container {
   margin-right: auto;
   margin-left: auto;
@@ -7,6 +25,12 @@
   flex-direction: column;
   margin-bottom: 50px;
   border: solid 0.5px black;
+}
+
+.message-rate-finished .fa-check {
+  color: red;
+  font-size: 15px;
+  padding-right: 5px;
 }
 
 .rate-field-container > p:nth-child(1) {
