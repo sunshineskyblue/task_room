@@ -181,12 +181,12 @@ RSpec.describe Reservation, type: :model do
         checkin: yesterday - 1)
       end
 
-      it '本日を基準とし、予約のチェックアウト日が昨日以前の場合、falseが返されること' do
+      it 'チェックアウト日が過ぎている場合、falseが返されること' do
         reservation.checkout = yesterday
         is_expected.to eq false
       end
 
-      context '本日を基準とし、予約のチェックアウト日が本日以降の場合' do
+      context 'チェックアウト日が本日以降の場合' do
         before do
           reservation.checkout = today
         end
