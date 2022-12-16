@@ -3,6 +3,7 @@ class Rate < ApplicationRecord
 
   belongs_to :room
   belongs_to :user
+  belongs_to :reservation
 
   validates :cleanliness, numericality: {
     in: 1..5,
@@ -43,16 +44,6 @@ class Rate < ApplicationRecord
         recommendation.to_f
       ) / NUM_OF_RATE_POINTS).
       round(2)
-  end
-
-  def double_rate?
-    first_rate = Rate.where(reservation_id: reservation_id)
-
-    if first_rate.present?
-      return true
-    end
-
-    false
   end
 
   private

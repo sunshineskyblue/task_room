@@ -53,7 +53,7 @@ class ReservationsController < ApplicationController
 
   def show
     @reservation = current_user.guest_reservations.find_by(id: params[:id])
-    @rate = Rate.new(reservation_id: @reservation.id)
+    @rate = Rate.new
   end
 
   def update
