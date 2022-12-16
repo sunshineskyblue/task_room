@@ -11,5 +11,6 @@ FactoryBot.define do
 
     association :room
     association :user
+    association :reservation
   end
 end
