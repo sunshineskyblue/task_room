@@ -26,6 +26,11 @@ class RoomsController < ApplicationController
 
   def show
     @room = Room.find_by(id: params[:id])
+
+    if @room.rates.present?
+      @avg = @room.calculate_avg
+      @deviation = @room.calculate_deviation
+    end
   end
 
   private

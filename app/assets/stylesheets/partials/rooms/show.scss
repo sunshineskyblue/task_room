@@ -21,26 +21,17 @@
   object-fit: cover;
 }
 
-.room-icon-name-adress-wrapper {
+.overview {
   display: flex;
+  flex-direction: column;
   border-bottom: solid 0.5px rgba(0, 0, 0, 0.3);
   border-top: solid 0.5px rgba(0, 0, 0, 0.3);
-  padding: 10px 10px 17px;
+  padding: 10px 10px 5px;
 }
 
-.room-name-adress-wrapper {
-  padding-left: 7px;
-}
-
-.room-name-adress-wrapper p:nth-child(1) {
-  font-size: 14px;
-  font-weight: bold;
-  padding: 10px 0 15px;
-}
-
-.room-name-adress-wrapper p:nth-child(2) {
-  font-size: 12px;
-  color: rgba(0, 0, 0, 0.7);
+.icon-name {
+  display: flex;
+  padding-bottom: 15px;
 }
 
 .owner-icon {
@@ -49,7 +40,69 @@
   display: block;
   object-fit: cover;
   border-radius: 50px;
-  padding: 10px;
+}
+
+.icon-name > p {
+  font-size: 14px;
+  font-weight: bold;
+  padding-left: 10px;
+}
+
+.adress-score > p:nth-child(1) {
+  font-size: 12px;
+  padding-bottom: 12px;
+  color: rgba(0, 0, 0, 0.876);
+}
+
+.room-score {
+  display: flex;
+  font-size: 15px;
+}
+
+.room-score p {
+  padding-right: 10px;
+  color: rgba(28, 27, 27, 0.763);
+}
+
+.star-container {
+  position: relative;
+  width: 18px;
+  color: rgb(255, 225, 0);
+}
+
+.room-score .fa-star {
+  position: absolute;
+  font-size: 13px;
+  top: 3px;
+}
+
+.pencil-container {
+  position: relative;
+  width: 18px;
+  color: darkgreen;
+}
+
+.room-score .fa-pencil {
+  position: absolute;
+  font-size: 13px;
+  top: 3px;
+}
+
+.gem-container {
+  position: relative;
+  width: 18px;
+  color: rgb(0, 225, 255);
+}
+
+.room-score .fa-gem {
+  position: absolute;
+  font-size: 13px;
+  top: 3px;
+}
+
+.none-rate-message {
+  font-size: 12px;
+  color: rgba(28, 27, 27, 0.763);
 }
 
 .room-intro-container *, .room-intro-container *:before, .room-intro-container *:after {
@@ -205,8 +258,8 @@
   }
 
   .owner-icon {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
   }
 
   .reservation-entry-form-container {
