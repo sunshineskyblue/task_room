@@ -1,22 +1,22 @@
-default_introduction = { introduction: "お部屋について
-  ＜家具付き全個室　即日入居・宿泊可＞長期滞在 割引メッセージにてご相談下さい。サザンビーチまで歩いてすぐ。朝から開いている海が目の前のカフェ(wifi有)などでPC作業や朝食をとったり海岸をのんびり散歩したり、海の側で自分のペースでゆっくりするの適した家です。
+User
+default_introduction = { introduction: "
+  ★玄関の異なるマンションの2部屋です
+  ★アーリーチェックイン可能（ご相談ください）
+  ★渋谷駅まで14分、最寄の田園都市線三軒茶屋駅徒歩7分
+  ★スマートロックで無人受付、誰にも会わずにチェックイン
+  ★ゆったりサイズのダブルベッド（高品質ベッドマット使用）
+  ★ヘアアイロン（ストレート・カール）、女優ミラーあり
+  ★コンビニ・大型スーパー（Maruetsu）がすぐ近く、飲食店多数
+  ★大画面プロジェクター完備、DVD/BDプレーヤー付き
+  ★固定Wifiとプロジェクターで、遠征の思い出づくりになる、快適おしゃれな滞在をお楽しみください。
   
-  Free無料
-  歯ブラシ、バスタオル・バスローブレンタル。
-  メイク落とし、泡洗顔、化粧水、使い捨てスリッパ・ボディスポンジ。
-  
-  海のサイクリングロード(江の島まで30分)でサイクリング、ビーチヨガ、サーフィンや釣りなどに適した立地。おすすめは海で読書したり月光浴、朝陽や夕陽を観ながらぼ～っとする事です。：）茅ヶ崎漁港海岸公園◎徒歩数分
-  
-  自転車で2分～8分
-  セブンイレブン、スーパー、100円ショップ
-  漁師居酒屋、窯焼きピザ、クラフトビールのお店他"
+  ※高速道路に面しており、二重窓にて対策しておりますが、音が気になる方はご注意下さい。（無料の耳栓のご用意がございますので、ご利用ください。）"
 }
 
 room1 = {
-  name: "1棟貸切!最大10名【デッキでBBQ&石風呂&100型映画&暖炉】車で4分!那須ハイランド、那須観光" ,
-  fee: 4500,
-  adress: " 栃木県那須郡那須町湯本2-15",
-  user_id: 11,
+  name: "LANG HOTEL 亀戸503 新築ホテルでNetflix鑑賞 ドンキ&コンビニ至近 バストイレ別" ,
+  fee: 3456,
+  adress: "富山市新総曲輪1番7号",
   room_image: ActiveStorage::Blob.create_and_upload!(
     io: File.open(Rails.root.join("db/fixtures/seed.jpg")),
     filename: "seed.jpg"
@@ -24,10 +24,9 @@ room1 = {
 }
 
 room2 = {
-  name: "Apple farmers house 農村の中にある静かな蔵の宿" ,
-  fee: 8000,
-  adress: "高知市丸ノ内1丁目2番20号",
-  user_id: 11,
+  name: "飛騨の古民家に泊まる" ,
+  fee: 8900,
+  adress: "岐阜県飛騨市古川町本町２−２２",
   room_image: ActiveStorage::Blob.create_and_upload!(
     io: File.open(Rails.root.join("db/fixtures/seed2.jpg")),
     filename: "seed2.jpg"
@@ -35,10 +34,9 @@ room2 = {
 }
 
 room3 = {
-  name: "ペットも一緒に泊まれるデザイナーズ住宅！" ,
-  fee: 12000,
+  name: "【NEW】浅草/東京スカイツリー直通！八広駅徒歩3分 2階建て一軒家 4ベッド WIFI無制限" ,
+  fee: 13500,
   adress: "東京都新宿区西新宿2-8-1",
-  user_id: 11,
   room_image: ActiveStorage::Blob.create_and_upload!(
     io: File.open(Rails.root.join("db/fixtures/seed3.jpg")),
     filename: "seed3.jpg"
@@ -46,10 +44,9 @@ room3 = {
 }
 
 room4 = {
-  name: "海にすぐ近く！ キャンプができる豪華ベランダ付き" ,
-  fee: 21000,
-  adress: "那覇市泉崎1-2-2",
-  user_id: 11,
+  name: "【1日1組限定4名まで同額】宮川沿いの町家一棟貸切ステイ　～WAT RESORT 飛騨まちやど 桜～" ,
+  fee: 24000,
+  adress: "岐阜市薮田南2丁目1番1号",
   room_image: ActiveStorage::Blob.create_and_upload!(
     io: File.open(Rails.root.join("db/fixtures/seed4.jpg")),
     filename: "seed4.jpg"
@@ -57,10 +54,9 @@ room4 = {
 }
 
 room5 = {
-  name: "東京ディズニーまで電車で10分! 送迎バスあり" ,
-  fee: 37000,
-  adress: "千葉市中央区市場町1番1号 ",
-  user_id: 11,
+  name: "都会の喧騒からは程遠い、清流のある小さな村(1日1組限定)" ,
+  fee: 34500,
+  adress: "石川県金沢市鞍月1丁目1番地",
   room_image: ActiveStorage::Blob.create_and_upload!(
     io: File.open(Rails.root.join("db/fixtures/seed5.jpg")),
     filename: "seed5.jpg"
@@ -68,10 +64,9 @@ room5 = {
 }
 
 room6 = {
-  name: "【天然温泉付き1日1組限定】 THE LODGE 弟子屈 〜 摩周湖の秘境 〜 ※テラスBBQ付き" ,
-  fee: 50000,
-  adress: "札幌市中央区北3条西6丁目 ",
-  user_id: 11,
+  name: "静かな別荘地の一番奥の森の中にある、小さな別荘　Westwood Takayama" ,
+  fee: 55000,
+  adress: "和歌山市小松原通一丁目1番地",
   room_image: ActiveStorage::Blob.create_and_upload!(
     io: File.open(Rails.root.join("db/fixtures/seed6.jpg")),
     filename: "seed6.jpg"
@@ -79,10 +74,9 @@ room6 = {
 }
 
 room7 = {
-  name: "hallelujah yoichi guesthouse 余市ゲストハウス　はれるや" ,
-  fee: 67000,
-  adress: "岐阜市薮田南2丁目1番1号",
-  user_id: 11,
+  name: "【Pop Culture House】一軒家貸切！インスタ映えの宿！最大10名★駐車場3台無料☆" ,
+  fee: 67400,
+  adress: "三重県津市広明町13番地",
   room_image: ActiveStorage::Blob.create_and_upload!(
     io: File.open(Rails.root.join("db/fixtures/seed7.jpg")),
     filename: "seed7.jpg"
@@ -90,27 +84,21 @@ room7 = {
 }
 
 room8 = {
-  name: "カップルやファミリーにぴったり。エレガントで閑静なログハウス" ,
-  fee: 140000,
-  adress: "長野市大字南長野字幅下692-2",
-  user_id: 11,
+  name: "山荘民宿" ,
+  fee: 170000,
+  adress: "岐阜県飛騨市２",
   room_image: ActiveStorage::Blob.create_and_upload!(
     io: File.open(Rails.root.join("db/fixtures/seed2.jpg")),
     filename: "seed2.jpg"
   )
 }
 
-# TODO: each構文におけるDBエラー(Busy exception)により、取り急ぎ対応
-if Room.create!(default_introduction.merge(room1))
-  if Room.create!(default_introduction.merge(room2))
-    if Room.create!(default_introduction.merge(room3))
-      if Room.create!(default_introduction.merge(room4))
-        if Room.create!(default_introduction.merge(room5))
-          if Room.create!(default_introduction.merge(room7))
-            Room.create!(default_introduction.merge(room8))
-          end
-        end
-      end
-    end
+User.find_each(:batch_size => 1) do |user|
+  if user.name != "ゲストユーザー"
+    next
   end
+
+  user_id = {user_id: user.id}
+
+  Room.create!(default_introduction.merge(room8).merge(user_id))
 end
