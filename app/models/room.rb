@@ -56,11 +56,11 @@ class Room < ApplicationRecord
     rates.where(price_category: price.range).average(:score)&.round(2) if rates.present?
   end
 
-    # 標準偏差を算出  //配列要素10万での計測結果 => 約0.06s
-    group_gap_ary = group_scores_ary.map { |score| (score - group_avg)**2 }
-    std = Math.sqrt(group_gap_ary.sum / group_gap_ary.length)
+  def award_count_or_false_if_zero
+    if rates.where(award: true).present?
+      return rates.where(award: true).size
+    end
 
-    # 当物件の偏差値を算出
-    (((avg - group_avg) * 10 / std) + 50).round
+    false
   end
 end
