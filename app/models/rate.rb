@@ -49,15 +49,17 @@ class Rate < ApplicationRecord
   private
 
   def disallow_second_award_within_year
-    one_year_ago = Date.today - 1.year
-    num_award = Rate.
-      where(user_id: user_id).
-      where('created_at > ?', one_year_ago).
-      where(award: true)
+    if award == true
+      one_year_ago = Date.today - 1.year
+      num_award = Rate.
+        where(user_id: user_id).
+        where('created_at > ?', one_year_ago).
+        where(award: true)
 
-    if num_award.size >= 1
-      reenable_date = (num_award.first.created_at + 1.year).strftime("%Y年%m月%d日")
-      errors.add(:award, ": #{reenable_date}から可能です")
+      if num_award.size >= 1
+        reenable_date = (num_award.first.created_at + 1.year).strftime("%Y年%m月%d日")
+        errors.add(:award, ": #{reenable_date}から可能です")
+      end
     end
   end
 end
