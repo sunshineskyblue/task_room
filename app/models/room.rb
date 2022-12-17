@@ -32,13 +32,29 @@ class Room < ApplicationRecord
   end
 
   def calculate_deviation
-    # 当物件の平均スコアを算出
-    avg = rates.where(price_category: price.range).average(:score)
-
-    # 当物件が属する集団の平均スコアを算出
+    # 当物件が属するグループの平均スコアを算出
     group = Rate.where(price_category: price.range)
     group_scores_ary = group.pluck(:score)           # 計測未実施
-    group_avg = group.average(:score)                # 計測未実施
+    group_avg = group.average(:score)&.round(2)      # 計測未実施
+
+    if group_scores_ary.present?
+      # 標準偏差を算出  //配列要素10万での計測結果 => 約0.06s
+      group_gap_ary = group_scores_ary.map { |score| (score - group_avg)**2 }
+      std = Math.sqrt(group_gap_ary.sum / group_gap_ary.length)
+
+      # 当物件の偏差値を算出
+      if !std.zero?
+        (((calculate_avg - group_avg) * 10 / std) + 50).round
+      else
+        50
+      end
+    end
+  end
+
+  # 平均スコアを算出
+  def calculate_avg
+    rates.where(price_category: price.range).average(:score)&.round(2) if rates.present?
+  end
 
     # 標準偏差を算出  //配列要素10万での計測結果 => 約0.06s
     group_gap_ary = group_scores_ary.map { |score| (score - group_avg)**2 }
