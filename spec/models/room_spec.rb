@@ -1,6 +1,41 @@
 require 'rails_helper'
 
 RSpec.describe Room, type: :model do
+  describe '#calculate_avg' do
+    before do
+      price.switch_price_range
+    end
+
+    let(:price) { build(:price, value: 1000) }
+    let(:room) { create(:room, price: price) }
+    let!(:rate_2021) do
+      create(:rate,
+        room: room,
+        cleanliness: 4,
+        information: 4,
+        location: 4,
+        communication: 4,
+        recommendation: 4,
+        price: 4,
+        score: 4)
+    end
+    let!(:rate_2022) do
+      create(:rate,
+        room: room,
+        cleanliness: 5,
+        information: 5,
+        location: 5,
+        communication: 5,
+        recommendation: 5,
+        price: 5,
+        score: 5)
+    end
+
+    it '平均スコアが返されること' do
+      expect(room.calculate_avg).to eq 4.5
+    end
+  end
+
   describe '#calculate_deviation' do
     before do
       price.switch_price_range
