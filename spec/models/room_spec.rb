@@ -8,7 +8,7 @@ RSpec.describe Room, type: :model do
 
     let(:price) { build(:price, value: 1000) }
     let(:room) { create(:room, price: price) }
-    let(:price_range) { price.range }
+    let(:room_price_range) { room.price.range }
     let!(:rate) do
       create_list(:rate,
         2,
@@ -19,8 +19,7 @@ RSpec.describe Room, type: :model do
         communication: 4.5,
         recommendation: 4.5,
         price: 4.5,
-        score: 4.5,
-        price_category: price_range)
+        score: 4.5,)
     end
     let!(:rate_5) do
       create_list(:rate,
@@ -32,7 +31,7 @@ RSpec.describe Room, type: :model do
         recommendation: 5,
         price: 5,
         score: 5,
-        price_category: price_range)
+        price_category: room_price_range)
     end
     let!(:rate_4) do
       create_list(:rate,
@@ -44,7 +43,7 @@ RSpec.describe Room, type: :model do
         recommendation: 4,
         price: 4,
         score: 4,
-        price_category: price_range)
+        price_category: room_price_range)
     end
 
     it '偏差値が返されること' do
