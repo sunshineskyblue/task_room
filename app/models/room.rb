@@ -57,6 +57,7 @@ class Room < ApplicationRecord
     rates.where(price_category: price.range).average(:score)&.round(2) if rates.present?
   end
 
+  # ベスト評価が付いた評価の件数を返す
   def count_award
     award = 0
     rates.each do |rate|
