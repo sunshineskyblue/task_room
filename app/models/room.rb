@@ -58,14 +58,14 @@ class Room < ApplicationRecord
   end
 
   # ベスト評価が付いた評価の件数を返す
-  def count_award
-    award = 0
+  def count_awards
+    num_awards = 0
     rates.each do |rate|
       if rate.award == true
-        award += 1
+        num_awards += 1
       end
     end
 
-    award
+    num_awards
   end
 end
