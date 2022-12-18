@@ -9,7 +9,7 @@
       </div>
       <div class="adress-score">
         <p><%= @room.adress %></p>
-        <% if @room.rates.size >= 2 %>
+        <% if @room.has_min_num_rates? %>
           <div class="room-score">
             <div class="star-container">
               <i class="fa-solid fa-star"></i>

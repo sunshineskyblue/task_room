@@ -23,6 +23,8 @@ class Room < ApplicationRecord
                           },
                           on: :create
 
+  MIN_NUM_SCORES_SHARED = 2
+
   def self.ransackable_attributes(auth_object = {})
     %w(name introduction adress)
   end
@@ -55,6 +57,11 @@ class Room < ApplicationRecord
   # 平均スコアを返す
   def calculate_avg
     rates.where(price_category: price.range).average(:score)&.round(2) if rates.present?
+  end
+
+  # 過去の評価件数が2以上であればtrueを返し、viewに表示する
+  def has_min_num_rates?
+    rates.size >= MIN_NUM_SCORES_SHARED
   end
 
   # ベスト評価が付いた評価の件数を返す
