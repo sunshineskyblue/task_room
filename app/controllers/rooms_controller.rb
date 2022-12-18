@@ -28,7 +28,9 @@ class RoomsController < ApplicationController
     @room = Room.find_by(id: params[:id])
 
     if @room.rates.present?
-      @avg = @room.calculate_avg
+      @num_awards = @room.count_award
+      @num_scores = @room.rates.size
+      @avg_scores = @room.calculate_avg
       @deviation = @room.calculate_deviation
     end
   end
