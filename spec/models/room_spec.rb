@@ -45,6 +45,25 @@ RSpec.describe Room, type: :model do
     end
   end
 
+  describe '#has_min_num_rates?' do
+    let(:min_num) { 2 }
+    let(:room) { create(:room) }
+    let!(:rates) { create_list(:rate, min_num, room: room) }
+
+    it '過去の評価件数が2件以上であればtrueを返すこと' do
+      expect(room.has_min_num_rates?).to eq true
+    end
+
+    context '過去の評価件数が1件以下の場合' do
+      let(:new_room) { create(:room) }
+      let!(:rate) { create(:rate, room: new_room) }
+
+      it 'falseを返すこと' do
+        expect(new_room.has_min_num_rates?).to eq false
+      end
+    end
+  end
+
   describe '#calculate_deviation' do
     before do
       price.switch_price_range
