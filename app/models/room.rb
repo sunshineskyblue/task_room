@@ -57,11 +57,14 @@ class Room < ApplicationRecord
     rates.where(price_category: price.range).average(:score)&.round(2) if rates.present?
   end
 
-  def award_count_or_false_if_zero
-    if rates.where(award: true).present?
-      return rates.where(award: true).size
+  def count_award
+    award = 0
+    rates.each do |rate|
+      if rate.award == true
+        award += 1
+      end
     end
 
-    false
+    award
   end
 end

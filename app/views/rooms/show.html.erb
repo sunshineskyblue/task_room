@@ -19,11 +19,11 @@
               <i class="fa-solid fa-pencil"></i>
             </div>
             <p><%= @deviation %></p>
-            <% if @room.award_count_or_false_if_zero %>
+            <% if !@num_awards.zero? %>
               <div class="gem-container">
                 <i class="fa-solid fa-gem"></i>
               </div>
-              <p><%= @room.award_count_or_false_if_zero %></p>
+              <p><%= @num_awards %></p>
             <% end %>
           </div>
         <% else %>
