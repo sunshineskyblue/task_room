@@ -36,6 +36,15 @@ RSpec.describe Room, type: :model do
     end
   end
 
+  describe '#count_awards' do
+    let(:room) { create(:room) }
+    let!(:award_rates) { create_list(:rate, 5, room: room, award: true) }
+
+    it 'ベスト評価の付いた評価の件数が返されること' do
+      expect(room.count_awards).to eq 5
+    end
+  end
+
   describe '#calculate_deviation' do
     before do
       price.switch_price_range
