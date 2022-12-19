@@ -54,9 +54,32 @@ class Room < ApplicationRecord
     end
   end
 
-  # 平均スコアを返す
   def calculate_avg
     rates.where(price_category: price.range).average(:score)&.round(2) if rates.present?
+  end
+
+  def calculate_cleanliness_avg
+    rates.where(price_category: price.range).average(:cleanliness)&.round(2) if rates.present?
+  end
+
+  def calculate_information_avg
+    rates.where(price_category: price.range).average(:information)&.round(2) if rates.present?
+  end
+
+  def calculate_communication_avg
+    rates.where(price_category: price.range).average(:communication)&.round(2) if rates.present?
+  end
+
+  def calculate_location_avg
+    rates.where(price_category: price.range).average(:location)&.round(2) if rates.present?
+  end
+
+  def calculate_price_avg
+    rates.where(price_category: price.range).average(:price)&.round(2) if rates.present?
+  end
+
+  def calculate_recommendation_avg
+    rates.where(price_category: price.range).average(:recommendation)&.round(2) if rates.present?
   end
 
   # 過去の評価件数が2以上であればtrueを返し、viewに表示する
@@ -64,7 +87,7 @@ class Room < ApplicationRecord
     rates.size >= MIN_NUM_RATES_SHARED
   end
 
-  # ベスト評価が付いた評価の件数を返す
+  # Bestスポットが付いた評価の件数を返す
   def count_awards
     num_awards = 0
     rates.each do |rate|

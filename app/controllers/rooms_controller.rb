@@ -31,6 +31,12 @@ class RoomsController < ApplicationController
       @num_awards = @room.count_awards
       @num_scores = @room.rates.size
       @avg_scores = @room.calculate_avg
+      @avg_cleanliness = @room.calculate_cleanliness_avg
+      @avg_information = @room.calculate_information_avg
+      @avg_communication = @room.calculate_communication_avg
+      @avg_location = @room.calculate_location_avg
+      @avg_price = @room.calculate_price_avg
+      @avg_recommendation = @room.calculate_recommendation_avg
       @deviation = @room.calculate_deviation
     end
   end
