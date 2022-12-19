@@ -1,3 +1,89 @@
+<% content_for(:script) do %>
+  document.addEventListener('turbolinks:load', function() {
+    $('.avg-scores').raty({
+      size      : 36,
+      starOff   : '<%= asset_path('star-off.png') %>',
+      starOn    : '<%= asset_path('star-on.png') %>',
+      starHalf  : '<%= asset_path('star-half.png') %>',
+      half      : true,
+      readOnly  : true,
+      score     : <%= @avg_scores %>,
+    });
+  });
+
+  document.addEventListener('turbolinks:load', function() {
+    $('.avg-cleanliness').raty({
+      size      : 32,
+      starOff   : '<%= asset_path('star-off.png') %>',
+      starOn    : '<%= asset_path('star-on.png') %>',
+      starHalf  : '<%= asset_path('star-half.png') %>',
+      half      : true,
+      readOnly  : true,
+      score     : <%= @avg_cleanliness %>,
+    });
+  });
+
+  document.addEventListener('turbolinks:load', function() {
+    $('.avg-information').raty({
+      size      : 32,
+      starOff   : '<%= asset_path('star-off.png') %>',
+      starOn    : '<%= asset_path('star-on.png') %>',
+      starHalf  : '<%= asset_path('star-half.png') %>',
+      half      : true,
+      readOnly  : true,
+      score     : <%= @avg_information %>,
+    });
+  });
+
+  document.addEventListener('turbolinks:load', function() {
+    $('.avg-communication').raty({
+      size      : 32,
+      starOff   : '<%= asset_path('star-off.png') %>',
+      starOn    : '<%= asset_path('star-on.png') %>',
+      starHalf  : '<%= asset_path('star-half.png') %>',
+      half      : true,
+      readOnly  : true,
+      score     : <%= @avg_communication %>,
+    });
+  });
+
+  document.addEventListener('turbolinks:load', function() {
+    $('.avg-location').raty({
+      size      : 32,
+      starOff   : '<%= asset_path('star-off.png') %>',
+      starOn    : '<%= asset_path('star-on.png') %>',
+      starHalf  : '<%= asset_path('star-half.png') %>',
+      half      : true,
+      readOnly  : true,
+      score     : <%= @avg_location %>,
+    });
+  });
+
+  document.addEventListener('turbolinks:load', function() {
+    $('.avg-price').raty({
+      size      : 32,
+      starOff   : '<%= asset_path('star-off.png') %>',
+      starOn    : '<%= asset_path('star-on.png') %>',
+      starHalf  : '<%= asset_path('star-half.png') %>',
+      half      : true,
+      readOnly  : true,
+      score     : <%= @avg_price %>,
+    });
+  });
+
+  document.addEventListener('turbolinks:load', function() {
+    $('.avg-recommendation').raty({
+      size      : 32,
+      starOff   : '<%= asset_path('star-off.png') %>',
+      starOn    : '<%= asset_path('star-on.png') %>',
+      starHalf  : '<%= asset_path('star-half.png') %>',
+      half      : true,
+      readOnly  : true,
+      score     : <%= @avg_recommendation %>,
+    });
+  });
+<% end %>
+
 <% content_for(:title, @room.name) %>
 <div class="room-intro-page-container">
   <div class="room-detail-wrapper">

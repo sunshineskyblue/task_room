@@ -18,6 +18,7 @@
       <div class="main">
         <%= content_for?(:content) ? yield(:content) : yield %>
       </div>
+      <script><%= yield(:script) if content_for?(:script) %></script>
       <footer>
       <p>© 2022 TAIYOPORTOFOLIO.INC.</p>
       </footer>
