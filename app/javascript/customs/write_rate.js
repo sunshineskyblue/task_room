@@ -56,18 +56,19 @@ document.addEventListener('turbolinks:load', function() {
     })
   });
 
-  diamond.addEventListener('click', () => {
-    diamond.classList.toggle('blue-diamond');
-    diamond.classList.toggle('gray-diamond');
+  if (diamond) {
+    diamond.addEventListener('click', () => {
+      diamond.classList.toggle('blue-diamond');
+      diamond.classList.toggle('gray-diamond');
 
-    if ( award.value == 0 ) {
-      award.value = 1;
-      return;
-    }
-    if ( award.value == 1 ) {
-      award.value = 0;
-      return;
-    }
-  })
-
+      if (award.value == 0) {
+        award.value = 1;
+        return;
+      }
+      if (award.value == 1) {
+        award.value = 0;
+        return;
+      }
+    });
+  }
 });
