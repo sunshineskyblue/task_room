@@ -85,6 +85,83 @@
 <% end %>
 
 <% content_for(:title, @room.name) %>
+<div id="modal-content">
+  <a id="modal-close" class="button-link">
+    <i class="fa-solid fa-xmark"></i>
+  </a>
+  <div class="modal-content-container">
+    <div class="modal-main">
+      <div class="modal-deviation">
+        <div>偏差値</div>
+        <div><%= @deviation %></div>
+      </div>
+      <% if !@num_awards.zero? %>
+        <div class="modal-best-spot">
+          <div>Bestスポット</div>
+          <div>
+            <i class="fa-solid fa-gem"></i>
+            <%= @num_awards %>
+          </div>
+        </div>
+      <% end %>
+      <div class="modal-total rate-container">
+        <div>総合評価</div>
+        <div class="modal-rate-field">
+          <div class="avg-scores star"></div>
+          <div><%= @avg_scores %></div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-scores">
+      <div class="modal-scores-left">
+        <div class="rate-container">
+          <div>清潔さ</div>
+          <div class="modal-rate-field">
+            <div class="avg-cleanliness star"></div>
+            <div><%= @avg_cleanliness %></div>
+          </div>
+        </div>
+        <div class="rate-container">
+          <div>掲載情報の正確さ</div>
+          <div class="modal-rate-field">
+            <div class="avg-information star"></div>
+            <div><%= @avg_information %></div>
+          </div>
+        </div>
+        <div class="rate-container">
+          <div>コミュニケーション</div>
+          <div class="modal-rate-field">
+            <div class="avg-communication star"></div>
+            <div><%= @avg_communication %></div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-scores-right">
+        <div class="rate-container">
+          <div>ロケーション</div>
+          <div class="modal-rate-field">
+            <div class="avg-location star"></div>
+            <div><%= @avg_location %></div>
+          </div>
+        </div>
+        <div class="rate-container">
+          <div>価格</div>
+          <div class="modal-rate-field">
+            <div class="avg-price star"></div>
+            <div><%= @avg_price %></div>
+          </div>
+        </div>
+        <div class="rate-container">
+          <div>おすすめ度</div>
+          <div class="modal-rate-field">
+            <div class="avg-recommendation star"></div>
+            <div><%= @avg_recommendation %></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="room-intro-page-container">
   <div class="room-detail-wrapper">
     <%= image_tag @room.room_image, class: 'room-image' if @room.room_image.attached? %>
