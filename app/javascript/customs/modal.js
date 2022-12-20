@@ -24,6 +24,25 @@ document.addEventListener("turbolinks:load", function () {
       });
   });
 
+  $("#modal-open-best-spot").on("click", function () {
+    $(this).on("blur");
+    if ($("#modal-overlay")[0]) return false;
+
+    $("body").append('<div id="modal-overlay"></div>');
+    $("#modal-overlay").fadeIn("slow");
+
+    centeringModalSyncer();
+
+    $("#modal-content").fadeIn("slow");
+    $("#modal-overlay, #modal-close")
+      .off()
+      .on("click", function () {
+        $("#modal-content, #modal-overlay").fadeOut("slow", function () {
+          $("#modal-overlay").remove();
+        });
+      });
+  });
+
   //リサイズされたら、センタリングをする関数[centeringModalSyncer()]を実行する
   $(window).on("resize", centeringModalSyncer);
 
