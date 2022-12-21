@@ -99,6 +99,11 @@
       </div>
       <div class="avg-indication">
         <p>この価格帯の平均は<%= group_avg %>です</p>
+        <p>※詳しくは
+          <%= link_to(articles_score_path, target: "_blank", rel: "noopener") do %>
+            <span class="link-avg">こちら</span>
+          <% end %>
+        </p>
       </div>
     </div>
     <div class="modal-scores">

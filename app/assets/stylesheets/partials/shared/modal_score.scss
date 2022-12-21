@@ -42,6 +42,22 @@
 .avg-indication {
   color: rgba(0, 0, 0, 0.52);
   font-size: 14px;
+  position: relative;
+}
+
+.avg-indication p:nth-child(2) {
+  font-size: 11px;
+  color: black;
+}
+
+.avg-indication .link-avg {
+  color: rgb(0, 110, 255);
+}
+
+.avg-indication .fa-circle-info{
+  position: absolute;
+  right: -10px;
+  top: -8px;
 }
 
 .modal-scores {
