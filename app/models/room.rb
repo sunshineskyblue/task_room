@@ -37,23 +37,25 @@ class Room < ApplicationRecord
 
   # 前後の価格帯の平均も算出し、それらを合わせて再度平均を返す
   def integrate_group_avgs
-    if above_group_avg && under_group_avg
-      return ((above_group_avg + under_group_avg + group_avg) / 3).round(2)
-    end
-
-    if above_group_avg
-      return ((above_group_avg + group_avg) / 2).round(2)
-    end
-
-    if under_group_avg
-      ((under_group_avg + group_avg) / 2).round(2)
+    if price.range === MIN_NUM_PRICE_RANGE
+      above_range = MIN_NUM_PRICE_RANGE + 1
+      Rate.where(price_category: MIN_NUM_PRICE_RANGE..above_range).average(:score)&.round(2)
+    elsif price.range === MAX_NUM_PRICE_RANGE
+      under_range = MAX_NUM_PRICE_RANGE - 1
+      Rate.where(price_category: under_range..MAX_NUM_PRICE_RANGE).average(:score)&.round(2)
+    else
+      under_range = price.range - 1
+      above_range = price.range + 1
+      Rate.where(price_category: under_range..above_range).average(:score)&.round(2)
     end
   end
 
   def calculate_avg
-    rates.where(price_category: price.range).  # 同じ価格帯で得た評価のみから平均を算出する
-      average(:score)&.
-      round(2) if rates.present?
+    if rates.present?
+      rates.where(price_category: price.range). # 同じ価格帯で得た評価のみから平均を算出する
+        average(:score)&.
+        round(2)
+    end
   end
 
   def calculate_cleanliness_avg
@@ -95,27 +97,5 @@ class Room < ApplicationRecord
     end
 
     num_awards
-  end
-
-  private
-
-  def group_avg
-    Rate.where(price_category: price.range).average(:score)&.round(2)
-  end
-
-  def above_group_avg
-    if price.range != MAX_NUM_PRICE_RANGE
-      above_price = price.range + 1
-      Rate.where(price_category: above_price).average(:score)&.round(2)
-    elsif false
-    end
-  end
-
-  def under_group_avg
-    if price.range != MIN_NUM_PRICE_RANGE
-      under_price = price.range - 1
-      Rate.where(price_category: under_price).average(:score)&.round(2)
-    elsif false
-    end
   end
 end
