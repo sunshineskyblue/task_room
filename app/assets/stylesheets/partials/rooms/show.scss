@@ -1,3 +1,39 @@
+.fa-gem {
+  color: rgba(231, 6, 6, 0.911);
+}
+
+// Bestスポットのモーデル部分
+#modal-content-best {
+  position: fixed;
+  border-radius: 8px;
+  background: rgba(69, 239, 208, 0.957);
+  z-index: 3;
+  display: none;
+  width: 90%;
+  max-width: 300px;
+  margin: 0;
+  padding: 10px 30px 20px;
+  padding-bottom: 20px;
+}
+
+.title-best {
+  color: #00353d;
+}
+
+.title-best .fa-gem {
+  font-size: 23px;
+}
+
+.content-best {
+  padding: 15px 20px;
+  border: solid 5px #00353d;
+  background-color: white;
+  color: black;
+  border-radius: 8px;
+  font-size: 14px;
+}
+// ここまで
+
 .room-intro-page-container {
   max-width: 500px;
   width: 100%;
@@ -94,7 +130,7 @@
   align-items: center;
 }
 
-.modal-best-spot {
+.best-spot {
   display: flex;
   font-size: 12px;
   padding: 1px 5px;
@@ -103,13 +139,9 @@
   margin-left: 5px;
 }
 
-.modal-best-spot:hover {
+.best-spot:hover {
   cursor: pointer;
   opacity: 0.7;
-}
-
-.modal-best-spot .fa-gem {
-  color: rgba(231, 6, 6, 0.911);
 }
 
 .none-rate-message {

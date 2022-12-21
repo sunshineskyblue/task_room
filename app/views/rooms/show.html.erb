@@ -22,13 +22,25 @@
               </div>
             </div>
             <% if !@num_awards.zero? %>
-              <a class="modal-open-best-spot">
+              <a class="best-spot" id="modal-open-best">
                 <div>Bestスポット</div>
                 <div>
                   <i class="fa-solid fa-gem"></i>
                   <%= @num_awards %>
                 </div>
               </a>
+              <div id="modal-content-best">
+                <a id="modal-close">
+                 <i class="fa-solid fa-xmark"></i>
+                </a>
+                <div class="title-best">
+                  <h3>Bestスポットとは<i class="fa-solid fa-gem"></i></h3>
+                </div>
+                <div class="content-best">
+                <p>宿泊体験の中で、ユーザーが年に一回ホストに送ることができる特別な評価となります。</br>
+                星５では語れない感動や体験をした場合、その他特別な感謝を示す手段等、様々な理由で評価が送られます。</p>
+                </div>
+              </div>
             <% end %>
           </div>
         <% else %>
