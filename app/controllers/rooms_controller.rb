@@ -37,7 +37,7 @@ class RoomsController < ApplicationController
       @avg_location = @room.calculate_location_avg
       @avg_price = @room.calculate_price_avg
       @avg_recommendation = @room.calculate_recommendation_avg
-      @group_avg = @room.round_group_avg
+      @group_avg = @room.integrate_group_avgs
     end
   end
 

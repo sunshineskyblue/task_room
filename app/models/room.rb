@@ -35,28 +35,8 @@ class Room < ApplicationRecord
     []
   end
 
-  # 物件の偏差値を返す
-  def calculate_deviation
-    rates = Rate.where(price_category: price.range)
-
-    if rates.present?
-      group_scores_ary = rates.pluck(:score)
-      group_avg = rates.average(:score)&.round(2)
-
-      # 標準偏差を返す
-      group_gap_ary = group_scores_ary.map { |score| (score - group_avg)**2 }
-      std = Math.sqrt(group_gap_ary.sum / group_gap_ary.length)
-
-      if !std.zero?
-        avg = calculate_avg                              # 平均スコアを返す
-        (((avg - group_avg) * 10 / std) + 50).round      # 公式に当てはめて偏差値を返す
-      else
-        50 # 標準偏差が0の時はばらつきがないため、全ての要素は偏差値50となる
-      end
-    end
-  end
-
-  def round_group_avg
+  # 前後の価格帯の平均も算出し、それらを合わせて再度平均を返す
+  def integrate_group_avgs
     if above_group_avg && under_group_avg
       return ((above_group_avg + under_group_avg + group_avg) / 3).round(2)
     end
@@ -71,7 +51,9 @@ class Room < ApplicationRecord
   end
 
   def calculate_avg
-    rates.where(price_category: price.range).average(:score)&.round(2) if rates.present?
+    rates.where(price_category: price.range).  # 同じ価格帯で得た評価のみから平均を算出する
+      average(:score)&.
+      round(2) if rates.present?
   end
 
   def calculate_cleanliness_avg
