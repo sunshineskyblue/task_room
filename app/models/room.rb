@@ -23,9 +23,9 @@ class Room < ApplicationRecord
                           },
                           on: :create
 
-  MIN_NUM_RATES_SHARED = 2
-  MAX_NUM_PRICE_RANGE = 7
-  MIN_NUM_PRICE_RANGE = 1
+  MIN_NUM_RATES_SHARED = 2  # 2件以上から評価を公開する
+  MAX_NUM_PRICE_RANGE = 7   # Price rangeカラム（価格帯）の上限値
+  MIN_NUM_PRICE_RANGE = 1   # Price rangeカラム（価格帯）の下限値
 
   def self.ransackable_attributes(auth_object = {})
     %w(name introduction adress)
@@ -35,7 +35,10 @@ class Room < ApplicationRecord
     []
   end
 
-  # 前後の価格帯の平均も算出し、それらを合わせて再度平均を返す
+  # Roomと紐づくPriceのrangeを呼び出す（価格帯情報を保持）
+  # Rateテーブルのprice_categoryをrangeの前後の値で範囲指定し、whereで抽出する
+  # scoreの平均を返す
+  # => 価格帯ごとに総合評価の平均値が返される
   def integrate_group_avgs
     if price.range === MIN_NUM_PRICE_RANGE
       above_range = MIN_NUM_PRICE_RANGE + 1
