@@ -28,6 +28,7 @@
       <%= f.hidden_field :room_id, value: reservation.room.id %>
       <%= f.hidden_field :reservation_id, value: reservation.id %>
       <%= f.hidden_field :price_category, value: reservation.room.price.range %>
+      <%= f.hidden_field :price_value, value: reservation.room.price.value %>
       <%= f.hidden_field :cleanliness, id: "cleanliness-value" %>
       <%= f.hidden_field :information, id: "information-value" %>
       <%= f.hidden_field :communication, id: "communication-value" %>

@@ -21,6 +21,7 @@ class RatesController < ApplicationController
       :user_id,
       :reservation_id,
       :price_category,
+      :price_value,
       :cleanliness,
       :information,
       :communication,
