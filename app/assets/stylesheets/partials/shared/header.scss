@@ -6,7 +6,7 @@ header {
   width: 100%;
   height: 70px;
   position: relative;
-  z-index: 99;
+  z-index: 2;
 }
 
 .header-container {
@@ -161,25 +161,6 @@ header .fa-location-dot::before {
 .error-message-field h2 {
   font-size: 13px;
   margin-bottom: 20px;
-}
-
-.message-box {
-  position: absolute;
-  top: 70px;
-  width: 100%;
-  height: 40px;
-  font-size: 13px;
-  padding-top: 10px;
-  text-align: center;
-  background-color: #f9eb24;
-  transform: translate(0, -40px);
-  transition: opacity 0.5s, transform 0.8s;
-  opacity: 0;
-}
-
-.flash-animation {
-  transform: none;
-  opacity: 1;
 }
 
 @media (min-width: 800px) {

@@ -1,12 +1,51 @@
 <% content_for(:title, @room.name) %>
+<%= render "shared/modal_score", avg: @avg_scores, group_avg: @group_avg, cleanliness: @avg_cleanliness,communication: @avg_communication, information: @avg_information, location: @avg_location, price: @avg_price, recommendation: @avg_recommendation %>
 <div class="room-intro-page-container">
   <div class="room-detail-wrapper">
     <%= image_tag @room.room_image, class: 'room-image' if @room.room_image.attached? %>
-    <div class="room-icon-name-adress-wrapper">
-      <%= image_tag @room.user.image.attached? ? @room.user.image : "/assets/default_icon.jpg", class: 'owner-icon' %>
-      <div class="room-name-adress-wrapper">
+    <div class="overview">
+      <div class="icon-name">
+        <%= image_tag @room.user.image.attached? ? @room.user.image : "/assets/default_icon.jpg", class: 'owner-icon' %>
         <p><%= @room.name %></p>
+      </div>
+      <div class="adress-score">
         <p><%= @room.adress %></p>
+        <% if @room.has_min_num_rates? %>
+          <div class="room-review">
+            <div class="room-score">
+              <i class="fa-solid fa-star"></i>
+              <div class="avg"><%= @avg_scores %></div>
+              <div class="num">
+                <a id="modal-open" class="button-link">
+                  (<%= @num_scores %>件)
+                </a>
+              </div>
+            </div>
+            <% if !@num_awards.zero? %>
+              <a class="best-spot" id="modal-open-best">
+                <div>Bestスポット</div>
+                <div>
+                  <i class="fa-solid fa-gem"></i>
+                  <%= @num_awards %>
+                </div>
+              </a>
+              <div id="modal-content-best">
+                <a id="modal-close">
+                 <i class="fa-solid fa-xmark"></i>
+                </a>
+                <div class="title-best">
+                  <h3>Bestスポットとは<i class="fa-solid fa-gem"></i></h3>
+                </div>
+                <div class="content-best">
+                <p>宿泊体験の中で、ユーザーが年に一回ホストに送ることができる特別な評価となります。</br>
+                星５では語れない感動や体験をした場合、その他特別な感謝を示す手段等、様々な理由で評価が送られます。</p>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        <% else %>
+          <p class="none-rate-message">評価は2件以上から公開されます</p>
+        <% end %>
       </div>
     </div>
     <div class="room-intro-container">

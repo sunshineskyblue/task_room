@@ -10,6 +10,11 @@ import "channels"
 import 'bootstrap'
 import '../stylesheets/application'
 import '../customs/main'
+import '../customs/raty'
+import '../customs/write_rate'
+import '../customs/modal'
+
+window.$ = window.jQuery = require('jquery');
 
 Rails.start()
 Turbolinks.start()

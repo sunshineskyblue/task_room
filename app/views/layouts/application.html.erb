@@ -14,15 +14,11 @@
     <style><%= yield(:switch_stylesheets) if content_for?(:switch_stylesheets) %></style>
     <div class="app-container">
       <%= render "shared/header", search: @q %>
-      <% if flash[:notice] || flash[:alert] %>
-        <div class="message-box">
-          <p><%= flash[:notice] %></p>
-          <p><%= flash[:alert] %></p>
-        </div>
-      <% end %>
+      <%= render "shared/message" %>
       <div class="main">
         <%= content_for?(:content) ? yield(:content) : yield %>
       </div>
+      <script><%= yield(:script) if content_for?(:script) %></script>
       <footer>
       <p>© 2022 TAIYOPORTOFOLIO.INC.</p>
       </footer>

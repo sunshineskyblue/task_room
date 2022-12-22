@@ -1,3 +1,39 @@
+.fa-gem {
+  color: rgba(231, 6, 6, 0.911);
+}
+
+// Bestスポットのモーデル部分
+#modal-content-best {
+  position: fixed;
+  border-radius: 8px;
+  background: rgba(69, 239, 208, 0.957);
+  z-index: 3;
+  display: none;
+  width: 90%;
+  max-width: 300px;
+  margin: 0;
+  padding: 10px 30px 20px;
+  padding-bottom: 20px;
+}
+
+.title-best {
+  color: #00353d;
+}
+
+.title-best .fa-gem {
+  font-size: 23px;
+}
+
+.content-best {
+  padding: 15px 20px;
+  border: solid 5px #00353d;
+  background-color: white;
+  color: black;
+  border-radius: 8px;
+  font-size: 14px;
+}
+// ここまで
+
 .room-intro-page-container {
   max-width: 500px;
   width: 100%;
@@ -5,6 +41,7 @@
   flex-direction: column;
   padding: 15px;
   background-color: white;
+  position: relative;
 }
 
 .room-detail-wrapper {
@@ -21,26 +58,17 @@
   object-fit: cover;
 }
 
-.room-icon-name-adress-wrapper {
+.overview {
   display: flex;
+  flex-direction: column;
   border-bottom: solid 0.5px rgba(0, 0, 0, 0.3);
   border-top: solid 0.5px rgba(0, 0, 0, 0.3);
-  padding: 10px 10px 17px;
+  padding: 10px 10px 5px;
 }
 
-.room-name-adress-wrapper {
-  padding-left: 7px;
-}
-
-.room-name-adress-wrapper p:nth-child(1) {
-  font-size: 14px;
-  font-weight: bold;
-  padding: 10px 0 15px;
-}
-
-.room-name-adress-wrapper p:nth-child(2) {
-  font-size: 12px;
-  color: rgba(0, 0, 0, 0.7);
+.icon-name {
+  display: flex;
+  padding-bottom: 15px;
 }
 
 .owner-icon {
@@ -49,10 +77,81 @@
   display: block;
   object-fit: cover;
   border-radius: 50px;
-  padding: 10px;
 }
 
-.room-intro-container *, .room-intro-container *:before, .room-intro-container *:after {
+.icon-name > p {
+  font-size: 14px;
+  font-weight: bold;
+  padding-left: 10px;
+}
+
+.adress-score > p:nth-child(1) {
+  font-size: 12px;
+  padding-bottom: 12px;
+  color: rgba(0, 0, 0, 0.876);
+}
+
+.room-review {
+  display: flex;
+  align-items: center;
+}
+
+.room-score {
+  display: flex;
+  align-items: center;
+  padding-top: 2px;
+}
+
+.room-review .fa-star {
+  padding-right: 3px;
+  padding-bottom: 3px;
+  font-size: 14px;
+}
+
+.room-review .button-link {
+  padding-left: 3px;
+  padding-right: 3px;
+  color: rgb(0, 110, 255);
+  font-size: 12px;
+}
+
+.room-review .button-link:hover {
+  cursor: pointer;
+  color: #f00;
+}
+
+.avg {
+  display: flex;
+  align-items: center;
+}
+
+.num {
+  display: flex;
+  align-items: center;
+}
+
+.best-spot {
+  display: flex;
+  font-size: 12px;
+  padding: 1px 5px;
+  border: solid 0.4px rgba(153, 149, 149, 0.979);
+  border-radius: 5px;
+  margin-left: 5px;
+}
+
+.best-spot:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.none-rate-message {
+  font-size: 12px;
+  color: rgba(28, 27, 27, 0.763);
+}
+
+.room-intro-container *,
+.room-intro-container *:before,
+.room-intro-container *:after {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
@@ -77,7 +176,7 @@
   z-index: 2;
   bottom: 10px;
   left: 50%;
-  content: ' もっと詳しく';
+  content: " もっと詳しく";
   transform: translate(-50%, 0);
   letter-spacing: 0.05em;
   color: black;
@@ -103,7 +202,7 @@
 }
 
 .room-intro-container input:checked + label:after {
-  content: ' 閉じる';
+  content: " 閉じる";
 }
 
 .room-intro-container input:checked ~ .intro-box {
@@ -205,8 +304,8 @@
   }
 
   .owner-icon {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
   }
 
   .reservation-entry-form-container {

@@ -1,0 +1,136 @@
+#modal-content {
+  position: fixed;
+  border-radius: 8px;
+  background: #fff;
+  z-index: 3;
+  display: none;
+  width: 90%;
+  max-width: 300px;
+  margin: 0;
+  padding: 10px 20px;
+  padding-bottom: 20px;
+}
+
+.modal-content-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modal-content-container .star {
+  padding-right: 10px;
+  padding-top: 2px;
+  display: none;
+}
+
+.modal-main {
+  width: 80%;
+  max-width: 320px;
+  padding-bottom: 10px;
+}
+
+.modal-total {
+  padding-bottom: 13px;
+  font-size: 18px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.avg-indication {
+  color: rgba(0, 0, 0, 0.52);
+  font-size: 14px;
+  position: relative;
+}
+
+.avg-indication p:nth-child(2) {
+  font-size: 11px;
+  color: black;
+}
+
+.avg-indication .link-avg {
+  color: rgb(0, 110, 255);
+}
+
+.avg-indication .fa-circle-info{
+  position: absolute;
+  right: -10px;
+  top: -8px;
+}
+
+.modal-scores {
+  width: 80%;
+  max-width: 320px;
+}
+
+.modal-scores div {
+  font-size: 13px;
+}
+
+.rate-container {
+  display: flex;
+  padding-bottom: 5px;
+  justify-content: space-between;
+}
+
+.rate-container > p {
+  padding-right: 10px;
+}
+
+.modal-rate-field {
+  display: flex;
+  align-items: center;
+}
+
+@media (min-width: 770px) {
+  #modal-content {
+    max-width: 900px;
+  }
+
+  .modal-content-container {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .modal-main {
+    padding-right: 40px;
+    width: auto;
+    max-width: initial;
+  }
+
+  .modal-total {
+    display: block;
+  }
+
+  .rate-container {
+    display: block;
+  }
+
+  .modal-scores {
+    padding-left: 40px;
+    width: auto;
+    max-width: initial;
+  }
+
+  .modal-content-container .star {
+    display: block;
+  }
+}
+
+@media (min-width: 900px) {
+  .modal-scores {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 10px;
+  }
+
+  .modal-scores-right {
+    padding-left: 20px;
+  }
+
+  .modal-scores-left {
+    padding-right: 20px;
+  }
+}

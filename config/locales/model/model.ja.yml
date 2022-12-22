@@ -22,3 +22,11 @@ ja:
         checkout: チェックアウト
         number: 人数
         payment: 支払い金額
+      rate:
+        cleanliness: 清潔さ
+        information: 掲載情報の正確さ
+        communication: コミュニケーション
+        location: ロケーション
+        price: 価格
+        recommendation: おすすめ度
+        award: ベスト評価

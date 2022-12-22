@@ -26,8 +26,8 @@ document.addEventListener('turbolinks:load', function() {
 
   // 要素の非表示部分を取得。非表示があれば、input要素を挿入する。
   $('.room-intro-container .intro-box').each(function() {
-    let scrollH = $('.room-intro-container .intro-box').get(i).scrollHeight;
-    let offsetH = $('.room-intro-container .intro-box').get(i).offsetHeight;
+    let scrollH = $('.intro-box').get(i).scrollHeight;
+    let offsetH = $('.intro-box').get(i).offsetHeight;
     let hiddenH = scrollH - offsetH;
     
     if (hiddenH > 0) {

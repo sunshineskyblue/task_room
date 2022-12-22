@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  get 'notifications/index'
   root to: 'top#index'
+  get 'articles/score'
   resources :top, only: :index
 
   devise_for(
@@ -42,6 +42,7 @@ Rails.application.routes.draw do
   end
 
   resources :notifications, only: :index
+  resources :rates, only: :create
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

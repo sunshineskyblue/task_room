@@ -1,0 +1,66 @@
+<div class="rate">
+  <p>清潔さ</p>
+  <p class="explain">室内や周辺は清潔な状態でしたか?</p>
+  <div class="stars cleanliness-stars">
+    <%= radio_button_tag(:cleanliness, "5") %><%= label_tag(:cleanliness_5, "★") %>
+    <%= radio_button_tag(:cleanliness, "4") %><%= label_tag(:cleanliness_4, "★") %>
+    <%= radio_button_tag(:cleanliness, "3") %><%= label_tag(:cleanliness_3, "★") %>
+    <%= radio_button_tag(:cleanliness, "2") %><%= label_tag(:cleanliness_2, "★") %>
+    <%= radio_button_tag(:cleanliness, "1") %><%= label_tag(:cleanliness_1, "★") %>
+  </div>
+</div>
+<div class="rate">
+  <p>掲載情報の正確さ</p>
+  <p class="explain">掲載されている情報は信用できるものでしたか?</p>
+  <div class="stars information-stars">
+    <%= radio_button_tag(:information, "5") %><%= label_tag(:information_5, "★") %>
+    <%= radio_button_tag(:information, "4") %><%= label_tag(:information_4, "★") %>
+    <%= radio_button_tag(:information, "3") %><%= label_tag(:information_3, "★") %>
+    <%= radio_button_tag(:information, "2") %><%= label_tag(:information_2, "★") %>
+    <%= radio_button_tag(:information, "1") %><%= label_tag(:information_1, "★") %>
+  </div>
+</div>
+<div class="rate">
+  <p>コミュニケーション</p>
+  <p class="explain">滞在中やチェックインまでの対応はどうでしたか?</p>
+  <div class="stars communication-stars">
+    <%= radio_button_tag(:communication, "5") %><%= label_tag(:communication_5, "★") %>
+    <%= radio_button_tag(:communication, "4") %><%= label_tag(:communication_4, "★") %>
+    <%= radio_button_tag(:communication, "3") %><%= label_tag(:communication_3, "★") %>
+    <%= radio_button_tag(:communication, "2") %><%= label_tag(:communication_2, "★") %>
+    <%= radio_button_tag(:communication, "1") %><%= label_tag(:communication_1, "★") %>
+  </div>
+</div>
+<div class="rate">
+  <p>ロケーション</p>
+  <p class="explain">ロケーションは正確に記載されていましたか?</p>
+  <div class="stars location-stars">
+    <%= radio_button_tag(:location, "5") %><%= label_tag(:location_5, "★") %>
+    <%= radio_button_tag(:location, "4") %><%= label_tag(:location_4, "★") %>
+    <%= radio_button_tag(:location, "3") %><%= label_tag(:location_3, "★") %>
+    <%= radio_button_tag(:location, "2") %><%= label_tag(:location_2, "★") %>
+    <%= radio_button_tag(:location, "1") %><%= label_tag(:location_1, "★") %>
+  </div>
+</div>
+<div class="rate">
+  <p>価格</p>
+  <p class="explain">価格は内容と見合うものでしたか?</p>
+  <div class="stars price-stars">
+    <%= radio_button_tag(:price, "5") %><%= label_tag(:price_5, "★") %>
+    <%= radio_button_tag(:price, "4") %><%= label_tag(:price_4, "★") %>
+    <%= radio_button_tag(:price, "3") %><%= label_tag(:price_3, "★") %>
+    <%= radio_button_tag(:price, "2") %><%= label_tag(:price_2, "★") %>
+    <%= radio_button_tag(:price, "1") %><%= label_tag(:price_1, "★") %>
+  </div>
+</div>
+<div class="rate">
+  <p>おすすめ度</p>
+  <p class="explain">全体的な評価を踏まえ、おすすめできるところでしたか?</p>
+  <div class="stars recommendation-stars">
+    <%= radio_button_tag(:recommendation, "5") %><%= label_tag(:recommendation_5, "★") %>
+    <%= radio_button_tag(:recommendation, "4") %><%= label_tag(:recommendation_4, "★") %>
+    <%= radio_button_tag(:recommendation, "3") %><%= label_tag(:recommendation_3, "★") %>
+    <%= radio_button_tag(:recommendation, "2") %><%= label_tag(:recommendation_2, "★") %>
+    <%= radio_button_tag(:recommendation, "1") %><%= label_tag(:recommendation_1, "★") %>
+  </div>
+</div>

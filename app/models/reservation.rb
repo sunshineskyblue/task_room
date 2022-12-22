@@ -3,6 +3,7 @@ class Reservation < ApplicationRecord
   belongs_to :guest, class_name: 'User'
   belongs_to :host, class_name: 'User'
   has_many   :notifications, dependent: :destroy
+  has_one    :rate
 
   validates :room_id, presence: true, on: :create
   validates :guest_id, presence: true, on: :create
@@ -53,8 +54,12 @@ class Reservation < ApplicationRecord
     cancel_request unless canceled?
   end
 
-  def ongoing?
-    Date.today <= checkout unless canceled?
+  def finished?
+    Date.today > checkout unless canceled?
+  end
+
+  def within_two_weeks_after_checkout?
+    Date.today <= (checkout + 14) && finished?
   end
 
   def has_user_as_host?(user_id:)
@@ -139,6 +144,14 @@ class Reservation < ApplicationRecord
         next
       end
     end
+  end
+
+  def has_rate?
+    if rate.present?
+      return true
+    end
+
+    false
   end
 
   private

@@ -21,6 +21,7 @@ class User < ApplicationRecord
   has_many :host_notifications,
     class_name: 'Notification',
     foreign_key: 'host_id'
+  has_many :rates
 
   validates :name, length: { in: 3..15, message: "は3文字以上15文字以内で入力してください" }, on: :update
   validates :introduction, presence: { message: "が未入力です" }, on: :update
