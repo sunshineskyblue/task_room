@@ -7,7 +7,7 @@ FactoryBot.define do
     recommendation { 5 }
     price { 5 }
     score { 5 }
-    price_category { 1 }
+    price_range { 1 }
     award { false }
 
     association :reservation

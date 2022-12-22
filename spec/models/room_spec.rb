@@ -121,7 +121,7 @@ RSpec.describe Room, type: :model do
         recommendation: 2,
         price: 2,
         score: 2,
-        price_category: 1)
+        price_range: 1)
     end
 
     let!(:price_range_2) do
@@ -134,7 +134,7 @@ RSpec.describe Room, type: :model do
         recommendation: 2.5,
         price: 2.5,
         score: 2.5,
-        price_category: 2)
+        price_range: 2)
     end
 
     let!(:price_range_3) do
@@ -147,7 +147,7 @@ RSpec.describe Room, type: :model do
         recommendation: 3,
         price: 3,
         score: 3,
-        price_category: 3)
+        price_range: 3)
     end
 
     let!(:price_range_4) do
@@ -160,7 +160,7 @@ RSpec.describe Room, type: :model do
         recommendation: 3.5,
         price: 3.5,
         score: 3.5,
-        price_category: 4)
+        price_range: 4)
     end
 
     let!(:price_range_5) do
@@ -173,7 +173,7 @@ RSpec.describe Room, type: :model do
         recommendation: 4,
         price: 4,
         score: 4,
-        price_category: 5)
+        price_range: 5)
     end
 
     let!(:price_range_6) do
@@ -186,7 +186,7 @@ RSpec.describe Room, type: :model do
         recommendation: 4.5,
         price: 4.5,
         score: 4.5,
-        price_category: 6)
+        price_range: 6)
     end
 
     let!(:price_range_7) do
@@ -199,14 +199,14 @@ RSpec.describe Room, type: :model do
         recommendation: 5,
         price: 5,
         score: 5,
-        price_category: 7)
+        price_range: 7)
     end
 
     context 'roomのrange（価格帯）が1の場合' do
       let(:price) { build(:price, value: 4999) }
       let(:room) { create(:room, price: price) }
 
-      it 'price_category（価格帯）の1と2の平均が返されること' do
+      it 'price_range（価格帯）の1と2の平均が返されること' do
         expect(room.integrate_group_avgs).to eq 2.25
       end
     end
@@ -215,7 +215,7 @@ RSpec.describe Room, type: :model do
       let(:price) { build(:price, value: 9999) }
       let(:room) { create(:room, price: price) }
 
-      it 'price_category（価格帯）の1と2と3の平均が返されること' do
+      it 'price_range（価格帯）の1と2と3の平均が返されること' do
         expect(room.integrate_group_avgs).to eq 2.5
       end
     end
@@ -224,7 +224,7 @@ RSpec.describe Room, type: :model do
       let(:price) { build(:price, value: 19999) }
       let(:room) { create(:room, price: price) }
 
-      it 'price_category（価格帯）の2と3と4の平均が返されること' do
+      it 'price_range（価格帯）の2と3と4の平均が返されること' do
         expect(room.integrate_group_avgs).to eq 3
       end
     end
@@ -233,7 +233,7 @@ RSpec.describe Room, type: :model do
       let(:price) { build(:price, value: 39999) }
       let(:room) { create(:room, price: price) }
 
-      it 'price_category（価格帯）の3と4と5の平均が返されること' do
+      it 'price_range（価格帯）の3と4と5の平均が返されること' do
         expect(room.integrate_group_avgs).to eq 3.5
       end
     end
@@ -242,7 +242,7 @@ RSpec.describe Room, type: :model do
       let(:price) { build(:price, value: 59999) }
       let(:room) { create(:room, price: price) }
 
-      it 'price_category（価格帯）の4と5と6の平均が返されること' do
+      it 'price_range（価格帯）の4と5と6の平均が返されること' do
         expect(room.integrate_group_avgs).to eq 4
       end
     end
@@ -251,7 +251,7 @@ RSpec.describe Room, type: :model do
       let(:price) { build(:price, value: 99999) }
       let(:room) { create(:room, price: price) }
 
-      it 'price_category（価格帯）の5と6と7の平均が返されること' do
+      it 'price_range（価格帯）の5と6と7の平均が返されること' do
         expect(room.integrate_group_avgs).to eq 4.5
       end
     end
@@ -260,7 +260,7 @@ RSpec.describe Room, type: :model do
       let(:price) { build(:price, value: 100000) }
       let(:room) { create(:room, price: price) }
 
-      it 'price_category（価格帯）の6と7の平均が返されること' do
+      it 'price_range（価格帯）の6と7の平均が返されること' do
         expect(room.integrate_group_avgs).to eq 4.75
       end
     end

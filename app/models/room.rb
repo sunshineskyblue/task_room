@@ -36,53 +36,53 @@ class Room < ApplicationRecord
   end
 
   # Roomと紐づくPriceのrangeを呼び出す（価格帯情報を保持）
-  # Rateテーブルのprice_categoryをrangeの前後の値で範囲指定し、whereで抽出する
+  # Rateテーブルのprice_rangeをrangeの前後の値で範囲指定し、whereで抽出する
   # scoreの平均を返す
   # => 価格帯ごとに総合評価の平均値が返される
   def integrate_group_avgs
     if price.range === MIN_NUM_PRICE_RANGE
       above_range = MIN_NUM_PRICE_RANGE + 1
-      Rate.where(price_category: MIN_NUM_PRICE_RANGE..above_range).average(:score)&.round(2)
+      Rate.where(price_range: MIN_NUM_PRICE_RANGE..above_range).average(:score)&.round(2)
     elsif price.range === MAX_NUM_PRICE_RANGE
       under_range = MAX_NUM_PRICE_RANGE - 1
-      Rate.where(price_category: under_range..MAX_NUM_PRICE_RANGE).average(:score)&.round(2)
+      Rate.where(price_range: under_range..MAX_NUM_PRICE_RANGE).average(:score)&.round(2)
     else
       under_range = price.range - 1
       above_range = price.range + 1
-      Rate.where(price_category: under_range..above_range).average(:score)&.round(2)
+      Rate.where(price_range: under_range..above_range).average(:score)&.round(2)
     end
   end
 
   def calculate_avg
     if rates.present?
-      rates.where(price_category: price.range). # 同じ価格帯で得た評価のみから平均を算出する
+      rates.where(price_range: price.range). # 同じ価格帯で得た評価のみから平均を算出する
         average(:score)&.
         round(2)
     end
   end
 
   def calculate_cleanliness_avg
-    rates.where(price_category: price.range).average(:cleanliness)&.round(2) if rates.present?
+    rates.where(price_range: price.range).average(:cleanliness)&.round(2) if rates.present?
   end
 
   def calculate_information_avg
-    rates.where(price_category: price.range).average(:information)&.round(2) if rates.present?
+    rates.where(price_range: price.range).average(:information)&.round(2) if rates.present?
   end
 
   def calculate_communication_avg
-    rates.where(price_category: price.range).average(:communication)&.round(2) if rates.present?
+    rates.where(price_range: price.range).average(:communication)&.round(2) if rates.present?
   end
 
   def calculate_location_avg
-    rates.where(price_category: price.range).average(:location)&.round(2) if rates.present?
+    rates.where(price_range: price.range).average(:location)&.round(2) if rates.present?
   end
 
   def calculate_price_avg
-    rates.where(price_category: price.range).average(:price)&.round(2) if rates.present?
+    rates.where(price_range: price.range).average(:price)&.round(2) if rates.present?
   end
 
   def calculate_recommendation_avg
-    rates.where(price_category: price.range).average(:recommendation)&.round(2) if rates.present?
+    rates.where(price_range: price.range).average(:recommendation)&.round(2) if rates.present?
   end
 
   # 過去の評価件数が2以上であればtrueを返し、viewに表示する

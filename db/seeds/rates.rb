@@ -52,7 +52,7 @@ Reservation.all.each do |reservation|
       room_id: reservation.room.id,
       user_id: reservation.guest.id,
       reservation_id: reservation.id,
-      price_category: reservation.room.price.range,
+      price_range: reservation.room.price.range,
       })
     )
     
@@ -65,7 +65,7 @@ Reservation.all.each do |reservation|
       room_id: reservation.room.id,
       user_id: reservation.guest.id,
       reservation_id: reservation.id,
-      price_category: reservation.room.price.range,
+      price_range: reservation.room.price.range,
       })
     )
     
@@ -78,7 +78,7 @@ Reservation.all.each do |reservation|
       room_id: reservation.room.id,
       user_id: reservation.guest.id,
       reservation_id: reservation.id,
-      price_category: reservation.room.price.range,
+      price_range: reservation.room.price.range,
       })
     )
     
