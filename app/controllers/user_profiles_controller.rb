@@ -20,15 +20,6 @@ class UserProfilesController < ApplicationController
     end
   end
 
-  def destroy
-    if current_user.destroy
-      flash[:notice] = "退会が完了しました。またのご利用をお待ちしております"
-      redirect_to new_user_session_path
-    else
-      render 'user_profiles/edit'
-    end
-  end
-
   private
 
   def user_profile_params

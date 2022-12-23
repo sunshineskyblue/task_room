@@ -33,6 +33,8 @@ class User < ApplicationRecord
                     size: { less_than_or_equal_to: 1.megabytes, message: 'は1つのファイル1MB以内にしてください' },
                     on: :update
 
+  validate :guest_user?
+
   def ensure_not_in_guest
     if guest_reservations.where(cancel: false).present?
       errors.add(:base, "予約が残っております。キャンセルしてから退会してください")
@@ -44,6 +46,12 @@ class User < ApplicationRecord
       errors.add(:base, "ホストとして予約を受付中です。\n
         ゲストのキャンセル手続き完了後、退会可能です。\n
         まずはキャンセルリクストを送信してください")
+    end
+  end
+
+  def guest_user?
+    if name == "ゲストユーザー" || email == "guest_user@example.com"
+      errors.add(:base, "ゲストユーザーは変更・退会ができません")
     end
   end
 
