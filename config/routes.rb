@@ -18,6 +18,9 @@ Rails.application.routes.draw do
     get '/sign_up', to: 'users/registrations#new'
   end
 
+  # deviseが更新不可だった場合のパス（/settings）が存在しないためリダイレクト
+  get '/settings', to: redirect('/settings/edit')
+
   resources :user_profiles, path: 'settings', only: [] do
     get '/profile', to: 'user_profiles#edit', on: :member
     patch '/profile', to: 'user_profiles#update', on: :member

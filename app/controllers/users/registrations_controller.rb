@@ -29,7 +29,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def destroy
     @user = User.find_by(id: current_user.id)
 
-    if @user.ensure_not_in_guest || @user.ensure_not_in_host
+    if @user.guest_user? || @user.ensure_not_in_guest || @user.ensure_not_in_host
       return render 'devise/registrations/edit'
     else
       @user.destroy
