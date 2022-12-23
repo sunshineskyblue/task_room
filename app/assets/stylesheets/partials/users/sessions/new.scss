@@ -45,10 +45,21 @@
   border: solid 0.2px #4a90e2;
 }
 
-.login-submit {
-  background-color: #4a90e2;
-  color: white;
-  border: 0;
+.guest-login {
+  color: #4a90e2;
+  background-color: white;
+  border: solid 2px #4a90e2;
+  font-size: 15px;
+  border-radius: 5px;
+  margin-bottom: 40px;
+  width: 100%;
+  max-width: 310px;
+  padding: 5px 10px;
+}
+
+.guest-login:hover {
+  opacity: 0.8;
+  background-color: rgba(30, 38, 54, 0.15);
 }
 
 .link-to-signin {
