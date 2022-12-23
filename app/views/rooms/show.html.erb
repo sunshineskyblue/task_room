@@ -5,7 +5,7 @@
     <%= image_tag @room.room_image, class: 'room-image' if @room.room_image.attached? %>
     <div class="overview">
       <div class="icon-name">
-        <%= image_tag @room.user.image.attached? ? @room.user.image : "/assets/default_icon.jpg", class: 'owner-icon' %>
+        <%= image_tag @room.user.image.attached? ? @room.user.image : "default_icon.jpg", class: 'owner-icon' %>
         <p><%= @room.name %></p>
       </div>
       <div class="adress-score">
