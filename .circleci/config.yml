@@ -9,7 +9,7 @@ jobs:
       - heroku/install
       - run:
           name: Create fresh Heroku app
-          command: heroku apps:create $HEROKU_APP_NAME --stack heroku-22
+          command: heroku apps:create $HEROKU_APP_NAME --stack heroku-20
       - run:
           name: Create DB for Heroku app
           command: heroku addons:create jawsdb:kitefin
