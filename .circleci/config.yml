@@ -25,4 +25,8 @@ jobs:
 workflows:
   heroku_deploy:
     jobs:
-      - deploy
+      - deploy:
+          filters:
+            branches:
+              only:
+                - deploy-production
