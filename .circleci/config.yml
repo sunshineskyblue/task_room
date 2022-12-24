@@ -1,7 +1,6 @@
 version: 2.1
 jobs:
  heroku_deploy:
-    working_directory: ~/sunshineskyblue
     steps:
       - checkout
       - build-tools/install-ci-tools
