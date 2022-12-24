@@ -6,6 +6,7 @@ jobs:
     executor: heroku/default
     steps:
       - checkout
+      - heroku/install
       - run:
           name: Create fresh Heroku app
           command: heroku apps:create $HEROKU_APP_NAME --stack heroku-22
