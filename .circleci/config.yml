@@ -8,11 +8,11 @@ jobs:
       - checkout
       - heroku/install
       - run:
-          name: Create fresh Heroku app
-          command: heroku apps:create $HEROKU_APP_NAME --stack heroku-20
+          name: Define Heroku app name to create
+          command: timestamp=`date +%Y%m%d%H%M%S` && echo "export HEROKU_APP_NAME=potepanec-$timestamp" >> $BASH_ENV
       - run:
-          name: Create DB for Heroku app
-          command: heroku addons:create jawsdb:kitefin
+          name: Create fresh Heroku app
+          command: heroku apps:create $HEROKU_APP_NAME --addons=jawsdb:kitefin --stack heroku-20
       - run:
           name: Deploy
           command: git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git HEAD:master
