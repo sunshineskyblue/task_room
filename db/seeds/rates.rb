@@ -99,3 +99,17 @@ Reservation.all.each do |reservation|
     rate.save!
   end
 end
+
+User.find_each(batch_size: 5) do |user|
+  if Rate.where(user_id: user.id).where(award: true).present?
+    next
+  end
+
+  Rate.find_each(batch_size: 5) do |rate|
+    if rate.reservation.guest == user
+      rate.award = true
+      rate.save!
+      break
+    end
+  end
+end
