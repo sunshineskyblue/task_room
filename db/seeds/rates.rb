@@ -106,6 +106,10 @@ User.find_each(batch_size: 5) do |user|
   end
 
   Rate.find_each(batch_size: 5) do |rate|
+    if rate.room.rates.where(award: true).present?
+      next
+    end
+
     if rate.reservation.guest == user
       rate.award = true
       rate.save!
