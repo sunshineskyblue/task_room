@@ -1,17 +1,12 @@
 ActiveStorage::AnalyzeJob.queue_adapter = :inline
 ActiveStorage::PurgeJob.queue_adapter = :inline
 
-default_introduction = { introduction: "★玄関の異なるマンションの2部屋です
-  ★アーリーチェックイン可能（ご相談ください）
-  ★渋谷駅まで14分、最寄の田園都市線三軒茶屋駅徒歩7分
-  ★スマートロックで無人受付、誰にも会わずにチェックイン
-  ★ゆったりサイズのダブルベッド（高品質ベッドマット使用）
-  ★ヘアアイロン（ストレート・カール）、女優ミラーあり
-  ★コンビニ・大型スーパー（Maruetsu）がすぐ近く、飲食店多数
-  ★大画面プロジェクター完備、DVD/BDプレーヤー付き
-  ★固定Wifiとプロジェクターで、遠征の思い出づくりになる、快適おしゃれな滞在をお楽しみください。
+default_introduction = { introduction: "朝起きると眼下には輝く太平洋。
+  ゆったりと至福の時間を堪能できます。
+  2階の三角天井の屋根裏はロッジの雰囲気で温もりを感じられます。
   
-  ※高速道路に面しており、二重窓にて対策しておりますが、音が気になる方はご注意下さい。（無料の耳栓のご用意がございますので、ご利用ください。）"
+  日在浦ビーチ徒歩５分‼︎
+  光回線でデータ無制限。リモートに最適★"
 }
 
 samples = [
@@ -21,7 +16,7 @@ samples = [
       fee: 4999,
       adress: "富山市新総曲輪1番7号",
       room_image: ActiveStorage::Blob.create_and_upload!(
-        io: File.open(Rails.root.join("db/fixtures/room1.jpg")),
+        io: File.open("#{File.dirname(__FILE__)}/fixtures/room1.jpg"),
         filename: "room1.jpg"
       )
     },
@@ -34,7 +29,7 @@ samples = [
       fee: 9999,
       adress: "岐阜県飛騨市古川町本町２−２２",
       room_image: ActiveStorage::Blob.create_and_upload!(
-        io: File.open(Rails.root.join("db/fixtures/room2.jpg")),
+        io: File.open("#{File.dirname(__FILE__)}/fixtures/room2.jpg"),
         filename: "room2.jpg"
       )
     },
@@ -47,7 +42,7 @@ samples = [
       fee: 19999,
       adress: "東京都新宿区西新宿2-8-1",
       room_image: ActiveStorage::Blob.create_and_upload!(
-        io: File.open(Rails.root.join("db/fixtures/room3.jpg")),
+        io: File.open("#{File.dirname(__FILE__)}/fixtures/room3.jpg"),
         filename: "room3.jpg"
       )
     },
@@ -60,7 +55,7 @@ samples = [
       fee: 39999,
       adress: "岐阜市薮田南2丁目1番1号",
       room_image: ActiveStorage::Blob.create_and_upload!(
-        io: File.open(Rails.root.join("db/fixtures/room4.jpg")),
+        io: File.open("#{File.dirname(__FILE__)}/fixtures/room4.jpg"),
         filename: "room4.jpg"
       )
     },
@@ -73,7 +68,7 @@ samples = [
       fee: 59999,
       adress: "石川県金沢市鞍月1丁目1番地",
       room_image: ActiveStorage::Blob.create_and_upload!(
-        io: File.open(Rails.root.join("db/fixtures/room5.jpg")),
+        io: File.open("#{File.dirname(__FILE__)}/fixtures/room5.jpg"),
         filename: "room5.jpg"
       )
     },
@@ -86,7 +81,7 @@ samples = [
       fee: 99999,
       adress: "和歌山市小松原通一丁目1番地",
       room_image: ActiveStorage::Blob.create_and_upload!(
-        io: File.open(Rails.root.join("db/fixtures/room6.jpg")),
+        io: File.open("#{File.dirname(__FILE__)}/fixtures/room6.jpg"),
         filename: "room6.jpg"
       )
     },
@@ -99,7 +94,7 @@ samples = [
       fee: 100000,
       adress: "三重県津市広明町13番地",
       room_image: ActiveStorage::Blob.create_and_upload!(
-        io: File.open(Rails.root.join("db/fixtures/room7.jpg")),
+        io: File.open("#{File.dirname(__FILE__)}/fixtures/room7.jpg"),
         filename: "room7.jpg"
       )
     },
@@ -112,7 +107,7 @@ samples = [
       fee: 170000,
       adress: "岐阜県飛騨市２",
       room_image: ActiveStorage::Blob.create_and_upload!(
-        io: File.open(Rails.root.join("db/fixtures/room2.jpg")),
+        io: File.open("#{File.dirname(__FILE__)}/fixtures/room2.jpg"),
         filename: "room2.jpg"
       )
     },
