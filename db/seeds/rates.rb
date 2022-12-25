@@ -60,7 +60,7 @@ Reservation.all.each do |reservation|
     rate.save!
   end
 
-  if reservation.host.name == "航平"
+  if reservation.host.name == "こうへい"
     rate = Rate.new(middle_score.merge({
       room_id: reservation.room.id,
       user_id: reservation.guest.id,

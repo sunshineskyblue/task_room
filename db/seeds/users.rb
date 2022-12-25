@@ -38,8 +38,8 @@ User.create!({
   email: "kohei@example.com",
   password: "kohei_password",
   password_confirmation: "kohei_password",
-  name: "航平",
-  introduction: "初めまして。航平と申します。この度はお取引のほどよろしくお願い致します。",
+  name: "こうへい",
+  introduction: "初めまして。こうへいと申します。この度はお取引のほどよろしくお願い致します。",
   image: ActiveStorage::Blob.create_and_upload!(
     io: File.open(Rails.root.join("app/assets/images/fixtures/user3.jpg")),
     filename: "user3.jpg")
