@@ -2,31 +2,45 @@ ActiveStorage::AnalyzeJob.queue_adapter = :inline
 ActiveStorage::PurgeJob.queue_adapter = :inline
 
 User.create!({
-  email: guest_user@example.com
-  password: "guest_user"
-  name: "ゲストユーザー"
-  introduction: "こちらはゲストユーザーのアカウントとなります。"
+  email: "guest_user@example.com",
+  password: "guest_user",
+  password_confirmation: "guest_user",
+  name: "ゲストユーザー",
+  introduction: "こちらはゲストユーザーのアカウントとなります。",
   image: ActiveStorage::Blob.create_and_upload!(
     io: File.open(Rails.root.join("db/fixtures/guest_user.jpg")),
-    filename: "guest_user.jpg"
+    filename: "guest_user.jpg")
 })
 
 User.create!({
-  email: user1@example.com
-  password: "user1_user"
-  name: "あきら"
-  introduction: "初めまして。あきらと申します。今回初めてlife in pocketでホストとして物件を登録しておりますが、以前に他のサービスで貸別荘を提供していましたので、スムーズな対応ができるかと思います。よろしくお願いたします。"
+  email: "akira@example.com",
+  password: "akira_password",
+  password_confirmation: "akira_password",
+  name: "あきら",
+  introduction: "初めまして。あきらと申します。この度はお取引のほどよろしくお願い致します。",
   image: ActiveStorage::Blob.create_and_upload!(
-    io: File.open(Rails.root.join("db/fixtures/seed2.jpg")),
-    filename: "user1.jpg"
+    io: File.open(Rails.root.join("db/fixtures/user1.jpg")),
+    filename: "user1.jpg")
 })
 
 User.create!({
-  email: guest_user@example.com
-  password: "user2_user"
-  name: "はるか"
-  introduction: "初めまして。はるかと申します。ゲスト、ホストの両方でlife in pocketを利用しています"
+  email: "haruka@example.com",
+  password: "haruka_password",
+  password_confirmation: "haruka_password",
+  name: "はるか",
+  introduction: "初めまして。はるかと申します。この度はお取引のほどよろしくお願い致します。",
   image: ActiveStorage::Blob.create_and_upload!(
-    io: File.open(Rails.root.join("db/fixtures/seed2.jpg")),
-    filename: "user2.jpg"
+    io: File.open(Rails.root.join("db/fixtures/user2.jpg")),
+    filename: "user2.jpg")
+})
+
+User.create!({
+  email: "koheia@example.com",
+  password: "kohei_password",
+  password_confirmation: "kohei_password",
+  name: "航平",
+  introduction: "初めまして。航平と申します。この度はお取引のほどよろしくお願い致します。",
+  image: ActiveStorage::Blob.create_and_upload!(
+    io: File.open(Rails.root.join("db/fixtures/user3.jpg")),
+    filename: "user3.jpg")
 })
