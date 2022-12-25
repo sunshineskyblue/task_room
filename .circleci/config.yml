@@ -21,6 +21,10 @@ jobs:
           command: |
             heroku config:set AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY AWS_REGION=$AWS_REGION AWS_BUCKET=$AWS_BUCKET
             heroku run bin/rails db:migrate
+            heroku run bin/rails runner db/seeds/users.rb
+            heroku run bin/rails runner db/seeds/rooms.rb
+            heroku run bin/rails runner db/seeds/reservations.rb
+            heroku run bin/rails runner db/seeds/rates.rb
 
 workflows:
   heroku_deploy:
