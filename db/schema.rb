@@ -133,5 +133,4 @@ ActiveRecord::Schema.define(version: 2022_12_22_052927) do
   add_foreign_key "reservations", "rooms"
   add_foreign_key "reservations", "users", column: "guest_id"
   add_foreign_key "reservations", "users", column: "host_id"
-  add_foreign_key "rooms", "users"
 end
