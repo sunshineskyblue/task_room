@@ -135,15 +135,9 @@ samples = [
 
 
 User.find_each(:batch_size => 1) do |user|
-  if user.name != "はるか"
-    next
-  end
-
   samples.each do |sample|
     user_id = {user_id: user.id}
     room = Room.create!(default_introduction.merge(sample[:room]).merge(user_id))
-
-    binding.pry
     
     price = Price.new(
       room_id: room.id,
