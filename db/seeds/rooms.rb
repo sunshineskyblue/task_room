@@ -21,7 +21,7 @@ samples = [
       fee: 4999,
       adress: "富山市新総曲輪1番7号",
       room_image: ActiveStorage::Blob.create_and_upload!(
-        io: File.open(Rails.root.join("app/assets/images/fixtures/room1.jpg")),
+        io: File.open(Rails.root.join("db/fixtures/room1.jpg")),
         filename: "room1.jpg"
       )
     },
@@ -34,7 +34,7 @@ samples = [
       fee: 9999,
       adress: "岐阜県飛騨市古川町本町２−２２",
       room_image: ActiveStorage::Blob.create_and_upload!(
-        io: File.open(Rails.root.join("app/assets/images/fixtures/room2.jpg")),
+        io: File.open(Rails.root.join("db/fixtures/room2.jpg")),
         filename: "room2.jpg"
       )
     },
@@ -47,7 +47,7 @@ samples = [
       fee: 19999,
       adress: "東京都新宿区西新宿2-8-1",
       room_image: ActiveStorage::Blob.create_and_upload!(
-        io: File.open(Rails.root.join("app/assets/images/fixtures/room3.jpg")),
+        io: File.open(Rails.root.join("db/fixtures/room3.jpg")),
         filename: "room3.jpg"
       )
     },
@@ -60,7 +60,7 @@ samples = [
       fee: 39999,
       adress: "岐阜市薮田南2丁目1番1号",
       room_image: ActiveStorage::Blob.create_and_upload!(
-        io: File.open(Rails.root.join("app/assets/images/fixtures/room4.jpg")),
+        io: File.open(Rails.root.join("db/fixtures/room4.jpg")),
         filename: "room4.jpg"
       )
     },
@@ -73,7 +73,7 @@ samples = [
       fee: 59999,
       adress: "石川県金沢市鞍月1丁目1番地",
       room_image: ActiveStorage::Blob.create_and_upload!(
-        io: File.open(Rails.root.join("app/assets/images/fixtures/room5.jpg")),
+        io: File.open(Rails.root.join("db/fixtures/room5.jpg")),
         filename: "room5.jpg"
       )
     },
@@ -86,7 +86,7 @@ samples = [
       fee: 99999,
       adress: "和歌山市小松原通一丁目1番地",
       room_image: ActiveStorage::Blob.create_and_upload!(
-        io: File.open(Rails.root.join("app/assets/images/fixtures/room6.jpg")),
+        io: File.open(Rails.root.join("db/fixtures/room6.jpg")),
         filename: "room6.jpg"
       )
     },
@@ -99,7 +99,7 @@ samples = [
       fee: 100000,
       adress: "三重県津市広明町13番地",
       room_image: ActiveStorage::Blob.create_and_upload!(
-        io: File.open(Rails.root.join("app/assets/images/fixtures/room7.jpg")),
+        io: File.open(Rails.root.join("db/fixtures/room7.jpg")),
         filename: "room7.jpg"
       )
     },
@@ -112,7 +112,7 @@ samples = [
       fee: 170000,
       adress: "岐阜県飛騨市２",
       room_image: ActiveStorage::Blob.create_and_upload!(
-        io: File.open(Rails.root.join("app/assets/images/fixtures/room2.jpg")),
+        io: File.open(Rails.root.join("db/fixtures/room2.jpg")),
         filename: "room2.jpg"
       )
     },
