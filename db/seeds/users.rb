@@ -35,7 +35,7 @@ User.create!({
 })
 
 User.create!({
-  email: "koheia@example.com",
+  email: "kohei@example.com",
   password: "kohei_password",
   password_confirmation: "kohei_password",
   name: "航平",
