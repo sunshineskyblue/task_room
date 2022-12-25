@@ -53,19 +53,6 @@ samples = [
     },
     price: { value: 19999 },
   },
-
-  {
-    room: {
-      name: "【NEW】浅草/東京スカイツリー直通！八広駅徒歩3分 2階建て一軒家 4ベッド WIFI無制限" ,
-      fee: 19999,
-      adress: "東京都新宿区西新宿2-8-1",
-      room_image: ActiveStorage::Blob.create_and_upload!(
-        io: File.open(Rails.root.join("db/fixtures/room3.jpg")),
-        filename: "room3.jpg"
-      )
-    },
-    price: { value: 19999 },
-  },
   
   {
     room: {
