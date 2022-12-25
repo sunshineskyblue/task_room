@@ -81,3 +81,6 @@ group :production do
   # Use mysql2 as the database for Active Record
   gem 'mysql2', '~> 0.5.3'
 end
+
+# Use AWS on production
+gem "aws-sdk", "~> 3.0"
