@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_12_22_052927) do
+ActiveRecord::Schema.define(version: 2022_12_26_034023) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -103,7 +103,7 @@ ActiveRecord::Schema.define(version: 2022_12_22_052927) do
 
   create_table "rooms", force: :cascade do |t|
     t.string "name", null: false
-    t.string "introduction", null: false
+    t.text "introduction", null: false
     t.integer "fee", null: false
     t.string "adress", null: false
     t.integer "user_id", null: false
