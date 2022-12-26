@@ -6,7 +6,7 @@ class ReservationsController < ApplicationController
     end
 
     # プロフィール未登録 => 登録画面につなぐ
-    if current_user.invalid?
+    if current_user.invalid? && !current_user.guest_user?
       redirect_to(profile_user_profile_path(current_user.id)) && return
     end
 

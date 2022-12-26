@@ -4,10 +4,6 @@ User.find_each(:batch_size => 5) do |user|
       next
     end
 
-    if room.user.name != "ゲストユーザー"
-      next
-    end
-
     Reservation.insert_all([
       { checkin: Date.today - 2.day,
         checkout: Date.today - 1.day, 

@@ -1,7 +1,4 @@
-# 高いスコアを作成
-# 中スコアを作成
 # 低スコアを作成
-
 low_score = {
   cleanliness: rand(3..4),
   information: rand(4..5),
@@ -12,6 +9,7 @@ low_score = {
   award: false
 }
 
+# 中スコアを作成
 middle_score = {
   cleanliness: rand(4..5),
   information: rand(4..5),
@@ -22,6 +20,7 @@ middle_score = {
   award: false
 }
 
+# 高いスコアを作成
 high_score = {
   cleanliness: 5,
   information: rand(4..5),
@@ -32,6 +31,7 @@ high_score = {
   award: false
 }
 
+# オール５のスコアを作成
 best_score = {
   cleanliness: 5,
   information: 5,
@@ -47,8 +47,8 @@ Reservation.all.each do |reservation|
    next
   end
 
-  if reservation.host.name == "スーパーホスト"
-    rate = Rate.new(high_score.merge({
+  if reservation.host.name == "はるか"
+    rate = Rate.new(low_score.merge({
       room_id: reservation.room.id,
       user_id: reservation.guest.id,
       reservation_id: reservation.id,
@@ -60,8 +60,21 @@ Reservation.all.each do |reservation|
     rate.save!
   end
 
-  if reservation.host.name == "ホスト"
-    rate = Rate.new(low_score.merge({
+  if reservation.host.name == "こうへい"
+    rate = Rate.new(middle_score.merge({
+      room_id: reservation.room.id,
+      user_id: reservation.guest.id,
+      reservation_id: reservation.id,
+      price_range: reservation.room.price.range,
+      })
+    )
+    
+    rate.calculate_score
+    rate.save!
+  end
+
+  if reservation.host.name == "あきら"
+    rate = Rate.new(high_score.merge({
       room_id: reservation.room.id,
       user_id: reservation.guest.id,
       reservation_id: reservation.id,
@@ -84,5 +97,23 @@ Reservation.all.each do |reservation|
     
     rate.calculate_score
     rate.save!
+  end
+end
+
+User.find_each(batch_size: 5) do |user|
+  if Rate.where(user_id: user.id).where(award: true).present?
+    next
+  end
+
+  Rate.find_each(batch_size: 5) do |rate|
+    if rate.room.rates.where(award: true).present?
+      next
+    end
+
+    if rate.reservation.guest == user
+      rate.award = true
+      rate.save!
+      break
+    end
   end
 end

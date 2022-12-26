@@ -1,0 +1,36 @@
+version: '2.1'
+orbs:
+  heroku: circleci/heroku@2.0
+jobs:
+  deploy:
+    executor: heroku/default
+    steps:
+      - checkout
+      - heroku/install
+      - run:
+          name: Define Heroku app name to create
+          command: timestamp=`date +%Y%m%d%H%M%S` && echo "export HEROKU_APP_NAME=sunshineskyblue-$timestamp" >> $BASH_ENV
+      - run:
+          name: Create fresh Heroku app
+          command: heroku apps:create $HEROKU_APP_NAME --addons=jawsdb:kitefin --stack heroku-20
+      - run:
+          name: Deploy
+          command: git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git HEAD:master
+      - run:
+          name: Run post-deploy tasks
+          command: |
+            heroku config:set AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY AWS_REGION=$AWS_REGION AWS_BUCKET=$AWS_BUCKET
+            heroku run bin/rails db:migrate
+            heroku run bin/rails runner db/seeds/users.rb
+            heroku run bin/rails runner db/seeds/rooms.rb
+            heroku run bin/rails runner db/seeds/reservations.rb
+            heroku run bin/rails runner db/seeds/rates.rb
+
+workflows:
+  heroku_deploy:
+    jobs:
+      - deploy:
+          filters:
+            branches:
+              only:
+                - deploy-production

@@ -33,7 +33,7 @@ class User < ApplicationRecord
                     size: { less_than_or_equal_to: 1.megabytes, message: 'は1つのファイル1MB以内にしてください' },
                     on: :update
 
-  validate :guest_user?
+  validate :guest_user?, on: :update
 
   def ensure_not_in_guest
     if guest_reservations.where(cancel: false).present?

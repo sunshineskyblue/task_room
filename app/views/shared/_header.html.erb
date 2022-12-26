@@ -26,7 +26,7 @@
         <% if current_user.image.attached? %>
           <%= image_tag current_user.image, class: 'user-icon' %>
         <% else %>
-          <%= image_tag "/assets/default_icon.jpg" , class: 'user-icon' %>
+          <%= image_tag "default_icon.jpg" , class: 'user-icon' %>
         <% end %>
       </div>
     </div>
