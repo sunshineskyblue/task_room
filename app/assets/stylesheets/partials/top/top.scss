@@ -1,13 +1,13 @@
 // Place all the styles related to the top controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
-
 .top-head-container {
   height: 100vh;
-  background-image: image-url("img_top_cover.JPG");
+  background-image: image-url("top_cover.jpg");
   background-repeat: no-repeat;
+  background-position: 50% 70%;
   background-size: cover;
-  background-position: center;
+  position: relative;
   display: flex;
   align-items: center;
 }
