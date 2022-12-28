@@ -77,11 +77,13 @@ class ReservationsController < ApplicationController
   end
 
   def completed
-    @reservations = current_user.guest_reservations.
+    reservations = current_user.guest_reservations.
       where('checkout < ?', Date.today).
       or(current_user.guest_reservations.where(cancel: true)).
       order(checkin: 'DESC').
       includes(room: { room_image_attachment: :blob })
+
+      @reservations = reservations.page(params[:page]).per(8)
   end
 
   private
