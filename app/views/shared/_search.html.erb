@@ -18,7 +18,5 @@
       <% end %>
     </div>
   </div>
-  <div class="search-results-pagenation">
-    <%= paginate rooms %>
-  </div>
+  <%= render "shared/pagenation", resources: rooms %>
 </div>
