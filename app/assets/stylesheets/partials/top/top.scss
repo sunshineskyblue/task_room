@@ -57,6 +57,10 @@
   border-radius: 5px;
 }
 
+.top-search-field::placeholder {
+  color: rgba(167, 158, 158, 0.828);
+}
+
 .keyword-search-field {
   display: block;
   width: 100%;
@@ -64,6 +68,10 @@
   padding-left: 22px;
   border: solid 0.8px rgba(0, 0, 0, 0.678);
   border-radius: 5px;
+}
+
+.keyword-search-field::placeholder {
+  color: rgba(167, 158, 158, 0.828);
 }
 
 _::-webkit-full-page-media,
