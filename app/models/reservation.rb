@@ -38,6 +38,8 @@ class Reservation < ApplicationRecord
         where('checkin >= ? and checkout <= ?', checkin, checkout)
     }
 
+  # attr_accessor :notification
+
   def stay_length
     (checkout - checkin).to_i
   end
@@ -102,34 +104,14 @@ class Reservation < ApplicationRecord
     )
   end
 
-  # TODO: コード位置再検討
-  def create_cancel_notification
-    Notification.create(
+  def create_notification(action:)
+    notification = Notification.new(
       reservation_id: id,
       guest_id: guest_id,
       host_id: host_id,
-      action: 'cancel'
+      action: action
     )
-  end
-
-  # TODO: コード位置再検討
-  def create_reservation_notification
-    Notification.create(
-      reservation_id: id,
-      guest_id: guest_id,
-      host_id: host_id,
-      action: 'reserve'
-    )
-  end
-
-  # TODO: コード位置再検討
-  def create_cancel_requst_notification
-    Notification.create(
-      reservation_id: id,
-      guest_id: guest_id,
-      host_id: host_id,
-      action: 'cancel_request'
-    )
+    notification.save
   end
 
   def destroy_notifications(**actions)

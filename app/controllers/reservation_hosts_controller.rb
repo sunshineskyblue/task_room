@@ -20,7 +20,7 @@ class ReservationHostsController < ApplicationController
     @reservation = Reservation.find_by(id: params[:id])
 
     if @reservation.update(cancel_request: true)
-      @reservation.create_cancel_requst_notification
+      @reservation.create_notification(action: 'cancel_request')
       flash[:notice] = 'ゲストにキャンセルリクエストが送信されました'
       redirect_to reservation_hosts_path
     else

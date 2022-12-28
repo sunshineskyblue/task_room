@@ -31,7 +31,7 @@ class ReservationsController < ApplicationController
     @reservation.host_id = @reservation.room.user.id
 
     if @reservation.save
-      @reservation.create_reservation_notification
+      @reservation.create_notification(action: 'reserve')
       flash[:notice] = '予約を受付いたしました'
       redirect_to registered_reservation_path(@reservation.id)
     else
@@ -63,7 +63,7 @@ class ReservationsController < ApplicationController
       find_by(id: params[:id])
 
     if @reservation.update(cancel: true)
-      @reservation.create_cancel_notification
+      @reservation.create_notification(action: 'cancel')
       @reservation.destroy_notifications(reserve: "reserve", cancel_request: "cancel_request")
       flash[:notice] = '予約がキャンセルされました'
       redirect_to reservations_path
@@ -83,7 +83,7 @@ class ReservationsController < ApplicationController
       order(checkin: 'DESC').
       includes(room: { room_image_attachment: :blob })
 
-      @reservations = reservations.page(params[:page]).per(8)
+    @reservations = reservations.page(params[:page]).per(8)
   end
 
   private
