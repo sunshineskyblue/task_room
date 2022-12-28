@@ -19,6 +19,7 @@
       <%= render "shared/reservation_lists", reservation: reservation %>
     <% end %>
   <% end %>
+  <%= render "shared/pagenation", resources: @reservations %>
 <% end %>
 
 <%= render template: "layouts/host" %>
