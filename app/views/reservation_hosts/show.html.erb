@@ -19,7 +19,7 @@
   <h1>予約者情報</h1>
   <div class="user-box-container">
     <div class="user-box">
-      <%= image_tag @reservation.guest.image, class: 'user-image' if @reservation.guest.image.attached? %>
+      <%= image_tag @reservation.guest.image, class: 'user-image', alt: 'ゲストユーザーのアイコン' if @reservation.guest.image.attached? %>
       <div class="user-headline">
         <div class="user-name">
           <%= @reservation.guest.name %>
