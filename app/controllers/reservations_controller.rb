@@ -32,7 +32,7 @@ class ReservationsController < ApplicationController
 
     if @reservation.save
       @reservation.create_notification(action: 'reserve')
-      flash[:notice] = '予約を受付いたしました'
+      flash[:message] = '予約を受付いたしました'
       redirect_to registered_reservation_path(@reservation.id)
     else
       # newアクション時に検証済みだが、一意性の検証でエラーになる場合もある
@@ -65,7 +65,7 @@ class ReservationsController < ApplicationController
     if @reservation.update(cancel: true)
       @reservation.create_notification(action: 'cancel')
       @reservation.destroy_notifications(reserve: "reserve", cancel_request: "cancel_request")
-      flash[:notice] = '予約がキャンセルされました'
+      flash[:message] = '予約がキャンセルされました'
       redirect_to reservations_path
     else
       render 'reservations/show'

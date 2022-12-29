@@ -17,7 +17,7 @@ class RoomsController < ApplicationController
       price.switch_price_range
       price.save!
 
-      flash[:notice] = "ルーム情報を追加しました"
+      flash[:message] = "ルーム情報を追加しました"
       redirect_to room_path(@room.id)
     else
       render 'rooms/new'

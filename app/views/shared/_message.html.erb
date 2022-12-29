@@ -1,6 +1,6 @@
-<% if flash[:notice] || flash[:alert] %>
+<% if flash[:message] || flash[:alert] %>
   <div class="message-box">
-    <p><%= flash[:notice] %></p>
+    <p><%= flash[:message] %></p>
     <p><%= flash[:alert] %></p>
   </div>
 <% end %>

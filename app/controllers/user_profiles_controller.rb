@@ -13,7 +13,7 @@ class UserProfilesController < ApplicationController
     @user = User.find_by(id: current_user.id)
 
     if @user.update(user_profile_params)
-      flash[:notice] = "プロフィール情報を更新しました"
+      flash[:message] = "プロフィール情報を更新しました"
       redirect_to profile_user_profile_path(current_user.id)
     else
       render 'user_profiles/edit'
