@@ -1,0 +1,37 @@
+.flash-message-field {
+  position: absolute;
+  top: 80px;
+  right: -195px;
+  min-width: 200px;
+  min-height: 30px;
+  font-size: 14px;
+  text-align: left;
+  background-color: white;
+  color: black;
+  transform: translate(-200px, 0);
+  transition: opacity 3s, transform 2s;
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  border-left: solid 7px rgb(255, 255, 0);
+  border-radius: 3px;
+  padding: 10px 20px;
+  box-shadow: -3px 0px 8px rgb(105, 103, 103);
+}
+
+.flash-message-field .fa-circle-check {
+  padding-right: 5px;
+  color: black;
+  font-size: 20px;
+}
+
+.flash-message-field .flash-message {
+  padding-left: 5px;
+}
+
+.animation {
+  transform: none;
+  opacity: 1;
+}

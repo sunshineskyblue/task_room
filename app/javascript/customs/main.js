@@ -21,6 +21,15 @@ document.addEventListener('turbolinks:load', function() {
     $('.message-box').addClass('flash-animation');
   } 
 
+  if (!$('.flash-message-field').hasClass('animation')) {
+    $('.flash-message-field').addClass('animation');
+     $('.animation').fadeOut(4000);  //４秒かけて消えていく
+
+     if ($('.flash-message-field').hasClass('animation')) {
+      $('.flash-message-field').delay(4000).removeClass('animation');
+    }
+  }
+
 //============================== ROOM SHOW PAGE TOGGLE  =========================
   let i = 0;
 
