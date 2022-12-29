@@ -1,7 +1,11 @@
 <div class="reservation-table-wrapper">
   <dl class="reservation-table">
     <dt>宿泊先</dt>
-    <dd><%= reservation.room.name %></dd>
+    <dd>
+      <%= link_to room_path(reservation.room.id), class: "link-to-room" do %>
+        <%= reservation.room.name %>
+      <% end %>
+    </dd>
     <dt>住所</dt>
     <dd class="adress-row">
       <%= reservation.room.adress %>
