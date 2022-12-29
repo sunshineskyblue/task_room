@@ -19,3 +19,18 @@
   margin-bottom: 20px;
   border-bottom: solid 1px rgba(0, 0, 0, 0.275);
 }
+
+.reservation-table .adress-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.reservation-table .adress-row .link-to-map {
+  color: rgb(54, 150, 235);
+  text-decoration: underline;
+  padding-right: 5px;
+}
+
+.reservation-table .adress-row .link-to-map:hover {
+  cursor: pointer;
+}

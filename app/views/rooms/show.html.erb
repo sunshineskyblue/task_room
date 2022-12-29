@@ -9,7 +9,10 @@
         <p><%= @room.name %></p>
       </div>
       <div class="adress-score">
-        <p><%= @room.adress %></p>
+        <p>
+          <%= @room.adress %>
+          <%= link_to "地図を見る", map_path(@room.id), target: "_blank", rel: "noopener", class: "link-to-map"  %>
+        </p>
         <% if @room.has_min_num_rates? %>
           <div class="room-review">
             <div class="room-score">
