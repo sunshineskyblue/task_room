@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root to: 'top#index'
   get 'articles/score'
   resources :top, only: :index
+  resources :maps, only: :show
 
   devise_for(
     # deviseのモデル

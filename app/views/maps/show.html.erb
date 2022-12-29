@@ -1,0 +1,35 @@
+<% content_for(:title, @room.name + "\n地図") %>
+<% content_for :script do %>
+  let map
+  let geocoder
+
+  function initMap(){
+    geocoder = new google.maps.Geocoder()
+
+    map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 16
+    });
+
+    let inputAddress = document.getElementById('address').value;
+    geocoder.geocode( { 'address': inputAddress}, function(results, status) {
+      if (status == 'OK') {
+        map.setCenter(results[0].geometry.location);
+
+        let marker = new google.maps.Marker({
+            map: map,
+            position: results[0].geometry.location
+        });
+      } else {
+        alert('Geocode was not successful for the following reason: ' + status);
+      }
+    });
+  }
+<% end %>
+
+<div class="map-container">
+  <h2 class="title"><%= @room.name + "\n地図" %></h2>
+  <div id='map'></div>
+  <%= hidden_field_tag "address", @room.adress, { id: "address" }  %>
+</div>
+
+<%# <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVLhJuCLHSprlLzJM9xMC4dx8kXL49vuM&callback=initMap" async defer></script> %>
