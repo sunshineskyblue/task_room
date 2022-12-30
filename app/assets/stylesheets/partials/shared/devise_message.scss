@@ -1,14 +1,14 @@
 .flash-message-field {
   position: absolute;
   top: 80px;
-  right: -195px;
+  right: 10px;
   min-width: 200px;
   min-height: 30px;
   font-size: 14px;
   text-align: left;
   background-color: white;
   color: black;
-  transform: translate(-200px, 0);
+  transform: translate(300px, 0);
   transition: opacity 3s, transform 2s;
   opacity: 0;
   display: flex;

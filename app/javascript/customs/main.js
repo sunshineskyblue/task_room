@@ -19,15 +19,16 @@ document.addEventListener('turbolinks:load', function() {
 
   if (!$('.message-box').hasClass('flash-animation')) {
     $('.message-box').addClass('flash-animation');
-  } 
+  }
 
   if (!$('.flash-message-field').hasClass('animation')) {
-    $('.flash-message-field').addClass('animation');
-     $('.animation').fadeOut(4000);  //４秒かけて消えていく
+    $('.flash-message-field').delay(200).queue(function() {
+      $(this).addClass('animation').dequeue();
 
-     if ($('.flash-message-field').hasClass('animation')) {
-      $('.flash-message-field').delay(4000).removeClass('animation');
-    }
+      $('.flash-message-field').delay(5000).queue(function() {
+        $(this).removeClass('animation');
+      });
+    });
   }
 
 //============================== ROOM SHOW PAGE TOGGLE  =========================
