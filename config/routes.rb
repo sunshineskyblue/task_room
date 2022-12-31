@@ -27,7 +27,7 @@ Rails.application.routes.draw do
     patch '/profile', to: 'user_profiles#update', on: :member
   end
 
-  resources :rooms, only: %i(index show) do
+  resources :rooms, only: %i(index show edit destroy) do
     post '/create', to: 'rooms#create', on: :collection
     get '/create', to: 'rooms#new', on: :collection
   end
