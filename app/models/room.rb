@@ -20,8 +20,9 @@ class Room < ApplicationRecord
                           size: {
                             less_than_or_equal_to: 1.megabytes,
                             message: 'は1つのファイル1MB以内にしてください',
-                          },
-                          on: :create
+                          }
+
+  validates :number, presence: { message: "が未入力です" }
 
   MIN_NUM_RATES_SHARED = 2  # 2件以上から評価を公開する
   MAX_NUM_PRICE_RANGE = 7   # Price rangeカラム（価格帯）の上限値
