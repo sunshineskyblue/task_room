@@ -67,7 +67,7 @@
       <%= f.date_field :checkin, class:"reservation-entry-form-date-field", value: params[:checkin] || "" %>
       <%= f.label :checkout, "チェックアウト" %>
       <%= f.date_field :checkout, class:"reservation-entry-form-date-field", value: params[:checkout] || ""  %>
-      <%= f.label :number, "宿泊人数" %>
+        <%= f.label :number, "宿泊人数（ゲスト~#{@room.number}人まで）" %>
       <%= f.number_field :number, class:"reservation-entry-form-number-field", placeholder: "人", value: params[:number] || ""  %>
       <%= f.hidden_field :room_id, value: @room.id %>
       <% if !user_signed_in? %>
