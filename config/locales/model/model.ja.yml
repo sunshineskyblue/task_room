@@ -15,6 +15,7 @@ ja:
         fee: 料金
         adress: 住所
         room_image: 画像
+        number: 人数
       reservation:
         host_id: ホストID
         guest_id: ゲストID
