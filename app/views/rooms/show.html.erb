@@ -73,7 +73,7 @@
       <% if !user_signed_in? %>
         <%= f.submit 'ログイン', name: nil, class:"reservation-entry-form-submit" %>
       <% elsif current_user.invalid? && !current_user.guest_user? %>
-        <%= f.submit 'プロフィール登録', name: nil, class:"reservation-entry-form-submit"  %>
+        <%= f.submit 'プロフィール登録', name: nil, class:"reservation-entry-form-submit" %>
       <% else %>
         <%= f.submit "予約する", name: nil, class:"reservation-entry-form-submit" %>
       <% end %>

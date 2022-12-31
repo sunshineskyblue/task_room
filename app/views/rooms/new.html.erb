@@ -16,12 +16,16 @@
       </div>
     </div>
     <div class="room-form-items-wrapper">
-      <%= f.label :fee, "料金/泊", class: "room-form-label" %>
-      <%= f.number_field :fee, placeholder: "¥", class:"room-number-field" %>
-    </div>
-    <div class="room-form-items-wrapper">
       <%= f.label :adress, "住所", class: "room-form-label" %>
       <%= f.text_field :adress, class: "room-text-field" %>
+    </div>
+    <div class="room-form-items-wrapper">
+      <%= f.label :fee, "料金/泊", class: "room-form-label" %>
+      <%= f.number_field :fee, placeholder: "円", class:"room-fee-field" %>
+    </div>
+    <div class="room-form-items-wrapper">
+      <%= f.label :number, "人数", class: "room-form-label" %>
+      <%= f.number_field :number, placeholder: "人", class:"room-number-field" %>
     </div>
     <div class="room-form-items-wrapper">
       <%= f.label :room_image, "ルーム画像", class: "room-form-label" %>
