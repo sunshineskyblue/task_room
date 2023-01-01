@@ -6,7 +6,7 @@ RSpec.describe "プロフィールページ", type: :request do
 
     before do
       sign_in user
-      get edit_user_profile_path user
+      get profile_user_profile_path user
     end
 
     it "リクエストが成功すること" do
