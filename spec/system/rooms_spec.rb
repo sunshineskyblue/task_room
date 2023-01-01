@@ -6,6 +6,7 @@ RSpec.describe "Rooms", type: :system do
   let(:introduction) { "とても広い部屋があります" }
   let(:adress) { "神奈川県横浜市" }
   let(:fee) { 1000 }
+  let(:number) { 3 }
 
   describe "登録機能" do
     before do
@@ -15,6 +16,7 @@ RSpec.describe "Rooms", type: :system do
       fill_in "物件紹介", with: introduction
       fill_in "住所", with: adress
       fill_in "料金/泊", with: fee
+      fill_in "宿泊人数", with: number
       attach_file "ルーム画像", "#{Rails.root}/spec/fixtures/files/images/test.jpg"
       click_on "登録する"
     end
