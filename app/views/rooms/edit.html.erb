@@ -1,10 +1,10 @@
-<% content_for(:title, "ルーム情報登録") %>
+<% content_for(:title, "宿泊施設の情報を変更する") %>
 <div class="room-form-container">
-  <h2>宿泊施設の登録</h2>
+  <h2>宿泊施設の情報を変更</h2>
   <div class="error-message-field">
     <%= render "shared/error", resource: @room %>
   </div>
-  <%= form_with model: @room, url: create_rooms_path, method: 'post', class: "room-form" do |f| %>
+  <%= form_with model: @room, url: room_path(@room.id), method: 'patch', class: "room-form" do |f| %>
     <div class="room-form-items-wrapper">
       <%= f.label :name, "登録名", class: "room-form-label" %>
       <%= f.text_field :name, class: "room-text-field" %>
@@ -24,7 +24,7 @@
       <%= f.number_field :fee, placeholder: "円", class:"room-fee-field" %>
     </div>
     <div class="room-form-items-wrapper">
-      <%= f.label :number, "宿泊人数", class: "room-form-label" %>
+      <%= f.label :number, "人数", class: "room-form-label" %>
       <%= f.number_field :number, placeholder: "人", class:"room-number-field" %>
     </div>
     <div class="room-form-items-wrapper">
@@ -32,6 +32,6 @@
       <%= f.file_field :room_image, class: "room-file-field", accept: "image/jpg, image/jpeg, image/png" %>
     </div>
     <%= f.hidden_field :user_id, value: current_user.id %>
-    <%= f.submit "登録する", name: nil, class:"room-submit" %>
+    <%= f.submit "変更する", name: nil, class:"room-submit" %>
   <% end %>
 </div>

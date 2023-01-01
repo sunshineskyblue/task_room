@@ -19,7 +19,7 @@
     <div class="error-message-field">
       <%= render "shared/error", resource: @user %>
     </div>
-    <%= image_tag @user.image.attached? ? @user.image : "default_icon.jpg", class: 'profile-icon' %>
+    <%= image_tag @user.image.attached? ? @user.image : "default_icon.jpg", class: 'profile-icon', alt: "ユーザーアイコン" %>
     <div class="profile-form-items-wrapper">
       <%= f.label :image, "アイコン画像", class: "profile-form-label" %>
       <%= f.file_field :image, autofocus: true, autocomplete: "image", class: "profile-file-field", accept: "image/jpg, image/jpeg, image/png" %>

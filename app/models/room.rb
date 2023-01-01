@@ -5,14 +5,14 @@ class Room < ApplicationRecord
   has_one          :price,        dependent: :destroy
   has_one_attached :room_image
 
-  validates :name, presence: { message: "が未入力です" }, on: :create
-  validates :introduction, presence: { message: "が未入力です" }, on: :create
-  validates :fee, presence: { message: "が未入力です" }, on: :create
-  validates :adress, presence: { message: "が未入力です" }, on: :create
-  validates :fee, numericality: { greater_than_or_equal_to: 1000, message: "は1泊1000円以上で設定してください" },
-                  on: :create
-  validates :room_image,  presence: { message: "を登録してください" },
-                          content_type: ['image/png', 'image/jpeg', 'image/jpg'],
+  validates :name, presence: { message: "が未入力です" }
+  validates :introduction, presence: { message: "が未入力です" }
+  validates :fee, presence: { message: "が未入力です" }
+  validates :adress, presence: { message: "が未入力です" }
+  validates :fee, numericality: { greater_than_or_equal_to: 1000, message: "は1泊1000円以上で設定してください" }
+
+  validates :room_image,  presence: { message: "を登録してください" }, on: :create
+  validates :room_image,  content_type: ['image/png', 'image/jpeg', 'image/jpg'],
                           dimension: {
                             width: { max: 1000 },
                             height: { max: 1000 }, message: 'は幅1000px以内の画像を使用してください',
@@ -20,8 +20,9 @@ class Room < ApplicationRecord
                           size: {
                             less_than_or_equal_to: 1.megabytes,
                             message: 'は1つのファイル1MB以内にしてください',
-                          },
-                          on: :create
+                          }
+
+  validates :number, presence: { message: "が未入力です" }
 
   MIN_NUM_RATES_SHARED = 2  # 2件以上から評価を公開する
   MAX_NUM_PRICE_RANGE = 7   # Price rangeカラム（価格帯）の上限値

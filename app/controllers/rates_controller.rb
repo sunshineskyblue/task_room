@@ -5,7 +5,7 @@ class RatesController < ApplicationController
     rate.calculate_score
 
     if rate.save
-      flash[:notice] = "送信が完了しました"
+      flash[:message] = "送信が完了しました"
       redirect_back(fallback_location: root_path)
     else
       flash[:errors] = rate.errors.full_messages

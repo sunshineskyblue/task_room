@@ -33,7 +33,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       return render 'devise/registrations/edit'
     else
       @user.destroy
-      flash[:notice] = "退会が完了しました。またのご利用をお待ちしております"
+      flash[:message] = "退会が完了しました。またのご利用をお待ちしております"
       return redirect_to new_user_session_path
     end
 

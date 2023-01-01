@@ -15,6 +15,7 @@
     <div class="app-container">
       <%= render "shared/header", search: @q %>
       <%= render "shared/message" %>
+      <%= render "shared/devise_message" %>
       <div class="main">
         <%= content_for?(:content) ? yield(:content) : yield %>
       </div>

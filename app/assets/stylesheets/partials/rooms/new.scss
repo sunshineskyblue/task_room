@@ -20,6 +20,15 @@
   margin: 0px auto;
 }
 
+.room-form input {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.room-form textarea {
+  padding: 5px;
+}
+
 .room-form-items-wrapper {
   margin-bottom: 30px;
 }
@@ -56,18 +65,34 @@
   border-radius: 3px;
 }
 
+.room-fee-field {
+  border: solid 0.2px black;
+  border-radius: 3px;
+  margin: 10px auto;
+  padding: 12px 6px;
+  width: 100%;
+  text-align: left;
+  font-size: 17px;
+}
+
+.room-fee-field::placeholder {
+  text-align: right;
+  font-size: 16px;
+}
+
 .room-number-field {
   border: solid 0.2px black;
   border-radius: 3px;
   margin: 10px auto;
   padding: 12px 6px;
   width: 100%;
+  text-align: left;
+  font-size: 17px;
 }
 
 .room-number-field::placeholder {
-  text-align: left;
+  text-align: right;
   font-size: 16px;
-  padding-left: 10px;
 }
 
 .room-file-field {

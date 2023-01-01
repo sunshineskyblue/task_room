@@ -5,6 +5,7 @@ FactoryBot.define do
     fee { "1000" }
     adress { "神奈川県横浜市" }
     room_image { fixture_file_upload('test.jpg') }
+    number { 5 }
 
     association :user
   end

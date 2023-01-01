@@ -20,7 +20,7 @@ header {
   font-size: 20px;
   font-weight: bold;
   color: white;
-  margin: 4px 30px 0px 20px;
+  margin: 4px 30px 0px 40px;
   display: flex;
   align-items: flex-end;
 }
@@ -105,8 +105,8 @@ header .fa-location-dot::before {
   top: 70px;
   font-size: 14px;
   background-color: white;
-  box-shadow: -3px 3px 5px rgba(161, 165, 173, 0.829),
-    3px 0px 5px rgba(161, 165, 173, 0.829);
+  box-shadow: -1px 1px 2px rgba(161, 165, 173, 0.829),
+    2px 0px 3px rgba(161, 165, 173, 0.829);
 }
 
 .global-navigation .logout li {

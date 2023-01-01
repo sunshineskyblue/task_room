@@ -1,9 +1,16 @@
 <div class="reservation-table-wrapper">
   <dl class="reservation-table">
     <dt>宿泊先</dt>
-    <dd><%= reservation.room.name %></dd>
+    <dd>
+      <%= link_to room_path(reservation.room.id), class: "link-to-room" do %>
+        <%= reservation.room.name %>
+      <% end %>
+    </dd>
     <dt>住所</dt>
-    <dd><%= reservation.room.adress %></dd>
+    <dd class="adress-row">
+      <%= reservation.room.adress %>
+      <%= link_to "地図を見る", map_path(reservation.room.id), target: "_blank", rel: "noopener", class: "link-to-map" %>
+    </dd>
     <dt>チェックイン</dt>
     <dd><%= reservation.checkin.strftime("%Y年%m月%d日 (#{t("date.abbr_day_names")[reservation.checkin.wday]})") %></dd>
     <dt>チェックアウト</dt>

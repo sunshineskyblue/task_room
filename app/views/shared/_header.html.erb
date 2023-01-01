@@ -24,9 +24,9 @@
       </div>
       <div class="user-icon-field"> 
         <% if current_user.image.attached? %>
-          <%= image_tag current_user.image, class: 'user-icon' %>
+          <%= image_tag current_user.image, class: 'user-icon', alt: 'ユーザーアイコン' %>
         <% else %>
-          <%= image_tag "default_icon.jpg" , class: 'user-icon' %>
+          <%= image_tag "default_icon.jpg" , class: 'user-icon', alt: 'ユーザーアイコン' %>
         <% end %>
       </div>
     </div>

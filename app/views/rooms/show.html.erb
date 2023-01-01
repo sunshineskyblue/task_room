@@ -2,14 +2,17 @@
 <%= render "shared/modal_score", avg: @avg_scores, group_avg: @group_avg, cleanliness: @avg_cleanliness,communication: @avg_communication, information: @avg_information, location: @avg_location, price: @avg_price, recommendation: @avg_recommendation %>
 <div class="room-intro-page-container">
   <div class="room-detail-wrapper">
-    <%= image_tag @room.room_image, class: 'room-image' if @room.room_image.attached? %>
+    <%= image_tag @room.room_image, class: 'room-image', alt: "#{@room.name}の画像" if @room.room_image.attached? %>
     <div class="overview">
       <div class="icon-name">
-        <%= image_tag @room.user.image.attached? ? @room.user.image : "default_icon.jpg", class: 'owner-icon' %>
+        <%= image_tag @room.user.image.attached? ? @room.user.image : "default_icon.jpg", class: 'owner-icon', alt: "ホスト画像" %>
         <p><%= @room.name %></p>
       </div>
       <div class="adress-score">
-        <p><%= @room.adress %></p>
+        <p>
+          <%= @room.adress %>
+          <%= link_to "地図を見る", map_path(@room.id), target: "_blank", rel: "noopener", class: "link-to-map"  %>
+        </p>
         <% if @room.has_min_num_rates? %>
           <div class="room-review">
             <div class="room-score">
@@ -55,7 +58,7 @@
     </div>
   </div>
   <div class="reservation-entry-form-container">
-    <p>¥<%= @room.fee %>/日</p>
+    <p>¥<%= @room.fee %>/泊</p>
     <div class="error-message-field">
       <%= render "shared/flash_error" %>
     </div>
@@ -64,13 +67,13 @@
       <%= f.date_field :checkin, class:"reservation-entry-form-date-field", value: params[:checkin] || "" %>
       <%= f.label :checkout, "チェックアウト" %>
       <%= f.date_field :checkout, class:"reservation-entry-form-date-field", value: params[:checkout] || ""  %>
-      <%= f.label :number, "宿泊人数" %>
+        <%= f.label :number, "宿泊人数（ゲスト~#{@room.number}人用）" %>
       <%= f.number_field :number, class:"reservation-entry-form-number-field", placeholder: "人", value: params[:number] || ""  %>
       <%= f.hidden_field :room_id, value: @room.id %>
       <% if !user_signed_in? %>
         <%= f.submit 'ログイン', name: nil, class:"reservation-entry-form-submit" %>
       <% elsif current_user.invalid? && !current_user.guest_user? %>
-        <%= f.submit 'プロフィール登録', name: nil, class:"reservation-entry-form-submit"  %>
+        <%= f.submit 'プロフィール登録', name: nil, class:"reservation-entry-form-submit" %>
       <% else %>
         <%= f.submit "予約する", name: nil, class:"reservation-entry-form-submit" %>
       <% end %>

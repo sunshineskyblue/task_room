@@ -17,7 +17,7 @@ class RoomsController < ApplicationController
       price.switch_price_range
       price.save!
 
-      flash[:notice] = "ルーム情報を追加しました"
+      flash[:message] = "ルーム情報を追加しました"
       redirect_to room_path(@room.id)
     else
       render 'rooms/new'
@@ -41,9 +41,32 @@ class RoomsController < ApplicationController
     end
   end
 
+  def edit
+    @room = Room.find_by(id: params[:id])
+  end
+
+  def update
+    @room = Room.find_by(id: params[:id])
+
+    if @room.update(room_params)
+      flash[:message] = "物件情報を変更しました"
+      redirect_to edit_room_path(@room.id)
+    else
+      render 'rooms/edit'
+    end
+  end
+
   private
 
   def room_params
-    params.require(:room).permit(:name, :introduction, :fee, :adress, :user_id, :room_image)
+    params.require(:room).permit(
+      :name,
+      :introduction,
+      :fee,
+      :adress,
+      :user_id,
+      :room_image,
+      :number
+    )
   end
 end

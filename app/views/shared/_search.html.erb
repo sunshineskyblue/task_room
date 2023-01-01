@@ -5,7 +5,7 @@
       <% rooms.each do |room| %>
         <div class="search-box">
           <%= link_to(room_path(room), target: "_blank", rel: "noopener") do %>
-            <%= image_tag room.room_image, class: 'search-box-image' if room.room_image.attached? %>
+            <%= image_tag room.room_image, class: 'search-box-image', alt: "#{room.name}の画像" if room.room_image.attached? %>
             <div class="seach-box-intro">
               <div class="seach-box-name">
                 <p><%= room.name %></p>
@@ -18,7 +18,5 @@
       <% end %>
     </div>
   </div>
-  <div class="search-results-pagenation">
-    <%= paginate rooms %>
-  </div>
+  <%= render "shared/pagenation", resources: rooms %>
 </div>

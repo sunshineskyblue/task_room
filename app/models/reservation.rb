@@ -102,34 +102,14 @@ class Reservation < ApplicationRecord
     )
   end
 
-  # TODO: コード位置再検討
-  def create_cancel_notification
-    Notification.create(
+  def create_notification(action:)
+    notification = Notification.new(
       reservation_id: id,
       guest_id: guest_id,
       host_id: host_id,
-      action: 'cancel'
+      action: action
     )
-  end
-
-  # TODO: コード位置再検討
-  def create_reservation_notification
-    Notification.create(
-      reservation_id: id,
-      guest_id: guest_id,
-      host_id: host_id,
-      action: 'reserve'
-    )
-  end
-
-  # TODO: コード位置再検討
-  def create_cancel_requst_notification
-    Notification.create(
-      reservation_id: id,
-      guest_id: guest_id,
-      host_id: host_id,
-      action: 'cancel_request'
-    )
+    notification.save
   end
 
   def destroy_notifications(**actions)
@@ -149,6 +129,14 @@ class Reservation < ApplicationRecord
   def has_rate?
     if rate.present?
       return true
+    end
+
+    false
+  end
+
+  def guest_number_exceeded_limit
+    if number > room.number
+      return number - room.number
     end
 
     false

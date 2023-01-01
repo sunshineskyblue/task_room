@@ -1,0 +1,8 @@
+<% if flash[:notice] %>
+  <div class="flash-message-field">
+    <p>
+      <i class="fa-regular fa-circle-check"></i>
+      <span class="flash-message"><%= flash[:notice] %></span>
+    </p>
+  </div>
+<% end %>

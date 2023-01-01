@@ -1,29 +1,32 @@
 // Place all the styles related to the top controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
-
 .top-head-container {
   height: 100vh;
-  background-image: image-url("img_top_cover.JPG");
+  background-image: image-url("top_cover.jpg");
   background-repeat: no-repeat;
+  background-position: 50% 70%;
   background-size: cover;
-  background-position: center;
+  position: relative;
   display: flex;
   align-items: center;
 }
 
 .top-search-box-wrapper {
-  height: 50%;
   display: block;
+  margin-right: auto;
+  margin-left: auto;
+  width: 92%;
 }
 
 .top-search-box {
   background-color: white;
   font-size: 21px;
-  width: calc(100% - 50px);
+  width: 100%;
   padding: 20px;
   margin-right: auto;
   margin-left: auto;
+  margin-bottom: 100px;
   border-radius: 5px;
   max-width: 420px;
 }
@@ -55,6 +58,10 @@
   border-radius: 5px;
 }
 
+.top-search-field::placeholder {
+  color: rgba(167, 158, 158, 0.828);
+}
+
 .keyword-search-field {
   display: block;
   width: 100%;
@@ -64,11 +71,17 @@
   border-radius: 5px;
 }
 
-_::-webkit-full-page-media, _:future, :root .top-search-box input {
-	outline: none;
-	-webkit-appearance: none;
-	-moz-appearance: none;
-	appearance: none;
+.keyword-search-field::placeholder {
+  color: rgba(167, 158, 158, 0.828);
+}
+
+_::-webkit-full-page-media,
+_:future,
+:root .top-search-box input {
+  outline: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
 .search-icon-field {
@@ -179,8 +192,12 @@ _::-webkit-full-page-media, _:future, :root .top-search-box input {
 }
 
 @media (min-width: 600px) {
+  .top-search-box-wrapper {
+    margin-right: initial;
+    margin-left: initial;
+  }
+
   .top-search-box {
-    margin-bottom: 100px;
     margin-left: 80px;
   }
 

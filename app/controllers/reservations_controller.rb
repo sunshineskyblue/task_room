@@ -31,8 +31,8 @@ class ReservationsController < ApplicationController
     @reservation.host_id = @reservation.room.user.id
 
     if @reservation.save
-      @reservation.create_reservation_notification
-      flash[:notice] = '予約を受付いたしました'
+      @reservation.create_notification(action: 'reserve')
+      flash[:message] = '予約を受付いたしました'
       redirect_to registered_reservation_path(@reservation.id)
     else
       # newアクション時に検証済みだが、一意性の検証でエラーになる場合もある
@@ -63,9 +63,9 @@ class ReservationsController < ApplicationController
       find_by(id: params[:id])
 
     if @reservation.update(cancel: true)
-      @reservation.create_cancel_notification
+      @reservation.create_notification(action: 'cancel')
       @reservation.destroy_notifications(reserve: "reserve", cancel_request: "cancel_request")
-      flash[:notice] = '予約がキャンセルされました'
+      flash[:message] = '予約がキャンセルされました'
       redirect_to reservations_path
     else
       render 'reservations/show'
@@ -77,11 +77,13 @@ class ReservationsController < ApplicationController
   end
 
   def completed
-    @reservations = current_user.guest_reservations.
+    reservations = current_user.guest_reservations.
       where('checkout < ?', Date.today).
       or(current_user.guest_reservations.where(cancel: true)).
       order(checkin: 'DESC').
       includes(room: { room_image_attachment: :blob })
+
+    @reservations = reservations.page(params[:page]).per(8)
   end
 
   private

@@ -9,7 +9,10 @@
       </tr>
       <tr>
         <th>住所</th>
-        <td><%= @reservation.room.adress %></td>
+        <td>
+          <%= @reservation.room.adress %>
+          <%= link_to "地図を見る", map_path(@reservation.room.id), target: "_blank", rel: "noopener", class: "link-to-map" %>
+        </td>
       </tr>
       <tr>
         <th>チェックイン</th>

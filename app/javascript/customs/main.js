@@ -19,7 +19,17 @@ document.addEventListener('turbolinks:load', function() {
 
   if (!$('.message-box').hasClass('flash-animation')) {
     $('.message-box').addClass('flash-animation');
-  } 
+  }
+
+  if (!$('.flash-message-field').hasClass('animation')) {
+    $('.flash-message-field').delay(200).queue(function() {
+      $(this).addClass('animation').dequeue();
+
+      $('.flash-message-field').delay(5000).queue(function() {
+        $(this).removeClass('animation');
+      });
+    });
+  }
 
 //============================== ROOM SHOW PAGE TOGGLE  =========================
   let i = 0;

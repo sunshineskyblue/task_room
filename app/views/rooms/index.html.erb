@@ -15,9 +15,9 @@
 <% content_for :host_content do %>
   <%= render "shared/host_tab_menu", reservations: nil, notifications: @notifications %>
   <% @rooms.each do |room| %>
-    <%= link_to room_path(room.id) do %>
+    <%= link_to edit_room_path(room.id) do %>
       <div class="room-list">
-        <%= image_tag room.room_image, class: 'room-list-image' if room.room_image.attached? %>
+        <%= image_tag room.room_image, class: 'room-list-image', alt: "#{room.name}の画像" if room.room_image.attached? %>
         <div class="room-list-headline">
           <div class="room-list-name">
             <%= room.name %>
