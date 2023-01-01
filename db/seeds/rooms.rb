@@ -29,6 +29,7 @@ samples = [
       name: "LANG HOTEL 亀戸503 新築ホテルでNetflix鑑賞 ドンキ&コンビニ至近 バストイレ別" ,
       fee: 4999,
       adress: "富山市新総曲輪1番7号",
+      number: 1,
       room_image: ActiveStorage::Blob.create_and_upload!(
         io: File.open("#{File.dirname(__FILE__)}/fixtures/room1.jpg"),
         filename: "room1.jpg"
@@ -41,6 +42,7 @@ samples = [
     room: {
       name: "飛騨の古民家に泊まる" ,
       fee: 9999,
+      number: 2,
       adress: "岐阜県飛騨市古川町本町２−２２",
       room_image: ActiveStorage::Blob.create_and_upload!(
         io: File.open("#{File.dirname(__FILE__)}/fixtures/room2.jpg"),
@@ -54,6 +56,7 @@ samples = [
     room: {
       name: "【NEW】浅草/東京スカイツリー直通！八広駅徒歩3分 2階建て一軒家 4ベッド WIFI無制限" ,
       fee: 19999,
+      number: 3,
       adress: "東京都新宿区西新宿2-8-1",
       room_image: ActiveStorage::Blob.create_and_upload!(
         io: File.open("#{File.dirname(__FILE__)}/fixtures/room3.jpg"),
@@ -67,6 +70,7 @@ samples = [
     room: {
       name: "【1日1組限定4名まで同額】宮川沿いの町家一棟貸切ステイ　～WAT RESORT 飛騨まちやど 桜～" ,
       fee: 39999,
+      number: 4,
       adress: "岐阜市薮田南2丁目1番1号",
       room_image: ActiveStorage::Blob.create_and_upload!(
         io: File.open("#{File.dirname(__FILE__)}/fixtures/room4.jpg"),
@@ -80,6 +84,7 @@ samples = [
     room: {
       name: "都会の喧騒からは程遠い、清流のある小さな村(1日1組限定)" ,
       fee: 59999,
+      number: 5,
       adress: "石川県金沢市鞍月1丁目1番地",
       room_image: ActiveStorage::Blob.create_and_upload!(
         io: File.open("#{File.dirname(__FILE__)}/fixtures/room5.jpg"),
@@ -93,6 +98,7 @@ samples = [
     room: {
       name: "静かな別荘地の一番奥の森の中にある、小さな別荘　Westwood Takayama" ,
       fee: 99999,
+      number: 6,
       adress: "和歌山市小松原通一丁目1番地",
       room_image: ActiveStorage::Blob.create_and_upload!(
         io: File.open("#{File.dirname(__FILE__)}/fixtures/room6.jpg"),
@@ -106,6 +112,7 @@ samples = [
     room: {
       name: "【Pop Culture House】一軒家貸切！インスタ映えの宿！最大10名★駐車場3台無料☆" ,
       fee: 100000,
+      number: 7,
       adress: "三重県津市広明町13番地",
       room_image: ActiveStorage::Blob.create_and_upload!(
         io: File.open("#{File.dirname(__FILE__)}/fixtures/room7.jpg"),
@@ -119,6 +126,7 @@ samples = [
     room: {
       name: "山荘民宿" ,
       fee: 170000,
+      number: 8,
       adress: "岐阜県飛騨市２",
       room_image: ActiveStorage::Blob.create_and_upload!(
         io: File.open("#{File.dirname(__FILE__)}/fixtures/room2.jpg"),
