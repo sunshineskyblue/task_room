@@ -373,70 +373,37 @@ RSpec.describe Reservation, type: :model do
     end
   end
 
-  describe '#create_cancel_notification' do
+  describe '#create_notification(action:)' do
     include_context 'visualize relationship reservation'
-
-    it 'Notificationインスタンスが登録されること' do
-      expect(reservation_for_host_room.create_cancel_notification).to be_instance_of(Notification)
-    end
 
     it 'action属性が "cancel" で登録されること' do
-      notification = reservation_for_host_room.create_cancel_notification
-      expect(notification.action).to eq 'cancel'
+      reservation_for_host_room.create_notification(action: 'cancel')
+      notification = Notification.where(reservation_id: reservation_for_host_room.id)
+      expect(notification.first.action).to eq 'cancel'
     end
 
     it 'checked属性が "false" で登録されること' do
-      notification = reservation_for_host_room.create_cancel_notification
-      expect(notification.checked).to eq false
-    end
-
-    it 'reservation_idがforeign_keyとして登録されること' do
-      notification = reservation_for_host_room.create_cancel_notification
-      expect(notification.reservation_id).to eq reservation_for_host_room.id
-    end
-
-    it 'guest_idがforeign_keyとして登録されること' do
-      notification = reservation_for_host_room.create_cancel_notification
-      expect(notification.guest_id).to eq guest.id
-    end
-
-    it 'host_idがforeign_keyとして登録されること' do
-      notification = reservation_for_host_room.create_cancel_notification
-      expect(notification.host_id).to eq host.id
-    end
-  end
-
-  describe '#create_reservation_notification' do
-    include_context 'visualize relationship reservation'
-
-    it 'Notificationインスタンスが登録されること' do
-      expect(reservation_for_host_room.
-        create_reservation_notification).to be_instance_of(Notification)
-    end
-
-    it 'action属性が "reserve" で登録されること' do
-      notification = reservation_for_host_room.create_reservation_notification
-      expect(notification.action).to eq 'reserve'
-    end
-
-    it 'checked属性が "false" で登録されること' do
-      notification = reservation_for_host_room.create_reservation_notification
-      expect(notification.checked).to eq false
-    end
-
-    it 'reservation_idがforeign_keyとして登録されること' do
-      notification = reservation_for_host_room.create_reservation_notification
-      expect(notification.reservation_id).to eq reservation_for_host_room.id
+      reservation_for_host_room.create_notification(action: 'cancel')
+      notification = Notification.
+        where(reservation_id: reservation_for_host_room.id).
+        where(action: 'cancel')
+      expect(notification.first.checked).to eq false
     end
 
     it 'guest_idがforeign_keyとして登録されること' do
-      notification = reservation_for_host_room.create_reservation_notification
-      expect(notification.guest_id).to eq guest.id
+      reservation_for_host_room.create_notification(action: 'cancel')
+      notification = Notification.
+        where(reservation_id: reservation_for_host_room.id).
+        where(action: 'cancel')
+      expect(notification.first.guest_id).to eq guest.id
     end
 
     it 'host_idがforeign_keyとして登録されること' do
-      notification = reservation_for_host_room.create_reservation_notification
-      expect(notification.host_id).to eq host.id
+      reservation_for_host_room.create_notification(action: 'cancel')
+      notification = Notification.
+        where(reservation_id: reservation_for_host_room.id).
+        where(action: 'cancel')
+      expect(notification.first.host_id).to eq host.id
     end
   end
 
