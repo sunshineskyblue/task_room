@@ -38,8 +38,6 @@ class Reservation < ApplicationRecord
         where('checkin >= ? and checkout <= ?', checkin, checkout)
     }
 
-  # attr_accessor :notification
-
   def stay_length
     (checkout - checkin).to_i
   end
