@@ -134,6 +134,14 @@ class Reservation < ApplicationRecord
     false
   end
 
+  def guest_number_exceeded_limit
+    if number > room.number
+      return number - room.number
+    end
+
+    false
+  end
+
   private
 
   def disallow_checkout_before_or_equal_checkin
