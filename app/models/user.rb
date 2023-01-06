@@ -55,12 +55,45 @@ class User < ApplicationRecord
     end
   end
 
-  def has_reservations_cancel_requested?
-    host_reservations.any? { |reservation| reservation.cancel_requested? } ||
-    guest_reservations.any? { |reservation| reservation.cancel_requested? }
+  def has_reservations_cancel_requested_as_guest?
+    guest_reservations.
+      any? { |reservation| reservation.cancel_requested? && !reservation.finished? }
   end
 
-  def has_notifications_unchecked_as_host?(action:)
-    host_notifications.action_unchecked(action: action).present?
+  def has_reservations_cancel_requested_as_host?
+    host_reservations.
+      any? { |reservation| reservation.cancel_requested? && !reservation.finished? }
+  end
+
+  def has_cancel_notifications_unchecked_as_host?
+    host_reservations.each do |reservation|
+      if reservation.notifications.action_unchecked(action: "cancel").present?
+        return true
+      end
+    end
+
+    false
+  end
+
+  def has_active_notifications_unchecked_as_host?(action:)
+    host_reservations.each do |reservation|
+      if reservation.notifications.action_unchecked(action: action).present? &&
+        !reservation.finished?
+        return true
+      end
+    end
+
+    false
+  end
+
+  def has_passed_notifications_unchecked_as_host?(action:)
+    host_reservations.each do |reservation|
+      if reservation.notifications.action_unchecked(action: action).present? &&
+        reservation.finished?
+        return true
+      end
+    end
+
+    false
   end
 end
