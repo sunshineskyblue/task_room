@@ -33,11 +33,9 @@
       <%= safe_join(@reservation.guest.introduction.split(/\n/), tag(:br)) %>
     </div>
   </div>
-  <% if !@reservation.finished? %>
-    <% unless @reservation.cancel_requested? %>
-      <%= form_with model: @reservation, url: reservation_host_path(@reservation.id), data: {confirm: "必ずキャンセルポリシーをご確認後、キャンセルリクストをしてください"} do |f| %>
-        <%= f.submit "キャンセルリクエスト", class: "host-cancel-button" %>
-      <% end %>
+  <% if !@reservation.finished? && !@reservation.canceled? && !@reservation.cancel_requested? %>
+    <%= form_with model: @reservation, url: reservation_host_path(@reservation.id), data: {confirm: "必ずキャンセルポリシーをご確認後、キャンセルリクストをしてください"} do |f| %>
+      <%= f.submit "キャンセルリクエスト", class: "host-cancel-button" %>
     <% end %>
   <% end %>
 </div>
