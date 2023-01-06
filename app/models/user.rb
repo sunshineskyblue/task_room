@@ -55,14 +55,24 @@ class User < ApplicationRecord
     end
   end
 
-  def has_reservations_cancel_requested_as_guest?
+  def has_active_reservations_cancel_requested_as_guest?
     guest_reservations.
       any? { |reservation| reservation.cancel_requested? && !reservation.finished? }
   end
 
-  def has_reservations_cancel_requested_as_host?
+  def has_passed_reservations_cancel_requested_as_guest?
+    guest_reservations.
+      any? { |reservation| reservation.cancel_requested? && reservation.finished? }
+  end
+
+  def has_active_reservations_cancel_requested_as_host?
     host_reservations.
       any? { |reservation| reservation.cancel_requested? && !reservation.finished? }
+  end
+
+  def has_passed_reservations_cancel_requested_as_host?
+    host_reservations.
+      any? { |reservation| reservation.cancel_requested? && reservation.finished? }
   end
 
   def has_cancel_notifications_unchecked_as_host?
