@@ -1,12 +1,13 @@
 <div class="tab-menu"> 
   <%= link_to reservations_path do %>
     <div class="tab-item first">
-      <i class="<%= "fa-solid fa-exclamation" if current_user.has_reservations_cancel_requested? %>"></i>
+      <i class="<%= "fa-solid fa-exclamation" if current_user.has_active_reservations_cancel_requested_as_guest? %>"></i>
       <span>予約中</span>
     </div>
   <% end %>
   <%= link_to completed_reservations_path do %>
     <div class="tab-item second">
+      <i class="<%= "fa-solid fa-exclamation" if current_user.has_passed_reservations_cancel_requested_as_guest? %>"></i>
       <span>予約履歴</span>
     </div>
   <% end %>
